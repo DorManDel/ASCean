@@ -38,3 +38,14 @@ State: **ACCEPTED** = user-approved direction; **PROVISIONAL** = first candidate
 | D-001 | DEFERRED | C++/WASM, per-fish heavy ML, advanced hydrodynamics | Only after profiling and model validation |
 
 **Change policy:** convert a provisional/open item to accepted via dated decision record with rationale, alternatives, owner approval, supporting evidence and impact. Do not silently replace earlier decisions. Add ADR files under `docs/decisions/` when meaningful.
+
+## 2026-11-13 — Development Hub extension (owner direction)
+
+| ID | State | Decision | Rationale |
+|---|---|---|---|
+| A-018 | ACCEPTED | Dedicated `development` integration branch, feature PRs target development first | Keep published `main` stable while mechanics evolve |
+| A-019 | ACCEPTED | Mechanics catalog with search, restored reference archive and Developer & AI workspace | Keep decisions, evidence, mechanics and implementation explanation discoverable in the site |
+| A-020 | ACCEPTED | Independent mini-aquarium fixtures for mating, feeding/waste, predation, social behavior and future mechanisms | Validate behavior/UX and inspect events before engine integration |
+| P-007 | PROVISIONAL | Seeded toy diploid trait inheritance shown in Hub as experimental model | Needs species-specific scientific evidence before it can be called DNA simulation |
+
+The `site/shared/dev-register.mjs` mirrors key entries. Changes to an accepted decision require owner review and updates to both places. A successful demo is not a biological calibration.
