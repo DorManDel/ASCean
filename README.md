@@ -27,7 +27,7 @@ Open http://localhost:5500/ in a browser.
 - prompts — Codex work briefs.
 
 ## Boundaries
-M0 includes no calibrated biology, species-accurate growth, hydrostatic response, meaningful AI learning or ecosystem food-cycle simulation. These are later milestones and research topics. See docs/DECISIONS.md.
+M0 includes no calibrated biology, species-accurate growth, hydrostatic response, meaningful AI learning or ecosystem food-cycle simulation. These are later milestones and research topics. See docs/DECISIONS.md, docs/ROADMAP.md, docs/MECHANICS_CATALOG.md and prompts/CODEX_M0.md.
 
 Workflow: source → interactive demo → tests → PR review → owner approval → merge → deployment verification → private PCM checkpoint.
 
