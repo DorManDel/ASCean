@@ -46,3 +46,11 @@ core · physics · environment · biology · behavior · species · rendering
 **2026-11-13: M0 design proposal in review.** There is no integrated scientific engine or published Mechanics Lab in this repository yet. Existing prototype HTML files from prior planning are *design references*, not validated engine code. Do not claim a feature works without tests and commit-specific evidence.
 
 **Privacy:** this is a public repository. Never add PCM private registry contents, credentials, unpublished data, or personal information.
+
+## First experimental website (under review)
+
+The [Ocean Sandbox](site/ocean/) and [Mechanics Lab](site/lab/) are static reference experiences currently proposed in [PR #3](https://github.com/DorManDel/ASCean/pull/3). They share a single educational World module. **No calibrated scientific engine is claimed yet.**
+
+Website after GitHub Pages is enabled and deployed: https://dormandel.github.io/ASCean/ . Owner must select **Settings → Pages → Source → GitHub Actions**, then verify the deployment. Until verified, this is the expected URL, not a live-site claim.
+
+[Component and bootstrap contracts](docs/ENGINE_COMPONENT_CONTRACTS.md) · [Technology choices](docs/TECH_STACK.md) · [Experiment approval process](docs/EXPERIMENT_PROTOCOL.md) · [Codex M0 foundation prompt](prompts/CODEX_ENGINE_FOUNDATION_M0.md)
