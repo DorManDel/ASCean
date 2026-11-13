@@ -17,4 +17,6 @@ jobs:
           npm install --no-save playwright@1.56.1
           npx playwright install --with-deps chromium
       - name: Desktop and mobile smoke
-        run: node site/browser-smoke.mjs
+        run: |
+          node site/browser-smoke.mjs
+          node site/hub/browser-smoke.mjs
