@@ -1,0 +1,14 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>ASCean — Mechanics Lab</title><link rel="stylesheet" href="../../styles/site.css"></head><body>
+<header class="topbar"><a class="brand" href="../../">≋ ASCean</a><nav><a href="../ocean/">Ocean</a><a href="../../">Home</a></nav></header>
+<main class="shell"><h1>Mechanics Lab</h1><p class="small">One shared World · inspect real state · test mechanics before integration</p>
+<div class="columns"><section class="pane"><h2>3D Spatial Search</h2><p class="small">Tap a fish to inspect it. Z changes depth color, not screen XY. Search uses a true 3D sphere.</p><canvas id="scene" width="960" height="540" aria-label="Interactive fish selection in side view"></canvas>
+<div class="toolbar"><button id="pause">Pause</button><button id="step">Single tick</button><button id="spawn">+25 fish</button><button id="remove">Remove selected</button><button id="guides">Toggle grid guides</button></div>
+<div class="settings"><label>Search radius <output id="radiusOutput">350 cm</output><input id="radius" type="range" min="50" max="1500" step="50" value="350"></label>
+<label>Lookup algorithm<select id="method"><option value="grid">Sparse 3D Grid</option><option value="all">Exhaustive (all fish)</option></select></label></div>
+</section><aside class="pane"><h2>Fish Inspector</h2><p id="inspector">Tap a fish.</p>
+<div class="metrics"><div><small>FPS</small><strong id="fps">—</strong></div><div><small>TPS</small><strong id="tps">—</strong></div>
+<div><small>Occupied cells</small><strong id="cells">—</strong></div><div><small>Distance checks</small><strong id="checks">—</strong></div><div><small>True neighbors</small><strong id="neighbors">—</strong></div><div><small>Numeric allocation</small><strong id="bytes">—</strong></div></div>
+<h3>What does each structure do?</h3><p><b>Map:</b> ID → array slot.</p><p><b>SoA:</b> continuous numeric columns.</p><p><b>Swap-and-remove:</b> delete without shifting every fish.</p><p><b>Spatial Grid:</b> nearby occupied cells only.</p>
+<p class="small">This is an engineering demo. Genetic learning, diets, collision damage and fluid physics are intentionally absent.</p></aside></div>
+<section class="pane note"><h2>What we are testing</h2><p>Fixed 30 ticks/second regardless of display refresh; true frame rate is measured, not assumed. Compare candidate checks from Grid versus exhaustive search. Pause prevents world updates; Single tick advances exactly one simulation tick.</p></section>
+</main><script type="module" src="./src/main.js"></script></body></html>
