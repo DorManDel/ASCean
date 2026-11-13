@@ -1,0 +1,39 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#071220"><title>ASCean Ocean Sandbox</title><link rel="stylesheet" href="../assets/site.css"></head><body>
+<header class="topbar"><a class="brand" href="../"><span class="mark">🌊</span>ASCean / Ocean</a><nav class="toplinks"><a href="../lab/">Lab</a><a href="../">Home</a></nav></header>
+<main class="container"><div class="lab-intro"><div><div class="eyebrow">Shared World Prototype</div><h1>Ocean Sandbox</h1><p>A small technical side-view preview. No real swimming physics, genetics or ecological life model yet.</p></div></div>
+<div class="lab-grid"><section class="panel"><canvas class="canvas" id="ocean" width="1000" height="565" aria-label="Animated reference ASCII fish projected from a three-dimensional World"></canvas>
+<div class="metrics"><div class="metric"><span class="name">Entities</span><strong id="count">180</strong></div><div class="metric"><span class="name">FPS (measured)</span><strong id="fps">—</strong></div><div class="metric"><span class="name">TPS (measured)</span><strong id="tps">—</strong></div></div>
+<div class="btnrow"><button id="play">⏸ Pause</button><button id="step">+1 Tick</button><button id="add">+20 Fish</button><button id="reset">Reset Seed</button></div></section>
+<aside class="stack"><section class="panel"><h3>World contract</h3><p>100 m width · 50 m vertical height · 30 m Z into screen</p><p>Coordinates and velocities are stored in cm and cm/s. Camera projects XY and uses Z only for visual fading.</p><p class="note">Pressure and true underwater depth are based on vertical Y, not the camera's Z axis.</p></section>
+<section class="panel"><h3>Engine status</h3><ul class="bullets"><li>Uses the same <code>WorldPrototype</code> module as the Mechanics Lab.</li><li>Sample seeded motion with wall reflection only.</li><li>Fixed 30 TPS; display refresh can differ.</li><li>Not an approved physics or biology component.</li></ul><a href="../lab/">Explore the mechanics ↗</a></section></aside></div></main>
+<script type="module">
+import {WorldPrototype} from "../shared/world-prototype.mjs";
+const $=id=>document.getElementById(id),canvas=$("ocean"),c=canvas.getContext("2d");
+let world=new WorldPrototype({count:180}),paused=false,frames=0,ticks=0,acc=0,last=performance.now(),meter=last;
+function paint(){
+ const w=canvas.width,h=canvas.height;
+ const g=c.createLinearGradient(0,0,0,h);g.addColorStop(0,"#125e7a");g.addColorStop(1,"#05192b");c.fillStyle=g;c.fillRect(0,0,w,h);
+ c.textAlign="center";c.textBaseline="middle";
+ for(let i=0;i<world.count;i++){
+   const depth=world.z[i]/world.extents.z;
+   c.globalAlpha=.35+.65*(1-depth);
+   c.fillStyle="hsl("+Math.round(174+depth*85)+" 85% 74%)";
+   c.font=Math.round(12+(1-depth)*8)+"px Consolas,monospace";
+   const x=world.x[i]/world.extents.x*w,y=(1-world.y[i]/world.extents.y)*h;
+   c.fillText(world.vx[i]<0?"><(((°<":"<°)))><",x,y);
+ }
+ c.globalAlpha=1;c.textAlign="left";c.font="13px Consolas,monospace";c.fillStyle="#d8f4ff";c.fillText("SIDE VIEW XY  ·  TRUE XYZ WORLD  ·  REFERENCE MOTION",14,22);
+ if(paused)c.fillText("PAUSED",14,42);
+}
+function render(now){
+ const dt=Math.min(.1,(now-last)/1000);last=now;frames++;
+ if(!paused){acc+=dt;let n=0;while(acc>=1/30&&n<3){world.tick(1/30);acc-=1/30;frames; ticks++;n++;}}
+ if(now-meter>=1000){$("fps").textContent=Math.round(frames*1000/(now-meter));$("tps").textContent=Math.round(ticks*1000/(now-meter));$("count").textContent=world.count;frames=0;ticks=0;meter=now;}
+ paint();requestAnimationFrame(render);
+}
+$("play").onclick=()=>{paused=!paused;$("play").textContent=paused?"▶ Resume":"⏸ Pause";};
+$("step").onclick=()=>{if(!paused){paused=true;$("play").textContent="▶ Resume";}world.tick(1/30);paint();};
+$("add").onclick=()=>{for(let i=0;i<20;i++)world.spawn();world.rebuild();$("count").textContent=world.count;};
+$("reset").onclick=()=>{world=new WorldPrototype({count:180});paused=false;acc=0;$("play").textContent="⏸ Pause";};
+requestAnimationFrame(render);
+</script></body></html>
