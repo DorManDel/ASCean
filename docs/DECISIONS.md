@@ -51,3 +51,15 @@ State: **ACCEPTED** = user-approved direction; **PROVISIONAL** = first candidate
 The `site/shared/dev-register.mjs` mirrors key entries. Changes to an accepted decision require owner review and updates to both places. A successful demo is not a biological calibration.
 
 | P-008 | PROVISIONAL | Food & Gut Anatomy X-ray, ingestion timeline and dry-mass ledger in a restored standalone reference | The provided 55% assimilation and duration are teaching inputs, not validated biological rates |
+
+## 2026-11-13 — Research-data and MVP foundation decision
+
+| ID | State | Decision | Reason |
+|---|---|---|---|
+| A-021 | ACCEPTED | Maintain central reference and data registry at docs/REFERENCE_AND_DATA.md, linked from the Hub | Keep scientific research, datasets, original code and usage rights discoverable |
+| A-022 | ACCEPTED | No third-party dataset, source code, images or footage enters runtime/public assets without source-specific license, provenance and owner review | Public availability is not automatic reuse permission |
+| A-023 | ACCEPTED | Codex MVP starts with ONE source-driven, deterministic World/WaterField/movement vertical slice shared by Ocean and Lab | Test foundations before implementing every proposed biological feature |
+| P-009 | PROVISIONAL | Study SwimmingIndividuals, then FiMoS + OpenDrift, OceanBioME and OSMOSE in that order | Priorities can change after field, model and dataset audits |
+| P-010 | PROVISIONAL | Split data into per-species shared profiles, per-entity hot state, derived values, transient computation and persisted snapshots | Compare field cost and evidence before adopting a large all-fish schema |
+
+SwimmingIndividuals source audit: upstream src/create.jl declares 39 per-agent numeric columns; ASCean site/shared/world-prototype.mjs currently declares 8 numeric arrays. The two serve different purposes; field count is not a quality metric. See docs/REFERENCE_AND_DATA.md.
