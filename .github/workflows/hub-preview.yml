@@ -18,7 +18,7 @@ jobs:
           node-version: '22'
       - name: Test deterministic vignette and genome helper
         run: |
-          node --test site/shared/mini-ecosystem-prototype.test.mjs
+          node --test site/shared/mini-ecosystem-prototype.test.mjs site/shared/dev-register.test.mjs
           node --check site/hub/hub.mjs
           node --check site/hub/mini-tanks.mjs
           node --check site/hub/browser-smoke.mjs
