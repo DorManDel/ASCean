@@ -12,7 +12,9 @@ try {
   page.on('pageerror',err=>errors.push(err.message));
   page.on('console',msg=>{if(msg.type()==='error')errors.push(msg.text());});
   await page.goto(base+'/hub/',{waitUntil:'networkidle'});
-  assert.equal(await page.locator('.parent-card').count(),2);
+  const parentCount=await page.locator('.parent-card').count();
+  if(parentCount!==2)console.error('HUB LOAD DEBUG',JSON.stringify({errors,html:await page.locator('body').innerText().then(s=>s.slice(0,250)),scripts:await page.locator('script[type=module]').evaluateAll(es=>es.map(e=>e.src)),hubObject:await page.evaluate(()=>typeof window.ASCEAN_HUB)}));
+  assert.equal(parentCount,2);
   assert.equal(await page.locator('.tank-card').count(),4);
   await page.locator('#breedButton').click();
   assert.equal(await page.locator('.offspring-card').count(),5);
