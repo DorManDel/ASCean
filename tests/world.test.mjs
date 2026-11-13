@@ -1,0 +1,11 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import {World,seededWorld} from "../packages/core/src/world.ts";
+import {FixedStepClock} from "../packages/core/src/clock.ts";
+test("reproducible seed",()=>{const a=seededWorld(50,123),b=seededWorld(50,123);assert.deepEqual([...a.x.slice(0,50)],[...b.x.slice(0,50)]);});
+test("stable ID and swap removal",()=>{const w=new World(4),a=w.spawn({x:2}),b=w.spawn({x:3}),c=w.spawn({x:4});assert.equal(w.remove(b),true);assert.equal(w.fish(c).x,4);assert.equal(w.slotOf(c),1);assert.equal(w.fish(b),null);assert.equal(w.fish(a).x,2);});
+test("3D grid equivalent to exhaustive neighbors",()=>{const w=new World(4),a=w.spawn({x:100,y:100,z:100}),b=w.spawn({x:110,y:100,z:110});w.spawn({x:110,y:100,z:600});w.rebuildGrid(200);assert.deepEqual(w.neighbors(a,40).ids,[b]);assert.deepEqual(w.neighbors(a,40).ids,w.neighbors(a,40,"all").ids);});
+test("3D grid matches all-pairs in seeded data",()=>{const w=seededWorld(300,23,350);for(let i=0;i<30;i++){const id=w.id[i];assert.deepEqual(w.neighbors(id,700).ids.sort((a,b)=>a-b),w.neighbors(id,700,"all").ids.sort((a,b)=>a-b));}});
+test("fixed time independent from rendered frames",()=>{const a=new World(1),b=new World(1);a.spawn({x:100,y:100,z:100,vx:60,vy:0,vz:0});b.spawn({x:100,y:100,z:100,vx:60,vy:0,vz:0});const ca=new FixedStepClock(),cb=new FixedStepClock();for(let i=0;i<60;i++)ca.advance(1/60,dt=>a.step(dt));for(let i=0;i<120;i++)cb.advance(1/120,dt=>b.step(dt));assert.equal(a.tick,b.tick);assert.ok(Math.abs(a.x[0]-b.x[0])<.01);});
+test("paused clock and manual tick",()=>{const w=new World(1);w.spawn();const clock=new FixedStepClock();clock.paused=true;assert.equal(clock.advance(1,dt=>w.step(dt)),0);clock.singleStep(dt=>w.step(dt));assert.equal(w.tick,1);});
+test("bounds and capacity guards",()=>{const w=new World(1);assert.ok(w.spawn());assert.equal(w.spawn(),null);assert.throws(()=>w.step(-1));assert.throws(()=>w.rebuildGrid(0));});
