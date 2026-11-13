@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/><meta content="#081020" name="theme-color"/><title>ASCuarium | Aquarium Mechanics Lab</title>
+<style>
+:root{color-scheme:dark;--bg:#070b17;--panel:#121e32;--panel2:#192a45;--line:#344a68;--text:#ecf2ff;--muted:#afc0d9;--violet:#bea6ff;--cyan:#70dfff;--gold:#ffd17b;--red:#ff798a;--green:#80e7bb;--blue:#83b4ff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{background:radial-gradient(ellipse at 30% 0,#252249 0,transparent 55%),var(--bg);margin:0;color:var(--text);font:14px/1.48 system-ui,Segoe UI,-apple-system,sans-serif}button,input,select{font:inherit;color:inherit}button{cursor:pointer;min-height:40px;border:1px solid #53688a;background:#263953;border-radius:10px;padding:8px 13px;font-weight:680}button:hover{background:#3a5072}button:focus-visible,input:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}button:disabled{opacity:.35;cursor:not-allowed}select{background:#172c45;border:1px solid #4d6486;border-radius:9px;padding:8px;min-height:39px;max-width:100%}input[type=range]{width:100%;accent-color:var(--violet);min-height:30px}input[type=checkbox]{accent-color:var(--violet)}a{color:#99dcff}h1{font-size:clamp(23px,3vw,35px);margin:3px 0;letter-spacing:-.04em;line-height:1.15}h2{font-size:clamp(18px,2.2vw,24px);margin:0 0 5px}h3{font-size:15px;margin:0 0 7px}p{color:var(--muted);margin:5px 0 9px}small,.small{font-size:12px;color:var(--muted)}header{max-width:1240px;margin:auto;padding:20px 16px 8px;display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}.logo{display:flex;align-items:center;gap:13px}.mark{width:48px;height:48px;border:1px solid #6d62a5;border-radius:14px;display:grid;place-items:center;background:linear-gradient(150deg,#38285c,#103e53);font-size:23px}.eyebrow{color:var(--gold);text-transform:uppercase;letter-spacing:.15em;font-size:10px;font-weight:900}.topright{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.topright button{font-size:12px}.tag{font-size:11px;border-radius:999px;background:#243755;border:1px solid #4a6387;padding:5px 9px;color:#cfe8ff}.wrap{max-width:1240px;margin:auto;padding:0 16px 55px}.tabs{display:flex;gap:7px;overflow-x:auto;position:sticky;top:0;z-index:10;background:#080f20ed;backdrop-filter:blur(15px);padding:10px 0 12px;margin-bottom:12px;scrollbar-width:thin}.tabs button{font-size:12px;white-space:nowrap;flex:none;min-height:43px}.tabs button[aria-selected=true]{background:#66499c;border-color:#cbb5ff}.page[hidden]{display:none!important}.page{animation:enter .25s ease-out}@keyframes enter{from{opacity:.5;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}.headline{display:flex;justify-content:space-between;align-items:start;gap:10px;flex-wrap:wrap;margin-bottom:12px}.caption{color:var(--muted);font-size:12px}.card{background:linear-gradient(145deg,#17263f,#101b2d);border:1px solid var(--line);border-radius:16px;padding:16px;min-width:0}.card.tight{padding:11px}.grid2{display:grid;grid-template-columns:1.1fr .9fr;gap:13px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}.row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.between{justify-content:space-between}.stack{display:grid;gap:12px}.metricgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.metric{background:#0a1b2d;border:1px solid #2e4b64;border-radius:11px;padding:10px;min-width:0}.metric b{display:block;font-size:clamp(16px,2.3vw,25px);font-variant-numeric:tabular-nums}.metric span{display:block;color:var(--muted);font-size:11px}.sub{font-size:12px;color:var(--muted)}.control{display:grid;gap:5px;min-width:0}.control label{font-size:12px;color:#dbe4f7;font-weight:600}.controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.help{border-left:3px solid var(--violet);background:#121f35;padding:11px 12px;border-radius:0 10px 10px 0;font-size:12px;color:#d2dff4}.help b{color:#fff}.inline-code,code,pre{font-family:Consolas,'SFMono-Regular',monospace}code{color:#a6dcff}pre{white-space:pre;overflow:auto;background:#071526;border:1px solid #2e4562;border-radius:10px;padding:12px;font-size:11px;line-height:1.56;color:#dbeeff}.chip{border:1px solid #466383;background:#203650;padding:5px 7px;border-radius:8px;font-size:11px;cursor:pointer;min-height:32px}.chip.active{background:#62498e;border-color:#d0b8ff}.chip.hot{border-left:3px solid var(--red)}.chip.warm{border-left:3px solid var(--gold)}.chip.cold{border-left:3px solid var(--blue)}.chip.shared{border-left:3px solid var(--green)}.groups{display:grid;gap:10px}.group{padding:10px;background:#0d2034;border:1px solid #304965;border-radius:12px}.group h3{margin:0 0 8px;display:flex;align-items:center;justify-content:space-between;gap:8px}.fieldchips{display:flex;gap:5px;flex-wrap:wrap}.marker{display:inline-block;min-width:9px;min-height:9px;border-radius:50%;background:var(--red);margin-right:5px}.marker.warm{background:var(--gold)}.marker.cold{background:var(--blue)}.marker.shared{background:var(--green)}.detail{min-height:174px;display:grid;gap:8px;align-content:start}.fact{display:grid;grid-template-columns:85px 1fr;gap:8px;border-bottom:1px solid #263953;padding-bottom:5px;font-size:12px}.fact span:first-child{color:var(--muted)}.fishsvg{width:100%;height:auto;max-height:225px;display:block;border:1px solid #2b4e68;border-radius:12px;background:#071e31}.stage{border:1px solid #2c4c67;border-radius:13px;background:#081d2e;overflow:hidden;position:relative}.stage canvas{display:block;width:100%;height:auto;touch-action:manipulation}.canvasnote{position:absolute;left:8px;bottom:7px;background:#071624e9;border:1px solid #345c72;border-radius:6px;color:#c4eefa;font-size:11px;padding:5px 8px;pointer-events:none}.band{display:flex;height:16px;border-radius:6px;overflow:hidden;border:1px solid #536681}.bit{flex:1;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;background:#304b6d;border-right:1px solid #0b1730}.bit.state{background:#a64d69}.bit.flags{background:#2a857c}.bit.injury{background:#aa8135}.bit.species{background:#476bb1}.bitindices{display:flex;justify-content:space-between;color:#afc5e2;font-size:10px;margin:3px 0}.optionrow{display:flex;gap:7px;flex-wrap:wrap}.optionrow button{font-size:12px}.activebtn{background:#65449a;border-color:#c9b1ff}.slotrow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}.slot{background:#19344c;border:1px solid #50758e;border-radius:10px;text-align:center;padding:8px 3px;min-height:70px}.slot b{font-size:17px;display:block}.slot small{display:block}.slot.selected{border-color:#ffda8b;background:#5b492b}.slot.empty{opacity:.55;border-style:dashed}.flow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.node{border:1px solid #526f97;background:#1c3552;border-radius:11px;padding:11px;flex:1 1 100px;min-width:0}.node b{display:block;font-size:12px}.node small{display:block}.arrow{font-weight:800;color:var(--gold)}.list{margin:6px 0;padding-left:18px;color:#cad6e9}.list li{margin:5px 0}.status{font-size:10px;letter-spacing:.04em;border-radius:6px;padding:3px 7px;display:inline-block;font-weight:800}.status.locked{background:#1c5144;color:#b9f8dd}.status.trial{background:#68512e;color:#ffe7b6}.status.open{background:#273d68;color:#bbd3ff}.decisions{display:grid;gap:6px}.decision{border:1px solid #2f4563;border-radius:10px;background:#10243c;padding:11px}.decision p{margin:4px 0 0;font-size:12px}.big{font-size:26px;font-weight:850;font-variant-numeric:tabular-nums}.subhead{color:var(--gold);font-size:11px;text-transform:uppercase;letter-spacing:.09em;font-weight:850}.source{font-size:11px;line-height:1.5}.tablewrap{overflow:auto;border:1px solid #2c4964;border-radius:10px}table{border-collapse:collapse;width:100%;font-size:12px;min-width:570px}th,td{padding:9px 10px;border-bottom:1px solid #2b435c;text-align:left}th{background:#213750}tr:last-child td{border-bottom:0}details{border:1px solid #344e6b;border-radius:10px;background:#102238}summary{padding:10px;cursor:pointer;font-weight:700}details>div{padding:0 11px 12px}.timeline{display:flex;gap:1px;height:45px;align-items:stretch;border-radius:8px;overflow:hidden;background:#071a2c}.tick{background:#9cc5ff66;flex:1;min-width:0;position:relative}.tick:nth-child(even){background:#a8a2fb4f}.tick.sim{background:#e7b962bd}.boxbadge{font:11px monospace;background:#1d304e;border:1px solid #4a668d;padding:4px 7px;border-radius:7px;color:#c8dfff}.organ{cursor:pointer;transition:opacity .2s,stroke-width .2s}.organ:hover{opacity:.8}.organ.active{stroke:#ffcd82!important;stroke-width:4!important}.footer{color:#8ea3c3;font-size:11px;text-align:center;margin:30px 0}.slidecount{font-size:12px;font-weight:800;color:var(--gold)}
+@media(max-width:850px){.grid2,.grid3{grid-template-columns:1fr}.controls{grid-template-columns:repeat(2,minmax(0,1fr))}.metricgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:470px){header{padding:13px 10px 6px}.wrap{padding:0 9px 45px}.card{padding:12px;border-radius:12px}.tabs button{font-size:11px;padding:8px 10px}.controls{grid-template-columns:1fr 1fr}.control{min-width:0}.metric b{font-size:18px}.slotrow{gap:3px}.slot b{font-size:13px}.slot{padding:7px 2px;min-height:65px}.fact{grid-template-columns:75px 1fr}.logo h1{font-size:21px}}
+body.present header,body.present .tabs,body.present .footer{display:none}body.present .wrap{max-width:1500px;padding-top:62px}body.present .page{min-height:calc(100vh - 100px)}body.present .card{font-size:15px}body.present #presentbar{position:fixed;top:0;left:0;right:0;background:#09152cf2;z-index:50;padding:8px 12px;display:flex}#presentbar{display:none;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap}body.present #presentbar .slidecount{min-width:70px;text-align:center}
+@media(prefers-reduced-motion:reduce){.page{animation:none}html{scroll-behavior:auto}}
+</style><style>
+:root{--line:#243b58;--panel:#101b30;--panel2:#142840}
+.tag{display:none!important}body{background:radial-gradient(ellipse at 80% -10%,#30224d55,transparent 50%),#080e1c}
+.tabs{gap:4px;border-bottom:1px solid #24344c;padding:8px 0 10px}
+.tabs button{border:0;background:transparent;border-radius:9px;font-weight:600;color:#b0bed7;min-height:39px}
+.tabs button[aria-selected=true]{background:#293454;color:#fff;box-shadow:inset 0 -2px #b9a3ff;border:0}
+button{border-radius:10px;border:1px solid #465c7744;background:#2939519c;transition:background .15s ease,transform .15s ease}
+button:active{transform:scale(.98)}.topright button{background:#1c2942bd;border:0}
+.card{border-color:#30435c99;background:linear-gradient(155deg,#142239ed,#0b182ced)}
+.fishsvg{min-height:160px}.metric b{overflow-wrap:anywhere;font-size:clamp(15px,2.1vw,22px)}
+.pipeline-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.pipe-step{background:#0a2035;border:1px solid #2a5573;border-radius:10px;padding:9px}.pipe-step strong{display:block;font-size:12px;color:#a8dbff}.pipe-step small{font-size:11px;color:#bacce1}
+.legend{display:flex;align-items:center;gap:13px;flex-wrap:wrap;color:#bacce1;font-size:11px}.legend span{display:inline-flex;align-items:center;gap:6px}.legend i{width:9px;height:9px;border-radius:50%;display:inline-block}
+.physics-card{margin-top:8px}.physics-card input{touch-action:pan-y}
+#massCanvas,#injuryCanvas,#collisionCanvas{image-rendering:auto}
+@media(max-width:600px){.pipeline-grid{grid-template-columns:1fr}.metricgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.tabs{gap:2px}.tabs button{font-size:11px;min-height:36px;padding:7px 10px}.controls{grid-template-columns:1fr}.card{padding:11px}.headline{padding:3px}.stage canvas{max-width:100%;height:auto}.control label{line-height:1.4}}
+@media(prefers-reduced-motion:reduce){.page{animation:none}html{scroll-behavior:auto}button{transition:none}}
+</style><style>
+/* v8 topic-first navigation / mobile support */
+#navTabs{display:none!important}
+.mobile-nav-trigger{display:none!important}
+.topic-sidebar{position:fixed;left:13px;top:86px;bottom:12px;width:247px;z-index:20;overflow-y:auto;border:1px solid #344766;background:linear-gradient(180deg,#111e35f5,#0a1527f7);border-radius:18px;padding:14px;box-shadow:0 12px 42px #0005;scrollbar-width:thin}
+.side-top{display:flex;align-items:center;justify-content:space-between;padding:3px 6px 13px;color:#ebf6ff;letter-spacing:.14em;font-size:11px}
+#sideClose{display:none}.side-group{margin:4px 0 15px}.side-caption{font-weight:800;font-size:10px;color:#90a9c8;letter-spacing:.15em;margin:0 6px 7px}
+.side-link{display:block;width:100%;text-align:left;background:transparent;border:0;border-radius:9px;min-height:37px;padding:9px 11px;font-size:13px;font-weight:570;color:#c2d4ec;transition:background .16s, color .16s}
+.side-link:hover{background:#1b304a}.side-link.selected{background:#30335d;color:#fff;border-left:3px solid #b89eff}
+.sidebar-footer{font-size:10px;color:#91a6bc;padding:10px 6px;border-top:1px solid #344766;margin-top:16px}
+body:not(.present) header{margin-left:264px;max-width:calc(100% - 264px)}
+body:not(.present) main.wrap{margin-left:264px;max-width:calc(100% - 264px);width:calc(100% - 264px);padding:0 20px 65px}
+.nav-overlay{display:none}.iconbtn{display:grid;place-items:center;background:transparent;border:none;padding:6px;border-radius:10px;min-height:36px;min-width:36px}
+.iconbtn:hover{background:#253550}.model-label{font-size:11px;color:#ffe1a1;padding:4px 6px;border-radius:6px;background:#50412e}
+.explain-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0 0 13px}.explain-strip>div{border:1px solid #344f6b;background:#12233b;padding:12px;border-radius:11px;display:grid;gap:4px}
+.explain-strip b{color:#a8e9f5;font-size:12px}.explain-strip span{color:#c5d6e8;font-size:12px}.explain-strip.vertical{grid-template-columns:1fr}
+.mini-pipeline{display:flex;flex-wrap:wrap;align-items:center;gap:5px}.mini-pipeline span{padding:8px;background:#203c55;border:1px solid #486985;border-radius:8px;font-size:11px}
+.mini-pipeline span+span::before{content:'→';padding-right:8px;color:#ffce84}
+.pillrow{display:flex;gap:4px;flex-wrap:wrap}.softbtn{background:#26334a;border:none;min-height:34px;border-radius:9px;padding:7px 10px;font-size:11px}.softbtn.chosen{background:#604984;color:#fff}
+#v8WaterCanvas,#v8AnatomyCanvas{cursor:crosshair}
+body.present .topic-sidebar, body.present .mobile-nav-trigger{display:none!important}
+@media(max-width:1030px){body:not(.present) header,body:not(.present) main.wrap{margin-left:0;max-width:100%;width:100%}.topic-sidebar{transform:translateX(-110%);transition:transform .2s ease;top:8px;bottom:8px;left:8px;width:min(84vw,285px);z-index:70}.sidebar-open .topic-sidebar{transform:translateX(0)}.mobile-nav-trigger{display:grid!important}#sideClose{display:grid}.nav-overlay{position:fixed;inset:0;background:#010612b9;z-index:65}.sidebar-open .nav-overlay{display:block}}
+@media(max-width:650px){.grid2,.grid3{grid-template-columns:1fr}.controls{grid-template-columns:1fr 1fr}.metricgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.explain-strip{grid-template-columns:1fr}.card{padding:12px}header{padding:12px 10px}.wrap{padding-left:10px!important;padding-right:10px!important}.logo{gap:8px}.mark{width:36px;height:36px}.topright{margin-left:auto}.topright button{font-size:11px}.model-label{max-width:140px;text-align:center}.softbtn{min-height:38px}.mini-pipeline{gap:3px}.mini-pipeline span{font-size:10px}}
+@media(max-width:360px){.controls{grid-template-columns:1fr}}
+</style><link href="https://raw.githubusercontent.com/DorManDel/ASCuarium/main/images/favicon.ico" rel="icon" type="image/x-icon"/><style>
+/* v9 UX refresh: DLS-inspired frosted navigation and uncluttered labels */
+:root{--bg:#080c17;--panel:#101d31;--panel2:#152642;--cyan:#71e6f3;--violet:#a68cff;--gold:#efc477}
+header{max-width:1440px;padding:13px 20px 9px;justify-content:space-between;border-bottom:1px solid #32425a;background:#0a1020ed;position:sticky;top:0;z-index:20;backdrop-filter:blur(18px)}
+.logo .mark{width:44px;height:44px;border:0;background:transparent}.original-mark{max-width:100%;max-height:100%;object-fit:contain;border-radius:12px}.logo-fallback{font:bold 24px Consolas;color:#8de6ea}.logo h1{font-size:clamp(19px,2vw,26px);letter-spacing:-.025em}.header-status{font-size:11px;color:#899fbd;letter-spacing:.02em}
+.topic-sidebar{background:linear-gradient(155deg,#14213bdc,#0d1729f1);backdrop-filter:blur(16px);border:1px solid #354562;border-radius:18px;box-shadow:inset 0 1px #ffffff12,0 12px 34px #0003}
+.side-tree{background:transparent;border:0;border-radius:0;margin:8px 0;padding:0}.side-tree summary{padding:10px 12px;font-size:11px;letter-spacing:.065em;color:#9eb7d4;list-style:revert;font-weight:750;cursor:pointer}.side-tree>.side-link{display:block;width:calc(100% - 16px);margin:2px 8px;text-align:left;border:0;min-height:36px;border-radius:9px;background:transparent;color:#cedaf0;padding:7px 11px 7px 24px;font-size:12px;font-weight:550}.side-tree>.side-link:hover{background:#263f57}.side-tree>.side-link.selected{background:linear-gradient(90deg,#6554a465,#24587948);box-shadow:inset 3px 0 #c7acfa;color:white}.side-kicker{font-size:10px;color:#7f9cbb;letter-spacing:.18em;margin:8px 13px}
+.card{background:linear-gradient(145deg,#14223aec,#101b2df6);border:1px solid #314561;box-shadow:inset 0 1px #ffffff06}.page{padding:6px 0 25px}.headline h2{font-size:clamp(21px,2.7vw,30px)}.headline p{max-width:68ch}.tag{display:none}.v9-mini-note{font-size:12px;border-left:3px solid #8d82d0;background:#172640;padding:10px 12px;border-radius:0 9px 9px 0;color:#d8e3f7}
+.v9-offscreen{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;opacity:0;pointer-events:none}.pauseflag{position:absolute;top:12px;right:12px;background:#0a2336e8;color:#ffe0a0;padding:7px 10px;border-radius:8px;border:1px solid #b59358;font:600 11px system-ui}.water-views .v9-water-layer{border:0;background:#20334a;min-height:34px;font-size:11px;padding:7px 10px;border-radius:8px}.water-views .v9-water-layer.activebtn{background:#61509a;color:white}.v9-water-stage canvas{touch-action:manipulation}
+.v9-key{display:flex;gap:12px;flex-wrap:wrap;font-size:11px;color:#bbd0e5}.v9-compare{margin-top:4px}.side-top{padding:14px}.side-top strong{font-size:13px;letter-spacing:.04em}button{transition:background .2s ease,transform .15s ease}button:active{transform:scale(.98)}
+@media(max-width:850px){header{padding:10px}.header-status{display:none}.topic-sidebar{border-radius:0 16px 16px 0}}
+@media(max-width:480px){.logo h1{font-size:19px}.logo .mark{width:38px;height:38px}.v9-water-layer{flex:1}.metricgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.v9-key{font-size:10px}.side-tree>.side-link{min-height:42px}}
+body.present .topic-sidebar,body.present .header-status{display:none}
+</style><style>
+/* Revision v10 — responsive and accessible baseline, with no expensive dependencies. */
+:root{--bg:#080e1b;--ink:#ebf4ff;--quiet:#b8c9e0}
+html,body{max-width:100%;overflow-x:clip}
+.grid2,.grid3,.grid2>* , .stack,.card,.controls,.control{min-width:0}
+.stack{align-content:start;grid-auto-rows:max-content}.card.stack{align-content:start}
+.metricgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.metric b,.metric span,.node,.control label{overflow-wrap:anywhere}
+.controls>*{max-width:100%}input[type=range],select{min-width:0;max-width:100%;width:100%}
+#spatial .grid2{grid-template-columns:minmax(0,1fr) minmax(300px,.87fr)}
+#spatial .controls{grid-template-columns:repeat(2,minmax(0,1fr))}
+#spatial .controls .control{min-width:0;max-width:100%}
+#spatial .controls select{width:100%}
+.topic-sidebar{border:0;border-right:1px solid #253b5366;border-radius:0;background:linear-gradient(153deg,#122342dd,#0c1726f4);box-shadow:0 10px 38px #0002;backdrop-filter:blur(24px)}
+.side-tree{border:0;background:transparent;margin:8px 0}.side-tree summary{border-radius:9px;transition:color .18s, background .18s}.side-tree summary:hover{color:#fff;background:#1e385566}
+.side-tree[open]>.side-link{animation:curtainIn .2s cubic-bezier(.16,.8,.26,1) both}@keyframes curtainIn{from{opacity:.2;transform:translateY(-7px)}to{opacity:1;transform:translateY(0)}}
+.side-tree .side-link{position:relative;border-radius:9px}.side-tree .side-link.selected{background:linear-gradient(90deg,#52478099,#26395b44);box-shadow:inset 2px 0 #b69aff}
+.card{box-shadow:inset 0 1px #ffffff05}.stage canvas{width:100%;max-width:100%;height:auto}
+#mass .grid2>.card,#growth .grid2>.card{align-self:start}
+#mass .controls{grid-template-columns:repeat(3,minmax(0,1fr))}
+#mass .stage{max-height:275px}
+.v10-summary{padding:10px 12px;background:#102940;border-left:2px solid #70dce2;border-radius:4px;color:#b9deee;font-size:12px}
+.v10-inspector-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.v10-scene{display:grid;gap:8px;border-radius:12px;background:#061a2c;border:1px solid #315274;padding:10px;overflow:hidden}
+.v10-scene canvas{display:block;width:100%;height:auto}
+.v10-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.v10-row>*{min-width:0}.v10-leg{display:flex;gap:12px;flex-wrap:wrap;color:#b8cfdf;font-size:12px}
+.v10-leg b{font-weight:700;color:#fff}
+.v10-click{font-size:12px;color:#a8d7ea}.v10-notice{color:#d1dfef;font-size:12px;line-height:1.55;margin:4px 0}
+.v10-details{padding:12px 14px;border-radius:11px;background:#0e2136;border:1px solid #2c4b63}
+.v10-details summary{padding:3px 0;color:#bddef0}.v10-details div{padding:10px 0 0}
+#v10DietCanvas{touch-action:manipulation}
+#v10DepthCanvas{touch-action:pan-y}
+@media(max-width:1150px){#spatial .grid2{grid-template-columns:1fr}}
+@media(max-width:720px){#mass .controls,#spatial .controls,.v10-row,.v10-inspector-grid{grid-template-columns:1fr}.metricgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.topic-sidebar{width:min(85vw,300px)}.page{padding:0 2px 18px}.card{padding:12px}#spatial .row{gap:6px}#spatial button{min-width:0;padding:7px 10px}header{padding:9px}.v10-supp{display:none}}
+@media(prefers-reduced-motion:reduce){.side-tree[open]>.side-link{animation:none}}
+</style></head><body>
+<header><button aria-expanded="false" aria-label="Open topic navigation" class="iconbtn mobile-nav-trigger" id="openSidebar"><svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="22"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></button><div class="logo"><div aria-hidden="true" class="mark"><img alt="ASCuarium project icon" class="original-mark" onerror="this.hidden=true;this.nextElementSibling.hidden=false" src="https://raw.githubusercontent.com/DorManDel/ASCuarium/main/images/favicon.ico"/><span aria-hidden="true" class="logo-fallback" hidden="">&gt;&lt;</span></div><div><h1>Aquarium Mechanics Lab</h1></div></div><div class="topright"><button id="presentBtn">⛶ Presentation</button></div></header>
+<div id="presentbar"><button id="exitPresent">× Exit</button><button id="prevSlide">← Previous</button><span class="slidecount" id="slideCount">1 / 12</span><button id="nextSlide">Next →</button></div>
+<main class="wrap"><div class="nav-overlay" hidden="" id="navOverlay"></div>
+<aside aria-label="Mechanics categories" class="topic-sidebar" id="topicSidebar"><div class="side-top"><strong>ASCuarium</strong><button aria-label="Close navigation" class="iconbtn" id="sideClose">×</button></div>
+<div class="side-kicker">ENGINE EXPLORER</div>
+<details class="side-tree" open=""><summary>01   Data &amp; Memory</summary>
+<button class="side-link selected" data-target="model">Fish blueprint</button><button class="side-link" data-target="mass">Mass &amp; body size</button><button class="side-link" data-target="precision">Quantization &amp; bits</button><button class="side-link" data-target="identity">Identity &amp; lookups</button><button class="side-link" data-target="memory">Memory budget</button></details>
+<details class="side-tree" open=""><summary>02   World &amp; Physics</summary>
+<button class="side-link" data-target="spatial">3D spatial search</button><button class="side-link" data-target="collision">Contact &amp; avoidance</button><button class="side-link" data-target="time">Time &amp; frame rate</button><button class="side-link" data-target="habitat">Water environment</button><button class="side-link" data-target="depthlab" type="button">Depth, pressure &amp; light</button><button class="side-link" data-target="bioclock" type="button">Biological clock</button></details>
+<details class="side-tree" open=""><summary>03   Biology</summary>
+<button class="side-link" data-target="feeding" type="button">Diet &amp; digestion</button><button class="side-link" data-target="growth">Growth &amp; condition</button><button class="side-link" data-target="bio">Anatomy &amp; injury</button><button class="side-link" data-target="fishdex">FishDex · Species</button></details>
+<details class="side-tree"><summary>04   Project</summary><button class="side-link" data-target="roadmap">Decisions &amp; Codex</button></details>
+<div class="sidebar-footer">Mechanics are educational prototypes.<br/>Scientific models require validation.</div></aside><nav aria-label="Mechanics" class="tabs" id="navTabs">
+<button aria-selected="true" data-tab="model">Fish model</button><button aria-selected="false" data-tab="mass">Body mass</button><button aria-selected="false" data-tab="precision">Precision &amp; bits</button><button aria-selected="false" data-tab="identity">IDs &amp; memory</button><button aria-selected="false" data-tab="spatial">3D neighbors</button><button aria-selected="false" data-tab="collision">Collisions</button><button aria-selected="false" data-tab="time">Time &amp; FPS</button><button aria-selected="false" data-tab="bio">Biology &amp; injuries</button><button aria-selected="false" data-tab="memory">Memory budget</button><button aria-selected="false" data-tab="habitat">Habitats</button><button aria-selected="false" data-tab="roadmap">Decisions &amp; Codex</button><button aria-selected="false" data-tab="growth">Growth &amp; energy</button><button aria-selected="false" data-tab="fishdex">FishDex</button></nav>
+<section class="page" id="model"><div class="headline"><div><h2>Fish Blueprint · click a field</h2><p>Five logical groups; physical storage is separate Typed Arrays owned by <code>World</code>.</p></div></div>
+<div class="grid2"><div class="card"><div class="row between"><h3>Data groups</h3><span class="sub">🔴 Hot   🟡 Warm   🔵 Cold   🟢 Shared</span></div><div class="groups" id="fieldGroups"></div></div><div class="stack"><div class="card"><h3>Selected field</h3><div aria-live="polite" class="detail" id="fieldDetail"></div></div><div class="card"><h3>Physical dimensions · collision proxies</h3><svg aria-label="Fish side silhouette with length, body height, body width across Z" class="fishsvg" role="img" viewbox="0 0 380 195"><defs><lineargradient id="fishfill" x1="0" x2="1"><stop stop-color="#287f9a"></stop><stop offset="1" stop-color="#8ed8e0"></stop></lineargradient></defs><path d="M83 98 L31 54 L34 143Z" fill="#2e8199" stroke="#90e5f4" stroke-width="2"></path><path d="M75 99 Q167 34 292 92 Q308 97 292 109 Q163 160 75 99Z" fill="url(#fishfill)" stroke="#a4eff4" stroke-width="2"></path><path d="M139 65 L171 32 L204 64Z" fill="#4ac6cb"></path><circle cx="277" cy="94" fill="#0b2840" r="7"></circle><line stroke="#ffd17b" stroke-width="2" x1="35" x2="313" y1="171" y2="171"></line><path d="M35 165v12M313 165v12" stroke="#ffd17b" stroke-width="2"></path><text fill="#ffd17b" font-size="12" text-anchor="middle" x="173" y="188">Body length (X)</text><line stroke="#c4a0ff" stroke-width="2" x1="332" x2="332" y1="49" y2="144"></line><path d="M326 49h12M326 144h12" stroke="#c4a0ff" stroke-width="2"></path><text fill="#e6d9ff" font-size="11" x="344" y="91">Y</text><circle cx="25" cy="22" fill="#79e1b8" r="5"></circle><text fill="#79e1b8" font-size="12" x="38" y="26">Width = Z</text></svg><div class="sub">Neighbor sensing uses a sphere in 3D. Collision broad phase uses body bounds; detailed organ hits are a later research milestone.</div></div><div class="card"><h3>Dense memory · proposal, not a benchmark</h3><div class="row between"><span class="sub">Active fish</span><select id="population"><option value="100">100</option><option selected="" value="1000">1,000</option><option value="10000">10,000</option><option value="100000">100,000</option><option value="1000000">1,000,000</option></select></div><div class="metricgrid" style="margin-top:8px"><div class="metric"><span>Bytes / fish</span><b id="bytesFish">—</b></div><div class="metric"><span>Column data</span><b id="bytesTotal">—</b></div></div><p class="small">Excludes capacity slack, hash lookup, spatial cells, anatomy/genome records, rendering, JS runtime and browser overhead.</p></div></div></div></section>
+<section class="page" hidden="" id="mass">
+<div class="headline"><div><h2>Body mass · tiny fish to large animals</h2><p>Store mass in grams; format for humans. Keep shape, density and biology separate.</p></div></div>
+<div class="grid2"><div class="card stack">
+<h3>Live body geometry · illustrative ellipsoid</h3><div class="control"><label for="massPreset">Example dimensions (not verified species measurements)</label><select id="massPreset"><option value="fry">Tiny juvenile (demo)</option><option selected="" value="zebra">Small fish (demo)</option><option value="shark">Large fish (demo)</option><option value="whale">Whale-sized body (demo)</option></select></div>
+<div class="controls"><div class="control"><label>Length · <span id="lengthValue">—</span> cm</label><input id="lengthSlider" max="2000" min="0.1" step="0.1" type="range" value="3.5"/></div><div class="control"><label>Height · <span id="heightValue">—</span> cm</label><input id="heightSlider" max="400" min="0.05" step="0.05" type="range" value="0.75"/></div><div class="control"><label>Width · <span id="widthValue">—</span> cm</label><input id="widthSlider" max="400" min="0.05" step="0.05" type="range" value="0.55"/></div></div>
+<div class="control"><label>Example density · <span id="densityValue">—</span> g/cm³</label><input id="densitySlider" max="1.2" min="0.8" step="0.01" type="range" value="1"/></div>
+<div class="stage"><canvas aria-label="Illustrative fish silhouette and body dimension scales" height="240" id="massCanvas" width="780"></canvas><div class="canvasnote">Diagram is schematic; geometry not to-scale across species</div></div>
+<div class="metricgrid"><div class="metric"><span>Internal mass</span><b id="massRaw">—</b></div><div class="metric"><span>Display mass</span><b id="massDisplay">—</b></div><div class="metric"><span>Length shown</span><b id="lengthDisplay">—</b></div><div class="metric"><span>Volume model</span><b id="volumeValue">—</b></div></div>
+<div class="help"><b>Not a biological mass formula:</b> the ellipsoid volume × example density demonstrates units. Real mass and growth need species data, body shape and physiology.</div>
+</div><div class="stack"><div class="card stack"><h3>Why store grams?</h3><ul class="list"><li>One constant internal unit across fish sizes.</li><li>Use Float32 first, measure precision before changing.</li><li>Automatically show µg / mg / g / kg / t.</li><li>Mass ≠ HP and mass ≠ weight force.</li></ul><pre>const bodyMassG = new Float32Array(capacity);
+const lengthCm = new Float32Array(capacity);
+const bodyHeightCm = new Float32Array(capacity);
+const bodyWidthCm = new Float32Array(capacity);</pre></div><div class="card stack"><h3>World extents · accepted</h3><div class="metricgrid"><div class="metric"><span>X width</span><b>100 m</b></div><div class="metric"><span>Y height</span><b>50 m</b></div><div class="metric"><span>Z depth</span><b>30 m</b></div><div class="metric"><span>Volume</span><b>150k m³</b></div></div><div class="help">Runtime coordinates: <b>X ∈ [0, 10000] cm</b>, <b>Y ∈ [0, 5000] cm</b>, <b>Z ∈ [0, 3000] cm</b>. Z goes into the screen, while the side camera projects X/Y.</div></div>
+<div class="card stack physics-card">
+<h3>Mass → acceleration → energy (starter physics)</h3>
+<p>Same force, different mass. Change body dimensions above or adjust the thrust below.</p>
+<div class="control"><label>Forward thrust <b id="thrustVal">18</b> dynes (g·cm/s²)</label><input id="thrustForce" max="150" min="1" step="1" type="range" value="18"/></div>
+<div class="control"><label>Current velocity <b id="initialSpeedVal">5</b> cm/s</label><input id="initialSpeed" max="40" min="0" step="1" type="range" value="5"/></div>
+<div class="control"><label>Drag coefficient <b id="dragVal">0.10</b> (toy coefficient)</label><input id="dragCoefficient" max="1" min="0" step="0.01" type="range" value="0.1"/></div>
+<div class="metricgrid"><div class="metric"><span>Net acceleration</span><b id="simAccel">—</b></div><div class="metric"><span>Velocity after 1s</span><b id="simSpeed">—</b></div><div class="metric"><span>Energy transfer / 1s</span><b id="simEnergy">—</b></div><div class="metric"><span>Same force, ×10 mass</span><b id="simHeavyAccel">—</b></div></div>
+<div class="help">Toy dynamics: a = (thrust − c·v²)/mass. Work/kinetic energy is <strong>not</strong> metabolic expenditure. Keep the force model replaceable as a PhysicsStrategy.</div><div class="v10-scene"><canvas aria-label="Live swimming speed visualization under selected thrust and drag values" height="108" id="v10VelocityCanvas" width="780"></canvas><div class="v10-leg"><span><b>Teal:</b> current speed</span><span><b>Gold:</b> speed after one second in this toy force model</span></div></div>
+</div>
+</div></div></section><section class="page" hidden="" id="growth">
+<div class="headline"><div><h2>Growth, body condition &amp; energy</h2><p>Species potential + genetics + age + long-term nutrition + habitat. This is a model exploration, not a calibrated zebrafish prediction.</p></div></div><div class="v9-mini-note"><b>Two different changes:</b> Structural growth changes bones and tissues. Body condition changes reserves or reproductive mass without instantly changing Standard Length.</div>
+<div class="card tight stack"><h3>Body condition inspector</h3><div class="controls"><label class="control">Nutrition reserve <input id="v9Reserve" max="100" min="0" type="range" value="65"/><span id="v9ReserveText">65%</span></label><label class="control">Reproductive allocation (illustrative) <input id="v9Repro" max="100" min="0" type="range" value="0"/><span id="v9ReproText">0%</span></label></div>
+<div class="stage"><canvas aria-label="Fish silhouette showing body condition but unchanged structural length" height="175" id="v9ConditionCanvas" width="820"></canvas></div><p class="small" id="v9ConditionReadout">Body shape demo; not a measured mass formula.</p></div>
+<div class="grid2"><div class="card stack">
+<div class="row between"><h3>Project a fish's growth</h3><span class="model-label">Toy model / not calibrated</span></div>
+<div class="control"><label>Age · <strong id="growAgeText">70 days</strong></label><input id="growAge" max="200" min="0" step="1" type="range" value="70"/></div>
+<div class="controls">
+<div class="control"><label>Genetic potential <strong id="growGenesText">1.00×</strong></label><input id="growGenes" max="1.30" min="0.70" step="0.01" type="range" value="1"/></div>
+<div class="control"><label>Long-term food access <strong id="growFoodText">75%</strong></label><input id="growFood" max="100" min="0" step="1" type="range" value="75"/></div>
+<div class="control"><label>Long-term oxygen access <strong id="growOxygenText">85%</strong></label><input id="growOxygen" max="100" min="0" step="1" type="range" value="85"/></div></div>
+<div class="control"><label>Average temperature (illustrative) · <strong id="growTempText">27°C</strong></label><input id="growTemp" max="34" min="18" step="0.5" type="range" value="27"/></div>
+<div class="stage"><canvas aria-label="Illustrative growth curve and fish body dimensions" height="330" id="growthCanvas" width="800"></canvas></div>
+<div class="metricgrid"><div class="metric"><span>Length</span><b id="growLength">—</b></div><div class="metric"><span>Body mass</span><b id="growMass">—</b></div><div class="metric"><span>Height / width</span><b id="growDimensions">—</b></div><div class="metric"><span>Development</span><b id="growStage">—</b></div></div>
+<div class="help">Change the sliders as <b>life-long average conditions</b>. Instantaneous changes to today's food must not instantly shrink or enlarge a real fish. A production model will integrate growth over time using energy budgets.</div>
+</div><div class="stack">
+<div class="card stack"><h3>Separate structural growth from condition</h3><div class="mini-pipeline"><span>Food intake</span><span>Available energy</span><span>Maintenance</span><span>Growth allocation</span><span>Structural tissue</span></div>
+<ul class="list"><li><b>Age:</b> development stage, not a direct weight formula.</li><li><b>Genes:</b> inherited potential, not immediate size.</li><li><b>Environment:</b> changes growth rate and survival conditions.</li><li><b>Body reserves:</b> can change without increasing length.</li></ul></div>
+<div class="card stack"><h3>Measurement rules to decide</h3><ul class="list"><li>Choose standard length vs total length and record both when possible.</li><li>Decide whether mass is total mass or split into structural/reserves/reproduction.</li><li>Distinguish daily biological time from accelerated simulation time.</li><li>Calibrate each species separately; never call this toy curve measured zebrafish biology.</li></ul>
+<a href="https://www.zfin.org/zf_info/zfbook/stages/index.html" rel="noopener" target="_blank">ZFIN developmental staging ↗</a>
+<a href="https://doi.org/10.1111/j.1439-0426.2006.00805.x" rel="noopener" target="_blank">Review of fish weight–length models ↗</a></div></div></div>
+</section>
+<section class="page" hidden="" id="precision"><div class="headline"><div><h2>Precision, quantization &amp; bit packing</h2><p>Save bytes where an explicit range and tolerable error make sense.</p></div></div><div class="grid2"><div class="card stack"><div><h3>Z depth quantization · 0 to 30 m</h3><p>Preserve original Z for physics. Experiment with compact copies for snapshots.</p></div><div class="control"><label for="depthSlider">Original Z = <span id="depthValue">12.74</span> m</label><input id="depthSlider" max="30" min="0" step=".01" type="range" value="12.74"/></div><div class="control"><label for="depthBits">Quantized precision</label><select id="depthBits"><option value="8">8 bits · 256 levels</option><option value="12">12 bits · 4096 levels</option><option value="16">16 bits · 65536 levels</option></select></div><div class="metricgrid"><div class="metric"><span>Stored code</span><b id="quantCode">—</b></div><div class="metric"><span>Decoded value</span><b id="quantDecoded">—</b></div><div class="metric"><span>Error (m)</span><b id="quantError">—</b></div><div class="metric"><span>Maximum error</span><b id="quantMaxError">—</b></div></div><div class="stage"><canvas height="90" id="precisionCanvas" width="700"></canvas></div><div class="help"><b>Key rule:</b> 12-bit values need actual bit packing to save 1.5 bytes/value on average; a plain <code>Uint16Array</code> uses 2 bytes/value.</div><details><summary>Equations / implementation</summary><div><pre>const levels = (2 ** bits) - 1;
+const code = Math.round(z / 30 * levels);
+const decoded = code / levels * 30;
+const maxError = 30 / (2 * levels);</pre></div></details></div>
+<div class="card stack"><div><h3>Bit field playground · one Uint16</h3><p>Educational layout, not our final fish genome or species schema.</p></div><div class="controls"><div class="control"><label>Behavior · 3 bits</label><select id="packState"><option value="0">0 Wander</option><option value="1">1 Seek food</option><option value="2">2 Flee</option><option value="3">3 Hunt</option><option value="4">4 Rest</option></select></div><div class="control"><label>Flags · 5 bits</label><select id="packFlags"><option value="0">0 None</option><option value="1">1 Injured</option><option value="3">3 Injured + Alert</option><option value="9">9 Injured + In group</option><option value="31">31 All five</option></select></div><div class="control"><label>Injury demo · 4 bits</label><select id="packInjury"><option value="0">0</option><option value="4">4</option><option value="8">8</option><option value="15">15</option></select></div><div class="control"><label>Species group demo · 4 bits</label><select id="packSpecies"><option value="0">0</option><option value="3">3</option><option value="9">9</option><option value="15">15</option></select></div></div><div class="bitindices"><span>Bit 15</span><span>Bit 0</span></div><div aria-label="16 packed bits" class="band" id="packCells"></div><div class="metricgrid"><div class="metric"><span>Unsigned 16-bit value</span><b id="packedDecimal">—</b></div><div class="metric"><span>Hex</span><b id="packedHex">—</b></div></div><pre id="packedCode"></pre><div class="help"><b>Where to pack?</b> Runtime X/Y/Z: no. Small flags and bounded enums: maybe. Snapshot or save fields: good first experiment. Species registry and real genome: design separately.</div></div></div></section>
+<section class="page" hidden="" id="identity"><div class="headline"><div><h2>Identity, dense arrays &amp; two kinds of lookup</h2><p><code>Map&lt;FishId, Slot&gt;</code> finds a specific fish; spatial grid finds nearby fish.</p></div></div><div class="card stack"><div class="flow"><div class="node"><b>Fish ID: 104</b><small>Stable identity</small></div><span class="arrow">→</span><div class="node"><b>idToSlot Map</b><small id="id104loc">104 → slot 3</small></div><span class="arrow">→</span><div class="node"><b>SoA arrays</b><small>x[slot], y[slot], hp[slot]...</small></div></div><div class="row"></div><div class="slotrow" id="slotRow"></div><div class="row"><button id="remove102">Remove Fish #102</button><button id="spawnNew">Spawn Fish</button><button id="resetIds">Reset</button></div><div class="grid2"><div class="card tight"><h3>ID to slot (Map)</h3><div class="stack" id="idMapTable"></div></div><div class="card tight"><h3>Spatial cell to fish IDs (concept)</h3><div class="flow"><div class="node"><b>cell(2, 4, 1)</b><small>Nearby IDs: 101, 103</small></div><span class="arrow">→</span><div class="node"><b>Distance check</b><small>Exact 3D sphere test</small></div></div><p>In the live grid lab, these buckets rebuild as fish move.</p></div></div><div class="help" id="swapStatus">Try removing #102. The last fish moves into its slot; the ID map updates.</div><details><summary>Why not an array indexed directly by fishId?</summary><div><p>That can be faster and simpler when IDs are compact and bounded. But deleted IDs create holes; a growing lifetime ID counter may waste memory. Start with <code>Map</code>, benchmark an ID-indexed array when population and ID range justify it.</p></div></details></div></section>
+<section class="page" hidden="" id="spatial"><div class="explain-strip"><div><b>1 · Bin</b><span>Divide the 3D world into addressable cells.</span></div><div><b>2 · Candidates</b><span>Check only occupied nearby cells.</span></div><div><b>3 · Exact check</b><span>Measure XYZ distance for each candidate.</span></div></div><div class="headline"><div><h2>3D spatial search</h2><p>1. Tap a fish · 2. Change Z · 3. See which neighbors are actually close in 3D.</p></div></div><div class="card stack"><div class="stage"><canvas aria-label="Interactive side-view aquarium. Select a fish." height="320" id="ocean" tabindex="0" width="900"></canvas><div class="canvasnote">Tap a fish dot to inspect its spatial grid</div><div class="pauseflag" hidden="" id="v9PauseFlag">⏸ SIMULATION PAUSED — fish positions are frozen</div></div><div class="grid2"><div class="stage"><canvas aria-label="Top-down X and Z debug map" height="180" id="depthMap" width="440"></canvas><div class="canvasnote">Debug only: top-down X / Z</div></div><div class="card tight stack"><div class="controls"><div class="control"><label>Population</label><select id="oceanCount"><option value="60">60</option><option selected="" value="180">180</option><option value="500">500</option><option value="1000">1,000</option></select></div><div class="control"><label>Sensing radius (prototype)</label><input aria-label="Selected fish sensory search radius" id="senseRadius" max="2300" min="100" step="100" type="range" value="800"/><option value="400">4 m</option><option selected="" value="800">8 m</option><option value="1600">16 m</option></div><div class="control"><label for="sensorPreset">Sense type (example, not species-calibrated)</label><select id="sensorPreset"><option value="vision">Vision</option><option value="lateral">Lateral-line motion sensing</option><option value="chemical">Chemical sensing</option></select></div><div aria-live="polite" class="sub" id="senseReadout">Current sensing radius 8.0 m</div></div><div class="control"><label>Selected Z = <span id="selectedDepth">—</span></label><input id="fishDepth" max="3000" min="0" step="10" type="range" value="1500"/></div><div aria-live="polite" class="help" id="spatialNarrative">Select a fish, then move Z: XY stays fixed, but real 3D distance and neighbors change.</div><div class="legend"><span><i style="background:#ffcc7e"></i>Selected fish</span><span><i style="background:#81eac1"></i>True neighbors</span><span><i style="background:#7b9ab5"></i>Others</span></div><div class="row"><button id="pauseOcean">Pause</button><button id="stepOcean">+1 Tick</button><button id="gridToggle">Toggle grid</button><button id="newOcean">Reset seed</button></div></div></div><div class="metricgrid"><div class="metric"><span>Selected fish</span><b id="selectedFish">—</b></div><div class="metric"><span>Actual neighbors</span><b id="neighCount">—</b></div><div class="metric"><span>Brute candidates</span><b id="bruteChecks">—</b></div><div class="metric"><span>Grid candidates</span><b id="gridChecks">—</b></div></div><div class="metricgrid"><div class="metric"><span>Measured render FPS*</span><b id="actualFps">—</b></div><div class="metric"><span>Simulation steps/s*</span><b id="actualTps">—</b></div><div class="metric"><span>Occupied sparse cells</span><b id="cellCount">—</b></div><div class="metric"><span>Neighbor result parity</span><b id="gridParity">—</b></div></div><div class="help"><b>Method:</b> hash buckets exist only where fish are present; exact XYZ distance still decides who is in range. Prototype ranges are not validated vision distances. *Live monitor reflects this page and browser, not production benchmarks.</div></div></section>
+<section class="page" hidden="" id="collision"><div class="v10-summary">Demo directions: Fish A faces right. Fish B approaches from the right facing left. Avoid steers into Z depth; predation can reach contact and then Fish A flees. Tap Run to see the full sequence, not a teleport.</div><div hidden="" id="legacy-collision">
+<div class="headline"><div><h2>Collisions &amp; avoidance · fish have volume</h2><p>3D distance, body bounds, broad phase, contact and deliberate behavior are different steps.</p></div></div>
+<div class="grid2"><div class="card stack"><h3>Move Fish B towards Fish A</h3><div class="controls"><div class="control"><label>Center X distance · <span id="contactXValue">—</span> cm</label><input id="contactX" max="100" min="0" step="1" type="range" value="60"/></div><div class="control"><label>Z separation · <span id="contactZValue">—</span> cm</label><input id="contactZ" max="100" min="0" step="1" type="range" value="0"/></div><div class="control"><label>Action mode</label><select id="contactMode"><option value="avoid">Avoid contact</option><option value="attack">Predator attempts bite</option><option value="test">Detect only</option></select></div></div><div class="stage"><canvas aria-label="Collision demo with separation and Z offset" height="285" id="collisionCanvas" width="780"></canvas><div class="canvasnote">Spheres are detection proxies, not the body mesh</div></div><div class="metricgrid"><div class="metric"><span>3D center distance</span><b id="contactDistance">—</b></div><div class="metric"><span>Sum of proxies</span><b id="contactThreshold">—</b></div><div class="metric"><span>Broad phase</span><b id="contactStatus">—</b></div><div class="metric"><span>Resolved gap</span><b id="contactGap">—</b></div></div><div class="help" id="contactExplanation"></div><div class="pipeline-grid" id="collisionPipeline">
+<div class="pipe-step"><strong>1 · Detect</strong><small id="detectPhase">Find potential neighbors, then 3D overlap</small></div>
+<div class="pipe-step"><strong>2 · Decide / Avoid</strong><small id="intentPhase">Usually steer; attack or investigate can approach</small></div>
+<div class="pipe-step"><strong>3 · Resolve / Event</strong><small id="resolvePhase">Separate penetrations; contact may emit event</small></div></div>
+<div aria-live="polite" class="help" id="contactEvent">Drag Fish B to observe contact conditions. Dashed = uncorrected position; solid = after resolution.</div></div>
+<div class="stack"><div class="card stack"><h3>Recommended collision pipeline</h3><div class="flow"><div class="node"><b>Spatial hash</b><small>Nearby candidates</small></div><span class="arrow">→</span><div class="node"><b>Broad phase</b><small>Sphere / AABB</small></div><span class="arrow">→</span><div class="node"><b>Narrow phase</b><small>Species/body geometry</small></div></div><div class="flow"><div class="node"><b>Steering</b><small>Try to avoid</small></div><span class="arrow">→</span><div class="node"><b>Resolve</b><small>Prevent overlap</small></div><span class="arrow">→</span><div class="node"><b>Event</b><small>Contact / bite</small></div></div><ul class="list"><li>Do not permit fish to remain interpenetrating after a resolved contact.</li><li>Attack may permit a contact event, not permanent overlap.</li><li>Use 3D coordinates even when fish overlap in the 2D view.</li><li>Fast animals may tunnel through between ticks: swept tests/substeps are future work.</li></ul></div><div class="card stack"><h3>Important open decisions</h3><ul class="list"><li>Body approximation: ellipsoid / capsule / articulated zones.</li><li>Contact response: hard constraints vs soft steering, predator/prey priority.</li><li>Mass-aware impulse and hydrodynamics require research.</li><li>Collision sizes vary enormously from fry to whales: benchmark hierarchical spatial indexing.</li></ul></div></div></div></div><div class="headline"><div><h2>Collision · detect, decide, resolve</h2><p>Same 3D position means a real overlap. Detection-only is a debug snapshot, never a real physical policy.</p></div></div>
+<div class="grid2"><div class="card stack"><h3>Inspect a contact</h3>
+<div class="controls"><div class="control"><label>Separation X · <strong id="v8CollisionXRead">35 cm</strong></label><input id="v8CollisionX" max="135" min="0" step="1" type="range" value="35"/></div>
+<div class="control"><label>Separation Z · <strong id="v8CollisionZRead">0 cm</strong></label><input id="v8CollisionZ" max="110" min="-110" step="1" type="range" value="0"/></div>
+<div class="control"><label>Intent</label><select id="v8CollisionIntent"><option value="avoid">Avoid (default)</option><option value="curious">Curious / social contact</option><option value="territorial">Territorial aggression</option><option value="predation">Predator bite attempt</option></select></div></div>
+<div class="row between"><span class="caption">Tap bite target</span><div class="pillrow" id="v8BiteTargets"><button class="softbtn chosen" data-bite="body" type="button">Body</button><button class="softbtn" data-bite="head" type="button">Head</button><button class="softbtn" data-bite="fin" type="button">Fin</button></div></div>
+<div class="card tight stack"><div class="row between"><h3>Living contact simulation</h3><div class="row"><button id="v9ContactPlay">▶ Run scenario</button><button id="v9ContactReset">↺ Reset</button></div></div>
+<div class="stage"><canvas aria-label="Two fish approaching in 3D; steer, detect and separate without permanent overlap" height="310" id="v9ContactCanvas" width="820"></canvas></div>
+<div class="metricgrid"><div class="metric"><span>Distance in XYZ</span><b id="v9ContactDist">—</b></div><div class="metric"><span>Boundary gap</span><b id="v9ContactGap">—</b></div><div class="metric"><span>Decision</span><b id="v9ContactDecision">—</b></div><div class="metric"><span>Event</span><b id="v9ContactEvt">—</b></div></div>
+<p class="small">A debug-only detection snapshot may show interpenetration because it is frozen <i>before</i> resolution. This playable scenario always resolves overlap before presenting the final state.</p></div><div class="stage v9-offscreen"><canvas aria-label="Before collision and resolved positions side by side" height="360" id="v8CollisionCanvas" width="820"></canvas></div>
+<div class="metricgrid"><div class="metric"><span>3D distance</span><b id="v8Dist">—</b></div><div class="metric"><span>Overlap</span><b id="v8Overlap">—</b></div><div class="metric"><span>Response</span><b id="v8Response">—</b></div><div class="metric"><span>Event</span><b id="v8ContactEvent">—</b></div></div>
+<div class="help" id="v8CollisionExplain">Two snapshots show before and after contact resolution.</div></div>
+<div class="stack"><div class="card stack"><h3>How the pipeline behaves</h3>
+<div class="explain-strip vertical"><div><b>1 · Detect</b><span>Spatial query → shape test in X/Y/Z.</span></div><div><b>2 · Decide</b><span>Approach / flee / socialize / attack is Behavior AI, not physics.</span></div><div><b>3 · Resolve</b><span>Separate colliding volumes; intentional contact can emit a bite event.</span></div></div></div>
+<div class="card stack"><h3>Why not let fish overlap?</h3><ul class="list"><li>A 2D projection can overlap when Z differs.</li><li>If 3D bounding volumes overlap, physics separates them.</li><li><b>Debug detection-only</b> visualizes the problem but must not be a running collision policy.</li><li>Body and fin hit geometry remain research items.</li></ul></div></div></div></section>
+<section class="page" hidden="" id="time"><div hidden="" id="legacy-time"><div class="headline"><div><h2>Fixed timestep ≠ screen refresh rate</h2><p>The world changes at simulation ticks; the renderer may draw more or fewer frames.</p></div></div><div class="grid2"><div class="card stack"><div class="controls"><div class="control"><label>Hypothetical display Hz = <span id="hzLabel">165</span></label><input id="hzSlider" max="520" min="30" step="5" type="range" value="165"/></div><div class="control"><label>Simulation ticks / second</label><select id="tpsSelect"><option value="15">15</option><option selected="" value="30">30</option><option value="60">60</option></select></div></div><div class="metricgrid"><div class="metric"><span>Render interval</span><b id="frameInterval">—</b></div><div class="metric"><span>Sim interval</span><b id="tickInterval">—</b></div><div class="metric"><span>Renders per sim tick</span><b id="ratio">—</b></div><div class="metric"><span>Actual monitor</span><b id="timeActualFps">—</b></div></div><div class="stage"><canvas height="158" id="timeCanvas" width="750"></canvas></div><div class="help"><b>Important:</b> moving the slider to 520 Hz does not make your monitor render at 520 Hz. The diagram models a hypothetical display; the real monitor is measured separately. Interpolation keeps motion visually smooth.</div></div><div class="card stack"><h3>Two fish — same physical speed?</h3><div class="stage"><canvas height="175" id="speedCanvas" width="680"></canvas></div><p><span style="color:var(--green)">● Time-based:</span> distance = speed × elapsed seconds.</p><p><span style="color:var(--red)">● Per-frame mistake:</span> distance = fixed pixels × rendered frames.</p><details><summary>Why Fixed Timestep matters</summary><div><pre>accumulator += elapsedSeconds;
+while (accumulator &gt;= STEP &amp;&amp; steps &lt; MAX_STEPS) {
+  engine.update(STEP);
+  accumulator -= STEP;
+  steps++;
+}
+render(interpolate(previous, current, accumulator / STEP));</pre><p>At overload, specify a policy; simulation may lag behind real time. A fixed timestep alone does not guarantee performance or cross-platform bit-identical results.</p></div></details><div class="metricgrid"><div class="metric"><span>Correct travel (demo)</span><b id="correctTravel">—</b></div><div class="metric"><span>Per-frame bug (demo)</span><b id="badTravel">—</b></div><div class="metric"><span>Actual browser FPS</span><b id="observedHz">—</b></div><div class="metric"><span>World tick target</span><b id="targetTick">—</b></div></div><div class="help">Moving the Hz slider changes the <b>hypothetical renderer</b> and the simulated per-frame bug. It cannot change your physical monitor. Watch the live motion below while adjusting it.</div></div></div></div><div class="help">
+<b>Same physics, different displays.</b> The green fish moves by elapsed seconds. The blue one also uses real time but steps discretely. Only the pink one has a <b>per-frame bug</b> and changes speed at 60/165/520 Hz. This slider describes a hypothetical display; it cannot change your monitor.</div><div class="headline"><div><h2>Simulation time · FPS does not control swim speed</h2><p>See three different movement rules side by side. Changing hypothetical monitor Hz must not change the fish's physical speed.</p></div></div>
+<div class="grid2"><div class="card stack">
+<div class="controls"><div class="control"><label>Hypothetical refresh · <strong id="v8HzText">165 Hz</strong></label><input id="v8Hz" max="520" min="30" step="5" type="range" value="165"/></div>
+<div class="control"><label>Simulation tick rate</label><select id="v8Tps"><option value="15">15 TPS</option><option selected="" value="30">30 TPS</option><option value="60">60 TPS</option></select></div>
+<div class="control"><label>Playback</label><button class="softbtn" id="v8TimeRestart" type="button">↻ Restart animation</button></div></div>
+<div class="stage"><canvas aria-label="Three animated fish compare time-based, discrete fixed-tick and frame-dependent movement" height="300" id="v8TimeCanvas" width="820"></canvas></div><div class="card tight stack v9-compare"><h3>What am I seeing?</h3><ul class="list"><li><b style="color:#94edc5">Green:</b> continuous position from elapsed time; speed stays consistent.</li><li><b style="color:#7be1eb">Blue:</b> fixed-tick updates without interpolation; same long-term distance, more visual stepping.</li><li><b style="color:#fb8491">Red:</b> intentionally wrong movement calculated per frame; the selected theoretical Hz changes speed.</li></ul><p class="small">These lanes describe a simulated display. Your physical browser FPS is measured separately; the slider cannot change your monitor.</p></div>
+<div class="metricgrid"><div class="metric"><span>Time-based speed</span><b>40 cm/s</b></div><div class="metric"><span>Fixed tick</span><b id="v8TimeStep">33.3 ms</b></div><div class="metric"><span>Physical browser</span><b id="v8PhysicalFps">—</b></div><div class="metric"><span>Simulated monitor</span><b id="v8LogicalHz">165 Hz</b></div></div>
+<div class="help">The 520 Hz option is a mathematical preview. Browsers cannot be forced to 520 real FPS by a slider. The first lane is time-based and smoothly interpolated; lane two uses the same fixed ticks without interpolation; the last lane is a deliberately wrong per-frame algorithm.</div></div>
+<div class="stack"><div class="card stack"><h3>Correct engine loop</h3><pre>accumulator += realDeltaSeconds;
+while (accumulator &gt;= STEP) {
+  simulateWorld(STEP);
+  accumulator -= STEP;
+}
+render(interpolatedWorld);</pre><ul class="list"><li>One simulation second represents the same physical time regardless of display Hz.</li><li>Rendering can draw between ticks using interpolation.</li><li>Heavy load needs an explicit catch-up policy.</li></ul></div></div></div></section>
+<section class="page" hidden="" id="bioclock"><div class="headline"><div><h2>Three clocks · one simulation</h2><p>Configurable biological time is an accepted architectural decision.</p></div></div>
+<div class="grid2"><div class="card stack"><div class="controls"><div class="control"><label>Biology multiplier</label><select id="v10BioScale"><option value="1">×1 · real time</option><option value="60">×60 · one minute / second</option><option value="3600">×3600 · one hour / second</option><option value="86400">×86400 · one day / second</option></select></div><div class="control"><label>Simulation tick target</label><select id="v10BioTPS"><option>15</option><option selected="">30</option><option>60</option></select></div></div>
+<div class="row"><button id="v10BioPause" type="button">Pause</button><button id="v10BioReset" type="button">Reset clocks</button><button id="v10BioStep" type="button">Step + 1 physics tick</button></div>
+<div class="metricgrid"><div class="metric"><span>Real elapsed</span><b id="v10RealClock">0.0 s</b></div><div class="metric"><span>Physics time</span><b id="v10SimClock">0.0 s</b></div><div class="metric"><span>Biological time</span><b id="v10BiolClock">0.0 s</b></div><div class="metric"><span>Physics ticks</span><b id="v10TickCount">0</b></div></div>
+<div class="v10-scene"><canvas aria-label="Diagram of real time, physics ticks, and accelerated biological time" height="195" id="v10ClockCanvas" width="820"></canvas></div>
+</div><div class="stack"><div class="card stack"><h3>Same fish, different clocks</h3><ul class="list"><li>Physics integrates position, collisions and currents using fixed steps.</li><li>Biology consumes the selected biological duration, not the render frame count.</li><li>Long jumps need integration or carefully specified analytical approximations: don't skip starvation and waste production.</li><li>Presentation FPS is independent of the fish's physiological age.</li></ul></div><div class="card stack"><h3>Research test</h3><p>Run a seeded experiment at ×1 and ×60 using equal <b>simulated biological time</b>. Later compare feeding, growth and waste totals for numerical consistency within stated tolerances.</p></div></div></div></section><section class="page" hidden="" id="bio"><div hidden="" id="legacy-bio"><div class="headline"><div><h2>Biology &amp; anatomy</h2><p>Distinguish species evidence, personal genes, expressed traits and current physiological state.</p></div></div><div class="grid2"><div class="card stack"><h3>Clickable anatomy demo</h3><svg aria-label="Fish silhouette with interactive anatomy regions" class="fishsvg" id="organDiagram" role="img" viewbox="0 0 400 220"><path class="organ" d="M100 110L29 62L31 161Z" data-organ="tail" fill="#25869d" stroke="#89e4e9" stroke-width="2"></path><path class="organ" d="M80 112Q164 41 318 94Q343 109 319 125Q181 183 80 112Z" data-organ="body" fill="#419bab" stroke="#a5eaf0" stroke-width="2"></path><path class="organ" d="M178 71L210 24L244 78Z" data-organ="dorsal" fill="#3890a7" stroke="#a5eaf0" stroke-width="2"></path><path class="organ" d="M215 140L189 178L232 146Z" data-organ="pectoral" fill="#3bb1ba" stroke="#a5eaf0" stroke-width="2"></path><path class="organ" d="M284 82Q269 106 284 138" data-organ="gills" fill="none" stroke="#bcecf0" stroke-width="5"></path><circle class="organ" cx="306" cy="103" data-organ="eye" fill="#0d2b3e" r="8" stroke="#90dfea" stroke-width="2"></circle><text fill="#a5cee1" font-size="11" x="13" y="204">Select tail · body · dorsal fin · pectoral fin · gills · eye</text></svg><div class="fieldchips" id="organButtons"><button class="chip" data-organ-button="tail">Tail</button><button class="chip" data-organ-button="body">Body</button><button class="chip" data-organ-button="dorsal">Dorsal fin</button><button class="chip" data-organ-button="pectoral">Pectoral fin</button><button class="chip" data-organ-button="gills">Gills</button><button class="chip" data-organ-button="eye">Eye</button></div><div aria-live="polite" class="help" id="organInfo">Click an anatomical region.</div><div class="sub">These are schematic hit regions, not a finalized collision or medical model. A tail injury may affect propulsion; gills may affect oxygen uptake — specific formulas need research.</div></div><div class="card stack"><h3>From scientific reference to an individual fish</h3><div class="flow"><div class="node"><b>Source evidence</b><small>Species, DOI / reference</small></div><span class="arrow">→</span><div class="node"><b>Trait model</b><small>Documented simplification</small></div><span class="arrow">→</span><div class="node"><b>Phenotype</b><small>Observed trait</small></div></div><div class="flow"><div class="node"><b>Genome</b><small>Individual / inherited</small></div><span class="arrow">+</span><div class="node"><b>Environment</b><small>Food / oxygen / age</small></div><span class="arrow">→</span><div class="node"><b>Runtime state</b><small>Health / behavior</small></div></div><div class="control"><label>Illustrative inherited growth tendency = <span id="traitValue">0.60</span> (not sourced DNA)</label><input id="traitSlider" max="1" min="0" step=".01" type="range" value=".6"/></div><div class="control"><label>Illustrative food availability = <span id="foodValue">0.70</span></label><input id="foodSlider" max="1" min="0" step=".01" type="range" value=".7"/></div><div class="metricgrid"><div class="metric"><span>Demo adult length</span><b id="traitLength">—</b></div><div class="metric"><span>Evidence status</span><b style="font-size:13px">DEMO ONLY</b></div></div><div class="help"><b>Aggression ≠ current state:</b> aggression can be a trait or drive. Flee/Hunt/Wander is a momentary behavioral state. Switching to an aggressive world doesn't automatically move HP between Hot and Cold memory — storage layout should change only with an intentional refactor + measurements.</div><div class="source">Research: <a href="https://zfin.org" rel="noopener" target="_blank">ZFIN</a> · <a href="https://www.ensembl.org/Danio_rerio/Info/Index" rel="noopener" target="_blank">Ensembl</a>. Prototype genes and growth formulas here are illustrative, not biological findings.</div></div><div class="card stack"><h3>Live injury overlay · preview only</h3><div class="controls"><div class="control"><label>Hit region</label><select id="woundRegion"><option value="tail">Caudal fin / tail</option><option value="body">Trunk</option><option value="gills">Gill region</option><option value="eye">Eye</option></select></div><div class="control"><label>Severity</label><select id="woundSeverity"><option value="0">0 None</option><option value="1">1 Minor</option><option value="2">2 Moderate</option><option value="3">3 Major</option><option value="4">4 Critical (illustrative)</option></select></div></div><div class="stage"><canvas aria-label="ASCII-style fish with localized fin, gill, eye and trunk injury; demonstration only" height="250" id="injuryCanvas" width="720"></canvas></div><div class="metricgrid"><div class="metric"><span>Impact on movement</span><b id="injuryMovement">Not modeled</b></div><div class="metric"><span>Impact on senses / oxygen</span><b id="injuryFunction">Not modeled</b></div></div><div class="help"><b>Visual vocabulary:</b> torn fin characters, muted glyphs, or a localized mark. No invented organ HP formula or fake blood mechanic. Severity is a prototype label, not a clinical scale.</div><div class="metricgrid"><div class="metric"><span>Severity</span><b id="woundResult">—</b></div><div class="metric"><span>Zone</span><b id="woundResultZone">—</b></div></div><div class="help"><b>Scientific caution:</b> redness, scratches and damage outlines are an educational visualization—not clinical grading or validated tissue mechanics. We will not map severity directly to HP without a research-backed model. <a href="https://www.nichd.nih.gov/about/org/dir/dir_showcase/weinstein-studying-wound-healing-zebrafish" rel="noopener" target="_blank">NIH wound-healing overview</a>.</div></div></div></div><div class="headline"><div><h2>Biology · one fish, interactive anatomy and wounds</h2><p>Click a body region. Change severity. Anatomy and functional consequences are placeholders until supported by species research.</p></div></div>
+<div class="grid2"><div class="card stack">
+<div class="row between"><h3>ASCII anatomy inspector</h3><span class="model-label">Anatomical prototype</span></div>
+<div class="stage"><canvas aria-label="Illustrated fish with clickable organ zones and localized ASCII damage overlay" height="344" id="v9AnatomyCanvas" tabindex="0" width="820"></canvas><div class="canvasnote">Tap eye / gill / dorsal / body / fin / tail, then move Severity</div></div><div class="v9-mini-note"><b>Evidence boundary:</b> anatomical zones are illustrative. Damage severity is a UI control, not a validated medical score. A visual bite does not imply a particular HP reduction.</div><div class="stage v9-offscreen"><canvas aria-label="Clickable side-view fish with localized anatomy and damage" height="350" id="v8AnatomyCanvas" tabindex="0" width="820"></canvas></div>
+<div class="row between"><span class="caption">Select a region</span><div class="pillrow" id="v8OrganBtns"><button class="softbtn chosen" data-organ="body" type="button">Body</button><button class="softbtn" data-organ="tail" type="button">Tail</button><button class="softbtn" data-organ="dorsal" type="button">Dorsal fin</button><button class="softbtn" data-organ="gills" type="button">Gills</button><button class="softbtn" data-organ="eye" type="button">Eye</button></div></div>
+<div class="control"><label>Severity · <strong id="v8SeverityText">0 / 4 · none</strong></label><input id="v8Severity" max="4" min="0" step="1" type="range" value="0"/></div>
+<div class="metricgrid"><div class="metric"><span>Selected part</span><b id="v8OrganName">Body</b></div><div class="metric"><span>Condition</span><b id="v8OrganCondition">Intact</b></div><div class="metric"><span>Potential function</span><b id="v8OrganFunction">Structure</b></div><div class="metric"><span>Source status</span><b>Prototype</b></div></div>
+<div class="help">Different wounds appear on the same fish. No arbitrary organ HP formula, no medically validated severity scale, and no claim about exact recovery kinetics.</div></div>
+<div class="stack"><div class="card stack"><h3>What must become evidence-based?</h3><ul class="list"><li>Anatomical regions and measured dimensions.</li><li>Functional effects (fins → propulsion, gills → oxygen uptake).</li><li>Bleeding, healing and regeneration per species.</li><li>Growth stage and species-specific body templates.</li></ul>
+<a href="https://zfin.org/zf_info/anatomy.html" rel="noopener" target="_blank">ZFIN — Anatomy atlas ↗</a></div>
+<div class="card stack"><h3>Genome → phenotype → runtime</h3><div class="mini-pipeline"><span>Species reference</span><span>Individual genotype</span><span>Trait expression</span><span>Anatomy / behavior</span><span>Live injuries</span></div>
+<p>One genotype is not an instruction list that deterministically predicts every trait. We will record evidence and assumptions separately.</p></div></div></div></section>
+<section class="page" hidden="" id="memory"><div class="headline"><div><h2>One million fish · memory budget</h2><p>Measure data layout, not just one giant byte count. Most fish should not carry every optional feature.</p></div></div><div class="grid2"><div class="card stack"><h3>Population and storage choices</h3><div class="control"><label>Fish <span id="memCountText">1,000,000</span></label><input id="memCount" max="1000000" min="1000" step="1000" type="range" value="1000000"/></div><label class="row"><input checked="" id="memOptional" type="checkbox"/>Store all extended handles/lineage per fish</label><label class="row"><input id="memPacked" type="checkbox"/>Pack 16-bit behavior flags into 8-bit field (only if enough flags)</label><label class="row"><input id="memZ16" type="checkbox"/>Use 16-bit quantized Z only for saved snapshots</label><div class="metricgrid"><div class="metric"><span>Runtime columns / fish</span><b id="runtimeBytes">—</b></div><div class="metric"><span>Runtime numeric arrays</span><b id="runtimeTotal">—</b></div><div class="metric"><span>Snapshot bytes / fish*</span><b id="snapshotBytes">—</b></div><div class="metric"><span>Snapshot total*</span><b id="snapshotTotal">—</b></div></div><canvas aria-label="Memory use visual comparison" class="fishsvg" height="195" id="memoryChart" width="790"></canvas><div class="help">*Snapshot is an illustrative position-only XYZ record, not a complete save file. Runtime counts exclude Map, spatial cells, genomics, textures, JS allocation overhead and graphics memory.</div></div><div class="card stack"><h3>Where to save memory first</h3><ul class="list"><li><b>Shared templates:</b> species definitions, glyphs and common behavior rules stored once</li><li><b>Sparse components:</b> ancestry, wounds and genetics payload only for fish that need them</li><li><b>SoA:</b> fixed typed columns for data-heavy loops</li><li><b>Bit fields:</b> flags and discrete states after field ranges are fixed</li><li><b>Quantization:</b> position snapshots / network packets where precision can be bounded</li><li><b>LOD:</b> expensive perception/AI/rendering need scheduling too</li></ul><pre>World.hot.x = Float32Array(capacity)
+World.hot.z = Float32Array(capacity)
+World.identity.id = Uint32Array(capacity)
+World.optional.injuryById = Map() // sparse
+SpeciesCatalog = shared, not per-fish</pre><div class="help">Float32 in cm across 10,000 cm has changing absolute precision; use error tests at world boundaries and across tiny/large masses. A large population may be CPU- or GPU-bound before RAM is exhausted.</div></div></div></section><section class="page" hidden="" id="depthlab">
+<div class="headline"><div><h2>Ocean depth · pressure · light</h2><p>The physical ocean has layers. Our first 30 m World is a shallow test volume, not the whole deep sea.</p></div></div>
+<div class="grid2"><div class="card stack">
+<div class="control"><label for="v10Depth">Water depth · <strong id="v10DepthText">30 m</strong></label><input id="v10Depth" max="1000" min="0" step="1" type="range" value="30"/></div>
+<div class="control"><label for="v10Turbid">Water clarity · <strong id="v10TurbidText">Clear</strong></label><input id="v10Turbid" max="100" min="0" type="range" value="15"/></div>
+<div class="v10-scene"><canvas aria-label="Ocean cross-section with fish at selected depth and sunlight attenuation" height="330" id="v10DepthCanvas" width="800"></canvas></div>
+<div class="metricgrid"><div class="metric"><span>Absolute pressure (approx.)</span><b id="v10Pressure">—</b></div><div class="metric"><span>Extra water pressure</span><b id="v10PressureExtra">—</b></div><div class="metric"><span>Illustrative light intensity</span><b id="v10Light">—</b></div><div class="metric"><span>Depth zone</span><b id="v10Zone">—</b></div></div>
+<div class="v10-summary">Pressure follows the hydrostatic approximation P = P₀ + ρgz. Light is an illustrative attenuation curve; real spectra depend on wavelength, water clarity, season and location.</div>
+</div><div class="stack"><div class="card stack"><h3>What changes with depth?</h3><ul class="list"><li>Pressure increases with water depth.</li><li>Light decreases; color changes with the wavelengths that remain.</li><li>Temperature, oxygen and currents vary with region and time.</li><li>Fish may choose depths based on food, shelter, temperature and species biology.</li></ul></div>
+<div class="card stack"><h3>Depth ≠ distance into the screen</h3><ul class="list"><li><b>Y:</b> vertical height in our world; hydrostatic depth comes from water surface minus Y.</li><li><b>Z:</b> distance into the side-view screen — it is not water depth.</li><li>The original World is 100m × 50m × 30m (X × Y × Z). This demo explores deeper habitats separately.</li></ul></div>
+<div class="card stack"><h3>Habitat &amp; reef structures</h3><div class="mini-pipeline"><span>Reef shelter</span><span>Find refuge</span><span>Avoid predator</span></div><ul class="list"><li>Reefs, sand, caves and rocks will become spatial structures and shelters.</li><li>Species have habitat preferences, not automatic survival thresholds.</li><li>Deep-sea bioluminescence and squid behaviors require separate research.</li></ul></div><div class="source"><a href="https://oceanservice.noaa.gov/facts/pressure.html" rel="noopener" target="_blank">NOAA: pressure</a> · <a href="https://oceanservice.noaa.gov/facts/light_travel.html" rel="noopener" target="_blank">NOAA: light zones</a></div></div></div></section><section class="page" hidden="" id="habitat"><div hidden="" id="legacy-habitat"><div class="headline"><div><h2>Water environments &amp; chemistry</h2><p>Marine by default. Freshwater is another habitat, not just another fish in the same saltwater tank.</p></div></div><div class="v10-summary">Water pressure comes from vertical depth (Y below the surface), not from the camera Z coordinate. For ocean pressure &amp; light, open <button class="softbtn" data-target="depthlab" type="button">Depth, pressure &amp; light</button>.</div><div class="grid2"><div class="card stack"><h3>Salinity gradient (illustrative)</h3><div class="control"><label>River influence <b id="riverValue">30%</b></label><input id="riverInfluence" max="100" min="0" step="5" type="range" value="30"/></div><canvas aria-label="Water salinity across river mouth and ocean" class="fishsvg" height="290" id="habitatCanvas" width="810"></canvas><div class="legend"><span><i style="background:#4cc8df"></i>Fresh water</span><span><i style="background:#648dcd"></i>Brackish transition</span><span><i style="background:#574bba"></i>Marine</span></div><div class="help">Example salinity visualization. Actual salinity depends on tides, freshwater discharge, weather and depth. Do not equate this toy gradient with validated fish habitat suitability.</div></div><div class="card stack"><h3>Species compatibility (research plan)</h3><div class="flow"><div class="node"><b>Zebrafish</b><small>Freshwater study species</small></div><div class="node"><b>Clownfish</b><small>Marine future study species</small></div><div class="node"><b>Estuary specialists</b><small>Possible later species; research required</small></div></div><div class="help"><b>Implementation:</b> EnvironmentStore includes salinity in ppt (‰) as a regional field. Fish species defines validated tolerance and preference from sources. EnvironmentSystem can query conditions at XYZ when we have reliable data.</div><ul class="list"><li>Ocean salinity reference ~35 ppt, varies geographically.</li><li>Freshwater, brackish and marine need environmental constraints.</li><li>A habitat may have salinity gradients rather than a single constant.</li><li>First zebrafish demo requires a compatible freshwater test volume, separate from the main marine scene.</li></ul><p class="source"><a href="https://oceanservice.noaa.gov/education/tutorial_estuaries/est01_whatis.html" rel="noopener" target="_blank">NOAA: estuarine salinity</a> · <a href="https://zfin.org" rel="noopener" target="_blank">ZFIN: zebrafish biology</a></p></div></div></div><div class="headline"><div><h2>Water chemistry · probe any coordinate</h2><p>One World, many habitats. Values in this map are synthetic demonstrations and are not calibrated seawater chemistry.</p></div></div>
+<div class="grid2"><div class="card stack">
+<div class="row between"><h3>Estuary → coastal sea</h3><span class="caption">Tap / drag anywhere on the water</span></div>
+<div class="control"><label>River influence · <strong id="v8RiverText">55%</strong></label><input id="v8River" max="100" min="0" step="1" type="range" value="55"/></div>
+<div class="control"><label>Probe Z depth · <strong id="v8WaterZText">12.0 m</strong></label><input id="v8WaterZ" max="30" min="0" step="0.5" type="range" value="12"/></div>
+<div aria-label="Water layer" class="row water-views" role="group">
+<button class="v9-water-layer activebtn" data-layer="salinity">Salinity</button><button class="v9-water-layer" data-layer="temperature">Temperature</button><button class="v9-water-layer" data-layer="oxygen">Oxygen</button><button class="v9-water-layer" data-layer="ph">pH</button><button class="v9-water-layer" data-layer="tan">TAN</button><button class="v9-water-layer" data-layer="current">Current</button></div><div class="stage v9-water-stage"><canvas aria-label="Color field of water chemistry. Tap to sample a location." height="284" id="v9WaterCanvas" width="820"></canvas><div class="canvasnote">Tap the field to sample X / Y; use Depth for Z · Illustrative values</div></div><div class="stage v9-offscreen"><canvas aria-label="Interactive water quality field: tap location to sample salinity, temperature, pH, dissolved oxygen, total ammonia nitrogen" height="310" id="v8WaterCanvas" tabindex="0" width="820"></canvas></div><p class="small">Colors encode the currently selected measurement; the numerical water-field model is synthetic, not a validated environmental prediction. Currents shown are illustrative velocity arrows.</p>
+<div class="metricgrid"><div class="metric"><span>Salinity</span><b id="v8Salinity">—</b></div><div class="metric"><span>Temperature</span><b id="v8Temp">—</b></div><div class="metric"><span>pH</span><b id="v8Ph">—</b></div><div class="metric"><span>Oxygen</span><b id="v8Oxygen">—</b></div></div>
+<div class="metricgrid"><div class="metric"><span>Total ammonia nitrogen</span><b id="v8Tan">—</b></div><div class="metric"><span>World X / Y</span><b id="v8WaterX">—</b></div><div class="metric"><span>World Z</span><b id="v8WaterZValue">—</b></div><div class="metric"><span>Habitat</span><b id="v8WaterClass">—</b></div></div>
+<div class="help">pH, dissolved oxygen, TAN and salinity interact. This prototype deliberately does not infer fish survival from guessed tolerance limits.</div></div>
+<div class="stack"><div class="card stack"><h3>Fish compatibility · data-driven later</h3><label class="control">Inspect species<select id="v8HabitatSpecies"><option value="zebrafish">Zebrafish · freshwater</option><option value="clownfish">Clownfish · marine</option></select></label><div class="help" id="v8HabitatNote">Select a sample point for a contextual note.</div></div>
+<div class="card stack"><h3>Environmental modules</h3><ul class="list"><li><b>Hydrology:</b> currents and mixing.</li><li><b>Chemistry:</b> salinity, pH, nitrogen species.</li><li><b>Gas exchange:</b> dissolved oxygen and temperature.</li><li><b>Habitats:</b> verified tolerance ranges for each life stage.</li></ul><p>Ammonia is a potential toxicant, not a universal food signal or fish attractor.</p>
+<a href="https://www.epa.gov/caddis/ammonia" rel="noopener" target="_blank">EPA — Ammonia and aquatic life ↗</a>
+<a href="https://www.noaa.gov/jetstream/ocean/sea-water" rel="noopener" target="_blank">NOAA — Sea water and salinity ↗</a></div></div></div></section><section class="page" hidden="" id="feeding"><div class="headline"><div><h2>Diet, digestion &amp; waste</h2><p>Food type, life stage and physiology shape the energy budget. No universal “fish stomach” assumption.</p></div></div>
+<div class="grid2"><div class="card stack"><h3>Follow a meal</h3><div class="controls"><div class="control"><label>Inspect species</label><select id="v10FeedSpecies"><option value="zebrafish">Zebrafish · omnivorous</option><option value="predator">Predatory fish · generic</option><option value="filter">Filter feeder · generic</option></select></div><div class="control"><label>Food type</label><select id="v10Food"><option value="zooplankton">Zooplankton</option><option value="algae">Algae / phytoplankton</option><option value="insect">Aquatic insect / larva</option><option value="fish">Small prey fish</option><option value="detritus">Detritus</option></select></div></div>
+<div class="row"><button id="v10FeedNext">Next digestion step</button><button id="v10FeedReset">Reset</button></div><div class="v10-scene"><canvas aria-label="Interactive food intake digestion and waste-flow map" height="285" id="v10DietCanvas" width="820"></canvas></div><div class="metricgrid"><div class="metric"><span>Current process</span><b id="v10MealStage">Intake</b></div><div class="metric"><span>Food suitability</span><b id="v10FoodFit">—</b></div><div class="metric"><span>Assimilation</span><b id="v10FoodAssim">Uncalibrated</b></div><div class="metric"><span>Waste outputs</span><b id="v10FoodWaste">Feces / dissolved N</b></div></div>
+</div><div class="stack"><div class="card stack"><h3>The flow we'll model</h3><div class="flow"><span class="node"><b>Food</b><small>composition, availability</small></span><span class="arrow">→</span><span class="node"><b>Digest</b><small>gut compartments, time</small></span><span class="arrow">→</span><span class="node"><b>Absorb</b><small>nutrients to reserves</small></span><span class="arrow">→</span><span class="node"><b>Allocate</b><small>maintenance / growth / reproduction</small></span></div><ul class="list"><li>Unassimilated material exits as feces.</li><li>Nitrogenous wastes, including ammonia in many fish, can enter water through gills.</li><li>Digestion and reproductive strategies depend on species and life stage.</li><li>Not every food item is edible or safe: ingestion is distinct from assimilation.</li></ul></div>
+<div class="card stack"><h3>Research gates before coding metabolism</h3><ul class="list"><li>Diet and feeding strategy by species and developmental stage.</li><li>Food energy/nutrient composition with source and units.</li><li>Digestive anatomy (zebrafish are stomachless).</li><li>Assimilation, respiration and excretion coefficients from literature.</li><li>Mass/energy balance and waste transfer into the environment.</li></ul></div>
+<div class="source"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8145133/" rel="noopener" target="_blank">Zebrafish omnivorous diet</a> · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12317818/" rel="noopener" target="_blank">Fish bioenergetics model</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/38849577/" rel="noopener" target="_blank">Gill ammonia excretion</a></div></div></div></section><section class="page" hidden="" id="fishdex"><div class="headline"><div><h2>FishDex · species encyclopedia</h2><p>One species record links evidence, habitat, morphology, life stages and an ASCII preview. This is an educational preview, not a completed taxonomy database.</p></div></div>
+<div class="grid2"><div class="card stack"><div class="row between"><h3>Species profile</h3><select id="v9Species"><option value="zebra">Zebrafish · Danio rerio</option><option value="clown">Ocellaris clownfish · Amphiprion ocellaris</option></select></div>
+<div class="big" id="v9SpeciesName">Danio rerio</div><div class="metricgrid"><div class="metric"><span>Water type</span><b id="v9SpeciesWater">Freshwater</b></div><div class="metric"><span>Reproduction</span><b id="v9SpeciesRepro">Eggs</b></div></div>
+<p id="v9SpeciesNotes">Zebrafish are a freshwater research species. Investigate actual environmental tolerance by life stage before simulation.</p>
+<div class="v9-mini-note"><b>Measurement policy:</b> Store SL and TL separately; preserve per-fin dimensions and injury state when the organ model is developed.</div>
+<div class="row" id="v9SpeciesSources"></div></div>
+<div class="card stack"><h3>Small habitat vignette · ASCII skin</h3><div class="stage"><canvas aria-label="Animated aquarium vignette for the selected fish species" height="300" id="v9SpeciesCanvas" width="820"></canvas></div>
+<div class="controls"><div class="control"><label>Demo salinity (ppt) <b id="v9SpeciesSalRead">0</b></label><input id="v9SpeciesSal" max="35" min="0" step="1" type="range" value="0"/></div><div class="control"><label>Water temperature °C <b id="v9SpeciesTempRead">26</b></label><input id="v9SpeciesTemp" max="35" min="10" step="1" type="range" value="26"/></div></div><p class="small" id="v9SpeciesWarning">These sliders adjust the visual lab. They do not evaluate survival until verified tolerance profiles exist.</p></div></div>
+<div class="card stack"><h3>Future FishDex schema</h3><div class="flow"><div class="node"><b>Species Reference</b><small>Name, taxonomy, evidence links</small></div><span class="arrow">→</span><div class="node"><b>Habitat Profile</b><small>Water, life stage, range citations</small></div><span class="arrow">→</span><div class="node"><b>Traits &amp; Anatomy</b><small>Validated parameters, uncertainty</small></div><span class="arrow">→</span><div class="node"><b>Fish Preview</b><small>ASCII skin &amp; behavioral sandbox</small></div></div><div class="help">Every numeric biological parameter must record its source, species/strain, developmental stage, units, and confidence. A missing parameter stays unknown: no silent guessing.</div></div></section><section class="page" hidden="" id="roadmap"><p class="small">Design reference revision: 10 · 2026-11-04</p><div class="headline"><div><h2>Decisions &amp; implementation</h2><p>Newly agreed physical units are fixed; biology/physics formulas still need acceptance.</p></div><p class="small">Design reference revision: v9 · 2026-11-04</p><p class="small"><a href="./docs/DECISIONS.md">Decision register</a> · <a href="./docs/BIOLOGY.md">Biology notes</a> · <a href="./prompts/CODEX_M0.md">Codex foundation brief</a></p></div><div class="grid2"><div class="card stack"><div class="row between"><h3>Decisions</h3><select id="decisionFilter"><option value="all">All</option><option value="locked">Agreed direction</option><option value="trial">Provisional</option><option value="open">Open</option></select></div><div class="decisions" id="decisionList"></div></div><div class="stack"><div class="card stack"><h3>Build in small milestones</h3><div class="decision"><b>M0 · Foundation</b><p>New repository, TS, tests, CI, docs, lab website, no speculative ecology.</p></div><div class="decision"><b>M1 · World core</b><p>SoA columns, ID mapping, swap-remove, time, invariants and tests.</p></div><div class="decision"><b>M2 · Spatial &amp; visualization</b><p>3D grid tested against brute force; side camera; FPS/TPS telemetry.</p></div><div class="decision"><b>M3 · Physical scale &amp; metabolism</b><p>Use cm/s/g and normalized energy; research still required before formulas.</p></div><div class="decision"><b>M4 · Genetics &amp; damage research slices</b><p>Scientifically referenced trait and anatomy experiments, not final simulation rules.</p></div></div><div class="card stack"><h3>First Codex assignment</h3><p>Start with M0 only. The prototype lab is a visual specification, not production engine code.</p><pre id="codexBrief">Create NEW TypeScript ASCuarium repo. Read AGENTS.md and docs/DECISIONS.md, ARCHITECTURE.md, DATA_SCHEMA.md, GROWTH_RESEARCH.md, WATER_ENVIRONMENT.md and ADRs. Deliver tested World/ID/SoA/Clock/SpatialIndex contracts + accessible mechanics site. Biological Hybrid growth is ACCEPTED conceptually; rates, injury, water toxicity and metabolism are OPEN. Do not copy demo curves into production. See prompts/CODEX_M0.md.</pre><button id="copyCodex">Copy short brief</button><div class="sub" id="copyMsg"></div><p class="source">Review bundle: docs/DATA_SCHEMA.md · docs/DECISIONS.md · docs/COLLISION_SPEC.md · docs/BIOLOGY_RESEARCH.md · prompts/CODEX_M0.md.</p></div></div></div><div class="card stack"><h3>New research topics</h3><p><a href="./docs/BIO_CLOCK.md">Biological clock</a> · <a href="./docs/DIET_DIGESTION.md">Diet &amp; digestion</a> · <a href="./docs/OCEAN_DEPTH_LIGHT.md">Ocean depth, pressure &amp; light</a> · <a href="./docs/UX_REVIEW.md">UX acceptance checklist</a></p></div></section>
+<div class="footer">ASCuarium · Living mechanisms &amp; research reference · Biological models under validation</div>
+</main>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);const fmt=n=>Number(n).toLocaleString('en-US');
+const tabs=['model','mass','growth','precision','identity','memory','spatial','collision','time','habitat','depthlab','bioclock','bio','feeding','fishdex','roadmap'];let activeTab='model',present=false;
+function showTab(id){activeTab=id;for(const t of tabs){$(t).hidden=t!==id;document.querySelector(`[data-tab="${t}"]`)?.setAttribute('aria-selected',String(t===id));} $('slideCount').textContent=`${tabs.indexOf(id)+1} / ${tabs.length}`;window.scrollTo({top:0,behavior:'instant'});}
+document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.tab)));
+function slide(step){showTab(tabs[Math.max(0,Math.min(tabs.length-1,tabs.indexOf(activeTab)+step))])}
+function togglePresent(val){present=val;document.body.classList.toggle('present',present);$('presentBtn').textContent=present?'× Exit presentation':'⛶ Presentation';if(present){try{document.documentElement.requestFullscreen?.().catch(()=>{})}catch(e){}}else{try{if(document.fullscreenElement)document.exitFullscreen?.().catch(()=>{})}catch(e){}}}
+$('presentBtn').onclick=()=>togglePresent(!present);$('exitPresent').onclick=()=>togglePresent(false);$('prevSlide').onclick=()=>slide(-1);$('nextSlide').onclick=()=>slide(1);
+document.addEventListener('keydown',e=>{if(!present||['INPUT','SELECT','TEXTAREA'].includes(document.activeElement?.tagName))return;if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();slide(1)}if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();slide(-1)}if(e.key==='Escape')togglePresent(false)});
+let swipeX=null;document.addEventListener('touchstart',e=>{if(present&&e.touches.length===1)swipeX=e.touches[0].clientX},{passive:true});document.addEventListener('touchend',e=>{if(!present||swipeX==null)return;const delta=e.changedTouches[0].clientX-swipeX;swipeX=null;if(Math.abs(delta)>95)slide(delta<0?1:-1)},{passive:true});
+// Logical groups; one shared World object owns parallel typed columns, not one object per fish.
+const fields=[
+['Identity','fishId','Uint32Array',4,'warm','Persistent ID per world; never used as an array slot.','Direction'],['Identity','speciesId','Uint16Array',2,'warm','Reference to a shared species definition.','Direction'],['Identity','worldId','Shared string / number',0,'shared','One identifier for the whole simulation, not repeated in every fish column.','Direction'],
+['Motion','x','Float32Array',4,'hot','X position in centimeters (0–10000).','Direction'],['Motion','y','Float32Array',4,'hot','Y height in centimeters (0–5000).','Direction'],['Motion','z','Float32Array',4,'hot','True Z depth in centimeters (0–3000), not a graphics layer.','Direction'],['Motion','vx','Float32Array',4,'hot','X velocity: distance per simulation second.','Direction'],['Motion','vy','Float32Array',4,'hot','Y velocity.','Direction'],['Motion','vz','Float32Array',4,'hot','Z velocity.','Direction'],['Motion','heading','Float32Array',4,'hot','Body orientation for movement and rendering; 3D rotation design remains open.','Trial'],
+['Biology','length','Float32Array',4,'warm','Length in centimeters; eventual species, age and environment growth rules remain open.','Open'],['Biology','bodyHeight','Float32Array',4,'warm','Body height in centimeters for shape bounds and rendering.','Open'],['Biology','bodyWidth','Float32Array',4,'warm','Body width in centimeters along Z.','Open'],['Biology','bodyMass','Float32Array',4,'warm','Mass in grams, Float32 provisional; density and growth equations OPEN.','Open'],['Biology','energy','Float32Array',4,'hot','Normalized energy in initial MVP; joule-based model later (open).','Trial'],['Biology','hunger','Float32Array',4,'warm','Drive/state signal; may be derived from energy later.','Open'],['Biology','hp','Uint16Array',2,'warm','Temporary integral HP model; damage anatomy may replace or augment it.','Open'],['Biology','ageTicks','Uint32Array',4,'warm','Age in simulation ticks; seconds per tick fixed, biological life-stage scale OPEN.','Trial'],['Biology','growthStage','Uint8Array',1,'warm','Discrete maturity/growth stage.','Open'],
+['Behavior','state','Uint8Array',1,'warm','Wander/Flee/Hunt/... immediate action, separate from hunger/aggression.','Trial'],['Behavior','flags','Uint16Array',2,'warm','Candidate for packing multiple yes/no flags; start separate column.','Trial'],['Behavior','targetId','Uint32Array',4,'warm','Stable identity of current target or sentinel 0.','Trial'],
+['Extended','genomeHandle','Uint32Array',4,'cold','Reference to a separately modeled individual genome.','Open'],['Extended','anatomyHandle','Uint32Array',4,'cold','Reference to per-fish anatomy/wound data.','Open'],['Extended','injuryHandle','Uint32Array',4,'cold','Optional injury registry; avoid duplicating anatomy state.','Open'],['Extended','parentAId','Uint32Array',4,'cold','Lineage link; needed only where ancestry is enabled.','Open'],['Extended','parentBId','Uint32Array',4,'cold','Other lineage link; not a DNA sequence.','Open']
+];const descriptions={Identity:'Stable identity and lookup',Motion:'Position and velocity in 3D',Biology:'Growth, size, metabolism and health',Behavior:'Actions, drives and targets',Extended:'Optional complex records via handles'};let selectedField='x';
+function renderFields(){const root=$('fieldGroups');root.replaceChildren();for(const group of ['Identity','Motion','Biology','Behavior','Extended']){const box=document.createElement('div');box.className='group';box.innerHTML=`<h3>${group}<span class="sub">${descriptions[group]}</span></h3>`;const chips=document.createElement('div');chips.className='fieldchips';fields.filter(f=>f[0]===group).forEach(f=>{const b=document.createElement('button');b.className=`chip ${f[3]===0?'shared':f[4]} ${f[1]===selectedField?'active':''}`;b.textContent=f[1];b.title=f[2];b.onclick=()=>{selectedField=f[1];renderFields()};chips.append(b)});box.append(chips);root.append(box)}const f=fields.find(f=>f[1]===selectedField);$('fieldDetail').innerHTML=`<div class="row between"><span class="big">${f[1]}</span><span class="tag">${f[6]}</span></div><div class="fact"><span>Group</span><b>${f[0]}</b></div><div class="fact"><span>Storage</span><b><code>${f[2]}</code></b></div><div class="fact"><span>Bytes</span><b>${f[3]===0?'shared / no per-fish column':f[3]+' / fish'}</b></div><div class="fact"><span>Access</span><b><span class="marker ${f[4]}"></span>${f[4].toUpperCase()}</b></div><div class="sub">${f[5]}</div>`;updatePopulation()}
+function updatePopulation(){let bytes=fields.reduce((n,f)=>n+f[3],0),pop=Number($('population').value);$('bytesFish').textContent=`${bytes} B`;$('bytesTotal').textContent=`${(bytes*pop/1024/1024).toFixed(2)} MiB`}
+$('population').onchange=updatePopulation;renderFields();
+// Precision and bit packing.
+function drawPrecision(){const z=Number($('depthSlider').value),bits=Number($('depthBits').value),levels=2**bits-1;const q=Math.round(z/30*levels),d=q*30/levels;for(const [id,value] of [['depthValue',z.toFixed(2)],['quantCode',fmt(q)],['quantDecoded',d.toFixed(4)+'m'],['quantError',Math.abs(z-d).toFixed(5)],['quantMaxError',(15/levels).toFixed(5)]])$(id).textContent=value;const c=$('precisionCanvas'),ctx=c.getContext('2d');ctx.clearRect(0,0,c.width,c.height);ctx.fillStyle='#0b2236';ctx.fillRect(0,0,700,90);ctx.strokeStyle='#54728a';ctx.lineWidth=7;ctx.beginPath();ctx.moveTo(25,43);ctx.lineTo(675,43);ctx.stroke();for(let i=0;i<=10;i++){let x=25+i*65;ctx.strokeStyle='#7891a7';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(x,32);ctx.lineTo(x,55);ctx.stroke()}ctx.strokeStyle='#70dfff';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(25+z*(650/30),12);ctx.lineTo(25+z*(650/30),76);ctx.stroke();ctx.strokeStyle='#ffd17b';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(25+d*(650/30),18);ctx.lineTo(25+d*(650/30),68);ctx.stroke();ctx.font='12px system-ui';ctx.fillStyle='#70dfff';ctx.fillText('Original',20,17);ctx.fillStyle='#ffd17b';ctx.fillText('Quantized',578,17)}
+$('depthSlider').oninput=drawPrecision;$('depthBits').onchange=drawPrecision;drawPrecision();
+function packBits(){const state=Number($('packState').value),flags=Number($('packFlags').value),injury=Number($('packInjury').value),species=Number($('packSpecies').value);const value=state|(flags<<3)|(injury<<8)|(species<<12);$('packedDecimal').textContent=fmt(value);$('packedHex').textContent='0x'+value.toString(16).toUpperCase().padStart(4,'0');const root=$('packCells');root.replaceChildren();for(let i=15;i>=0;i--){const el=document.createElement('div');el.className='bit '+(i>=12?'species':i>=8?'injury':i>=3?'flags':'state');el.textContent=(value>>i)&1;el.title='bit '+i;root.append(el)}$('packedCode').textContent=`const packed = ${value}; // ${$('packedHex').textContent}\nstate   =  packed         & 0b111; // ${value&7}\nflags   = (packed >>> 3)  & 31;    // ${(value>>>3)&31}\ninjury  = (packed >>> 8)  & 15;    // ${(value>>>8)&15}\nspecies = (packed >>> 12) & 15;    // ${(value>>>12)&15}`}
+for(const id of ['packState','packFlags','packInjury','packSpecies'])$(id).onchange=packBits;packBits();
+// Dense ID map demonstration; every displayed value comes from one simulation state.
+let ids=[],idIndex=new Map(),nextId=105;
+function resetIds(){ids=[101,102,103,104];nextId=105;rebuildIdMap();$('swapStatus').textContent='Try removing #102. Last fish swaps into the gap; idToSlot changes.'}
+function rebuildIdMap(){idIndex=new Map(ids.map((id,i)=>[id,i]));renderIds()}
+function renderIds(){const root=$('slotRow');root.replaceChildren();for(let i=0;i<5;i++){const d=document.createElement('div');d.className='slot '+(i>=ids.length?'empty':'')+(ids[i]===104?' selected':'');d.innerHTML=`<small>slot ${i}</small><b>${ids[i]===undefined?'—':'#'+ids[i]}</b><small>${ids[i]===undefined?'free':'active'}</small>`;root.append(d)}const map=$('idMapTable');map.replaceChildren();for(const [id,slot] of idIndex){const e=document.createElement('div');e.className='boxbadge';e.textContent=`${id} → slot ${slot}`;map.append(e)}$('id104loc').textContent=`104 → ${idIndex.has(104)?'slot '+idIndex.get(104):'removed'}`;$('remove102').disabled=!idIndex.has(102);$('spawnNew').disabled=ids.length>=5}
+$('remove102').onclick=()=>{const slot=idIndex.get(102);if(slot===undefined)return;const last=ids.length-1;const moved=ids[last];ids[slot]=moved;ids.pop();rebuildIdMap();$('swapStatus').textContent=`Removed #102 at slot ${slot}; moved #${moved} from last slot ${last}. Map updated. O(1) data movement for fixed columns.`};$('spawnNew').onclick=()=>{if(ids.length>=5)return;const id=nextId++;ids.push(id);rebuildIdMap();$('swapStatus').textContent=`Spawned #${id} at slot ${ids.length-1}. Stable identity ≠ physical slot.`};$('resetIds').onclick=resetIds;resetIds();
+// True 3D world coordinates, viewed with a side-on camera. Debug view shows X vs Z.
+const W=10000,H=5000,D=3000,VIEW_W=900,VIEW_H=320,STEP=1/30,cellSize=1000;
+let oceanFish=[],grid=new Map(),selected=0,runOcean=true,showGrid=true,seed=727,acc=0,lastFrame=0,frames=0,stepsDone=0,lastMonitor=0,renderFps=0,simTps=0;let lastSearch={neighbors:0,checked:0,parity:true};
+function randGen(initial){let s=initial>>>0;return()=>{s=(1664525*s+1013904223)>>>0;return s/4294967296}}
+function initOcean(){const rng=randGen(seed++);const n=Number($('oceanCount').value);oceanFish=Array.from({length:n},(_,i)=>({id:i+1,x:100+rng()*(W-200),y:100+rng()*(H-200),z:rng()*D,vx:(rng()-.5)*100,vy:(rng()-.5)*65,vz:(rng()-.5)*45}));selected=0;$('fishDepth').value=oceanFish[0].z;rebuildGrid();inspectFish()}
+function cellCoords(f){return [Math.floor(f.x/cellSize),Math.floor(f.y/cellSize),Math.floor(f.z/cellSize)]}
+function key(cx,cy,cz){return cx+','+cy+','+cz}
+function rebuildGrid(){grid.clear();oceanFish.forEach((f,i)=>{const [x,y,z]=cellCoords(f),k=key(x,y,z);let list=grid.get(k);if(!list){list=[];grid.set(k,list)}list.push(i)})}
+function tickOcean(){for(const f of oceanFish){f.x+=f.vx*STEP;f.y+=f.vy*STEP;f.z+=f.vz*STEP;if(f.x<100||f.x>W-100){f.vx*=-1;f.x=Math.max(100,Math.min(W-100,f.x))}if(f.y<100||f.y>H-100){f.vy*=-1;f.y=Math.max(100,Math.min(H-100,f.y))}if(f.z<0||f.z>D){f.vz*=-1;f.z=Math.max(0,Math.min(D,f.z))}}rebuildGrid();stepsDone++}
+function queryNeighbors(){const radius=Number($('senseRadius').value),r2=radius*radius;const src=oceanFish[selected];if(!src)return {neighbors:0,checked:0,parity:false,ids:new Set()};const [cx,cy,cz]=cellCoords(src),range=Math.ceil(radius/cellSize),ids=new Set();let checked=0;for(let dx=-range;dx<=range;dx++)for(let dy=-range;dy<=range;dy++)for(let dz=-range;dz<=range;dz++){const bucket=grid.get(key(cx+dx,cy+dy,cz+dz));if(!bucket)continue;for(const i of bucket){if(i===selected)continue;checked++;const f=oceanFish[i],sqr=(f.x-src.x)**2+(f.y-src.y)**2+(f.z-src.z)**2;if(sqr<=r2)ids.add(i)}}let expected=new Set();for(let i=0;i<oceanFish.length;i++){if(i===selected)continue;let f=oceanFish[i];if((f.x-src.x)**2+(f.y-src.y)**2+(f.z-src.z)**2<=r2)expected.add(i)}const parity=expected.size===ids.size&&[...ids].every(i=>expected.has(i));return {neighbors:ids.size,checked,parity,ids}}
+function inspectFish(){if(!oceanFish[selected])return;lastSearch=queryNeighbors();$('selectedFish').textContent='#'+oceanFish[selected].id;$('selectedDepth').textContent=(oceanFish[selected].z/100).toFixed(2)+' m';$('fishDepth').value=oceanFish[selected].z;$('neighCount').textContent=lastSearch.neighbors;$('bruteChecks').textContent=oceanFish.length-1;$('gridChecks').textContent=lastSearch.checked;$('cellCount').textContent=grid.size;$('gridParity').textContent=lastSearch.parity?'PASS':'FAIL';$('gridParity').style.color=lastSearch.parity?'#80e7bb':'#ff798a'}
+const oceanCanvas=$('ocean'),oceanCtx=oceanCanvas.getContext('2d'),depthCtx=$('depthMap').getContext('2d');
+function drawOcean(){const g=oceanCtx;g.fillStyle='#081f32';g.fillRect(0,0,VIEW_W,VIEW_H);g.strokeStyle='#123449';g.lineWidth=1;for(let x=0;x<VIEW_W;x+=60){g.beginPath();g.moveTo(x,0);g.lineTo(x,VIEW_H);g.stroke()}for(let y=0;y<VIEW_H;y+=40){g.beginPath();g.moveTo(0,y);g.lineTo(VIEW_W,y);g.stroke()}
+  const src=oceanFish[selected];if(src){const r=Number($('senseRadius').value);if(showGrid){let [cx,cy]=cellCoords(src);const range=Math.ceil(r/cellSize);for(let x=cx-range;x<=cx+range;x++)for(let y=cy-range;y<=cy+range;y++){g.fillStyle='#46cfe014';g.fillRect(x*cellSize/W*VIEW_W,y*cellSize/H*VIEW_H,cellSize/W*VIEW_W,cellSize/H*VIEW_H);g.strokeStyle='#48dce43e';g.strokeRect(x*cellSize/W*VIEW_W,y*cellSize/H*VIEW_H,cellSize/W*VIEW_W,cellSize/H*VIEW_H)}}g.beginPath();g.ellipse(src.x/W*VIEW_W,src.y/H*VIEW_H,r/W*VIEW_W,r/H*VIEW_H,0,0,Math.PI*2);g.strokeStyle='#fbd680aa';g.lineWidth=1.5;g.setLineDash([5,5]);g.stroke();g.setLineDash([])}
+  for(let i=0;i<oceanFish.length;i++){const f=oceanFish[i],isSel=i===selected,near=lastSearch.ids?.has(i),scale=.58+.7*(1-f.z/D);g.globalAlpha=isSel?1:.32+.62*(1-f.z/D);g.fillStyle=isSel?'#ffd27f':near?'#91ffc5':`hsl(${190+f.z*.75} 82% 73%)`;g.beginPath();g.ellipse(f.x/W*VIEW_W,f.y/H*VIEW_H,isSel?7:Math.max(2,3*scale),isSel?5:Math.max(1.4,2*scale),0,0,Math.PI*2);g.fill();g.globalAlpha=1;if(isSel){g.font='bold 12px system-ui';g.fillStyle='#fff2c7';g.fillText('#'+f.id,Math.min(VIEW_W-48,f.x/W*VIEW_W+11),Math.max(14,f.y/H*VIEW_H-9))}}
+  g.font='11px system-ui';g.fillStyle='#b1d5e9';g.fillText('SIDE CAMERA · X=100 m · Y=50 m · Z depth=30 m',12,17);
+  const d=depthCtx;d.fillStyle='#0a1c2b';d.fillRect(0,0,440,180);d.strokeStyle='#2b4961';d.strokeRect(9,8,421,163);for(let x=0;x<440;x+=44){d.beginPath();d.moveTo(x,8);d.lineTo(x,171);d.stroke()}for(let y=0;y<180;y+=33){d.beginPath();d.moveTo(9,y);d.lineTo(430,y);d.stroke()}
+  if(src){const rx=src.x/W*440,rz=src.z/D*180;d.beginPath();d.ellipse(rx,rz,Number($('senseRadius').value)/W*440,Number($('senseRadius').value)/D*180,0,0,Math.PI*2);d.setLineDash([4,4]);d.strokeStyle='#ffd17b';d.stroke();d.setLineDash([])}
+  for(let i=0;i<oceanFish.length;i++){const f=oceanFish[i];d.fillStyle=i===selected?'#ffce7d':lastSearch.ids?.has(i)?'#8bf4be':'#608ea8';d.beginPath();d.arc(f.x/W*440,f.z/D*180,i===selected?5:2,0,Math.PI*2);d.fill()};d.font='11px system-ui';d.fillStyle='#d5e9f4';d.fillText('X → / Z ↓',12,15)
+}
+oceanCanvas.addEventListener('pointerdown',e=>{const b=oceanCanvas.getBoundingClientRect(),x=(e.clientX-b.left)/b.width*W,y=(e.clientY-b.top)/b.height*H;let best=Infinity,index=-1;oceanFish.forEach((f,i)=>{const d=(f.x-x)**2+(f.y-y)**2;if(d<best){best=d;index=i}});if(index>=0&&best<(W/VIEW_W*22)**2){selected=index;inspectFish();drawOcean()}});
+$('oceanCount').onchange=initOcean;$('senseRadius').onchange=()=>{inspectFish();drawOcean()};$('fishDepth').oninput=e=>{if(oceanFish[selected]){oceanFish[selected].z=Number(e.target.value);rebuildGrid();inspectFish();drawOcean()}};$('pauseOcean').onclick=()=>{runOcean=!runOcean;$('pauseOcean').textContent=runOcean?'Pause':'Resume'};$('stepOcean').onclick=()=>{tickOcean();inspectFish();drawOcean()};$('gridToggle').onclick=()=>{showGrid=!showGrid;drawOcean()};$('newOcean').onclick=initOcean;initOcean();
+// Display refresh visualization. This is hypothetical, not a real GPU Hz switch.
+const tctx=$('timeCanvas').getContext('2d'),speedCtx=$('speedCanvas').getContext('2d');
+function drawTime(){const hz=Number($('hzSlider').value),tps=Number($('tpsSelect').value);$('hzLabel').textContent=hz;$('frameInterval').textContent=(1000/hz).toFixed(2)+'ms';$('tickInterval').textContent=(1000/tps).toFixed(2)+'ms';$('ratio').textContent=(hz/tps).toFixed(2)+'×';const g=tctx;g.clearRect(0,0,750,158);g.fillStyle='#091f32';g.fillRect(0,0,750,158);g.fillStyle='#d4e9f6';g.font='13px system-ui';g.fillText('0–200 ms of hypothetical time',14,18);g.font='11px system-ui';g.fillStyle='#8bdfff';g.fillText('RENDER',14,58);g.fillStyle='#ffcf82';g.fillText('SIM TICK',14,111);for(let ms=0;ms<=200;ms+=1000/hz){let x=110+ms/200*615;g.strokeStyle='#67cbea8c';g.beginPath();g.moveTo(x,42);g.lineTo(x,80);g.stroke()}for(let ms=0;ms<=200;ms+=1000/tps){let x=110+ms/200*615;g.strokeStyle='#ffcf82';g.lineWidth=2;g.beginPath();g.moveTo(x,96);g.lineTo(x,137);g.stroke()}g.lineWidth=1;
+  const s=speedCtx;s.clearRect(0,0,680,175);s.fillStyle='#081d2e';s.fillRect(0,0,680,175);const idealSpeed=40,wrongSpeed=hz*1,scale=600/520;const pxGood=idealSpeed*scale,pxBad=wrongSpeed*scale;s.font='12px system-ui';s.fillStyle='#b6d6e8';s.fillText('Travel after 1 second at the selected display rate',16,21);s.strokeStyle='#44677c';for(const y of [70,128]){s.beginPath();s.moveTo(35,y);s.lineTo(640,y);s.stroke()}s.fillStyle='#80e7bb';s.beginPath();s.ellipse(35+pxGood,70,12,7,0,0,Math.PI*2);s.fill();s.fillStyle='#ff798a';s.beginPath();s.ellipse(35+pxBad,128,12,7,0,0,Math.PI*2);s.fill();s.fillStyle='#bce6d0';s.fillText(`Correct: 40 units/s → 40 units`,45,55);s.fillStyle='#ffc1c8';s.fillText(`Wrong: 1 unit/frame → ${hz} units/s`,45,111)}
+$('hzSlider').oninput=drawTime;$('tpsSelect').onchange=drawTime;drawTime();
+const organText={tail:'Caudal fin (tail): major propulsion surface in many fish. Injury could affect thrust/turning, depending on species. Hypothesis, not implemented.',body:'Trunk/body: volume, mass, hydrodynamics and vulnerability. Detailed collision body needs species-specific proportions.',dorsal:'Dorsal fin: often contributes to stability and maneuvering. Shape and function vary with species.',pectoral:'Pectoral fins: maneuvering, lift, braking or locomotion depending on species. Reference-driven motion strategies needed.',gills:'Gills and operculum: respiratory function. Damage model needs oxygen uptake and injury physiology, not just HP.',eye:'Eye: sensory input candidate. Visual field, light and species-dependent sensing are open research questions.'};
+function selectOrgan(name){document.querySelectorAll('[data-organ]').forEach(x=>x.classList.toggle('active',x.dataset.organ===name));document.querySelectorAll('[data-organ-button]').forEach(x=>x.classList.toggle('active',x.dataset.organButton===name));$('organInfo').textContent=organText[name]}document.querySelectorAll('[data-organ]').forEach(el=>el.addEventListener('click',()=>selectOrgan(el.dataset.organ)));document.querySelectorAll('[data-organ-button]').forEach(el=>el.addEventListener('click',()=>selectOrgan(el.dataset.organButton)));
+function traits(){let trait=Number($('traitSlider').value),food=Number($('foodSlider').value);$('traitValue').textContent=trait.toFixed(2);$('foodValue').textContent=food.toFixed(2);$('traitLength').textContent=(8+6*trait+3*food).toFixed(1)+'cm'}$('traitSlider').oninput=traits;$('foodSlider').oninput=traits;traits();
+const decisions=[
+['Units: cm / s / g internally','locked','Length shown in cm or m, mass in µg/mg/g/kg/t as appropriate.'],
+['World XYZ: 100 × 50 × 30 meters','locked','X width=100m; Y vertical=50m; Z into screen=30m; coords stored in cm.'],
+['First research organism: Zebrafish','locked','Freshwater species; clownfish requires saltwater habitat, not same water conditions.'],
+['Normalized energy for MVP','locked','Scientific joule model later; no invented metabolic coefficients now.'],
+['Anatomy-first, organ injury later','locked','Body dimensions + named regions; show provisional wounds without physiological formulas.'],
+['Mass: bodyMassG, dynamic display','locked','Float32 initial choice; validate precision across intended range.'],
+['TypeScript-first / new repository','locked','Old aquarium stays unchanged as a reference.'],
+['World + SoA numeric columns','locked','Parallel Typed Arrays, no per-fish object allocation in hot loops.'],
+['Stable World ID + Fish ID','locked','Map to dense movable slots; swap-remove.'],
+['Side-view rendering of true 3D XYZ','locked','Search uses sphere distance, not 2D overlap.'],
+['Lab with demos/tests/docs','locked','Interactive mechanics site is paired with decision register and Codex contracts.'],
+['Fixed timestep / independent rendering','locked','Display at hypothetical 30–520Hz; actual FPS depends on hardware.'],
+['Spatial hash for a large sparse world','trial','Provisional instead of allocating all uniform 3D cells; test vs brute force.'],
+['Body collision: proxy + avoidance + resolution','trial','Detect candidate pairs in 3D; exact shape, mass and collision response OPEN.'],
+['Body Float32 and units precision','trial','Check 10000cm coordinate precision and tiny/large masses before compression.'],
+['Bit packing of flags / serialized state','trial','Do not pack real genes before trait model is specified.'],
+['Quantize serialized Z copies','trial','Experiment over 0–30m; physics stays Float32.'],
+['HP datatype and injury coupling','open','Organ damage, bleeding, recovery, and HP dependency require research.'],
+['Sensory model / dynamic radius','open','Vision cone, lateral line, smell and species-specific thresholds; demo ranges not evidence.'],
+['Biological Hybrid growth is our selected strategy','locked','Species and genetics set potential; age, long-run food and habitat shape realized development. Numerical coefficients still OPEN.'],['Growth length/mass rates and stage boundaries','open','Select datasets and measurement conventions before copying any demonstration curve into production.'],
+['Genome inheritance and reference loci','open','Scientific evidence model + versioning before packed genotype formats.'],
+['Exact contact geometry and fast-motion collision','open','Capsules/ellipsoids, continuous collision, large/small agents.'],
+['Ecological habitats and diet','open','Freshwater vs marine; temperature, salinity, oxygen, predation.'],
+['Rendering and benchmark acceptance','open','Choose glyph atlas/sprites and mobile battery/memory budgets after prototypes.']
+];function drawDecisions(){const v=$('decisionFilter').value,root=$('decisionList');root.replaceChildren();for(const [name,status,detail] of decisions){if(v!=='all'&&status!==v)continue;const div=document.createElement('div');div.className='decision';div.innerHTML=`<div class="row between"><b>${name}</b><span class="status ${status}">${status==='locked'?'AGREED':status==='trial'?'PROVISIONAL':'OPEN'}</span></div><p>${detail}</p>`;root.append(div)}}$('decisionFilter').onchange=drawDecisions;drawDecisions();
+$('copyCodex').onclick=async()=>{try{await navigator.clipboard.writeText($('codexBrief').textContent);$('copyMsg').textContent='Copied.'}catch(e){$('copyMsg').textContent='Clipboard blocked in local file context. See prompts/CODEX_M0.md.'}};
+
+// Mass and geometry: illustrative dimension/volume demo. Not a scientifically calibrated shape.
+const massPresets={fry:[0.8,0.12,0.09,1.0],zebra:[3.5,0.75,0.55,1.0],shark:[400,75,60,1.0],whale:[1800,300,300,1.0]};
+function prettyMass(g){if(g<0.001)return (g*1000000).toLocaleString('en-US',{maximumFractionDigits:3})+' µg';if(g<1)return(g*1000).toLocaleString('en-US',{maximumFractionDigits:2})+' mg';if(g<1000)return g.toLocaleString('en-US',{maximumFractionDigits:2})+' g';if(g<1000000)return(g/1000).toLocaleString('en-US',{maximumFractionDigits:2})+' kg';return(g/1000000).toLocaleString('en-US',{maximumFractionDigits:2})+' t'}
+function prettyLength(cm){return cm>=100?(cm/100).toFixed(2)+' m':cm.toFixed(cm<1?2:1)+' cm'}
+function massDraw(){const L=Number($('lengthSlider').value),H=Number($('heightSlider').value),D=Number($('widthSlider').value),rho=Number($('densitySlider').value),volume=Math.PI/6*L*H*D,mass=Math.fround(volume*rho);for(const [id,v] of [['lengthValue',L.toFixed(2)],['heightValue',H.toFixed(2)],['widthValue',D.toFixed(2)],['densityValue',rho.toFixed(2)],['massRaw',mass.toLocaleString('en-US',{maximumFractionDigits:6})+' g'],['massDisplay',prettyMass(mass)],['lengthDisplay',prettyLength(L)],['volumeValue',volume.toLocaleString('en-US',{maximumFractionDigits:2})+' cm³']])$(id).textContent=v;
+const g=$('massCanvas').getContext('2d');g.clearRect(0,0,780,240);g.fillStyle='#091e32';g.fillRect(0,0,780,240);let width=260,height=68;const aspect=Math.max(.15,Math.min(1,(H/L)*3));height=40+aspect*100;const yy=120;g.fillStyle='#52acb9';g.strokeStyle='#b1f2ee';g.lineWidth=2;g.beginPath();g.ellipse(385,yy,width/2,height/2,0,0,Math.PI*2);g.fill();g.stroke();g.beginPath();g.moveTo(255,yy);g.lineTo(180,yy-55);g.lineTo(180,yy+55);g.closePath();g.fill();g.stroke();g.fillStyle='#0b2738';g.beginPath();g.arc(477,103,9,0,Math.PI*2);g.fill();g.strokeStyle='#ffd37c';g.lineWidth=2;g.beginPath();g.moveTo(255,215);g.lineTo(515,215);g.moveTo(255,208);g.lineTo(255,222);g.moveTo(515,208);g.lineTo(515,222);g.stroke();g.fillStyle='#ffe0aa';g.font='14px system-ui';g.fillText('L = '+prettyLength(L),320,234);g.strokeStyle='#c3a4ff';g.beginPath();g.moveTo(545,yy-height/2);g.lineTo(545,yy+height/2);g.stroke();g.fillStyle='#d8bbff';g.fillText('H = '+prettyLength(H),556,125);g.fillStyle='#8be7c2';g.fillText('Width Z = '+prettyLength(D),24,27);g.fillStyle='#b7d8ea';g.font='12px system-ui';g.fillText('Not a length-to-pixel scale; morphology intentionally simplified',23,47)}
+$('massPreset').onchange=()=>{const key=$('massPreset').value,a=massPresets[key],ranges={fry:[[.1,5,.01],[.05,1,.01],[.05,1,.01]],zebra:[[.5,20,.05],[.05,5,.05],[.05,5,.05]],shark:[[50,800,1],[5,200,1],[5,180,1]],whale:[[1000,2500,10],[100,500,5],[100,500,5]]}[key];for(const [i,id] of ['lengthSlider','heightSlider','widthSlider'].entries()){const el=$(id);el.min=ranges[i][0];el.max=ranges[i][1];el.step=ranges[i][2];el.value=a[i]}$('densitySlider').value=a[3];massDraw()};for(const id of ['lengthSlider','heightSlider','widthSlider','densitySlider'])$(id).oninput=massDraw;$('massPreset').dispatchEvent(new Event('change'));
+// Collision lab: 3D broad-phase proxy, not precise organ or hard-body dynamics.
+function collisionDraw(){const dx=Number($('contactX').value),dz=Number($('contactZ').value),rA=26,rB=21,threshold=rA+rB,dist=Math.hypot(dx,dz),overlap=dist<threshold,mode=$('contactMode').value;let resolvedDx=dx,resolvedZ=dz;if(overlap&&mode!=='test'){const factor=threshold/Math.max(dist,.000001);if(dist<.000001){resolvedDx=threshold;resolvedZ=0}else{resolvedDx=dx*factor;resolvedZ=dz*factor}}const resolved=Math.hypot(resolvedDx,resolvedZ);for(const [id,value] of [['contactXValue',dx],['contactZValue',dz],['contactDistance',dist.toFixed(1)+' cm'],['contactThreshold',threshold+' cm'],['contactStatus',overlap?'CONTACT':'SEPARATE'],['contactGap',(resolved-threshold).toFixed(1)+' cm']])$(id).textContent=value;
+const msg=mode==='test'?'Detection-only: no response applied.':mode==='attack'?'Attack can trigger a contact/bite event when overlapping; penetration is resolved in this proxy.':'Avoidance attempts to steer before contact; fallback separation resolves overlap.';$('contactExplanation').textContent=msg+' The circles are spherical proxies viewed from the side; body shapes and forces are not finalized.';
+const g=$('collisionCanvas').getContext('2d');g.clearRect(0,0,780,285);g.fillStyle='#071f31';g.fillRect(0,0,780,285);const ax=260,ay=140,bx=ax+resolvedDx*3.5,by=140;g.strokeStyle='#6688a2';g.setLineDash([6,4]);g.beginPath();g.moveTo(24,140);g.lineTo(750,140);g.stroke();g.setLineDash([]);for(const [x,r,fill,label] of [[ax,rA,'#5cc7d9','Fish A'],[bx,rB,'#e4ad6e','Fish B']]){g.strokeStyle=fill+'99';g.lineWidth=2;g.beginPath();g.arc(x,by,r*3.5,0,Math.PI*2);g.stroke();g.fillStyle=fill;g.beginPath();g.ellipse(x,by,34,17,0,0,Math.PI*2);g.fill();g.fillStyle='#eaf4ff';g.font='13px system-ui';g.fillText(label,x-22,by-27)}g.fillStyle='#cfe4f4';g.font='13px system-ui';g.fillText('SIDE CAMERA · visual overlap does not guarantee 3D contact',25,23);g.fillText('Z gap: '+dz+'cm · Physics action: '+mode,25,260);}
+for(const id of ['contactX','contactZ','contactMode'])$(id).oninput=collisionDraw;collisionDraw();
+// Injury demonstrator: effect drawing, no biological claim.
+function injuryDraw(){const zone=$('woundRegion').value,severity=Number($('woundSeverity').value),g=$('injuryCanvas').getContext('2d');const labels={tail:'Caudal fin',body:'Trunk',gills:'Gills',eye:'Eye'};const center={tail:[140,125],body:[395,124],gills:[515,121],eye:[552,105]}[zone];$('woundResult').textContent=['None','Minor','Moderate','Major','Critical'][severity];$('woundResultZone').textContent=labels[zone];g.clearRect(0,0,720,250);g.fillStyle='#091f32';g.fillRect(0,0,720,250);g.fillStyle='#3b96ac';g.strokeStyle='#9ce7e7';g.lineWidth=3;g.beginPath();g.moveTo(185,128);g.lineTo(115,77);g.lineTo(115,170);g.closePath();g.fill();g.stroke();g.fillStyle='#6bbac7';g.beginPath();g.ellipse(390,125,207,71,0,0,Math.PI*2);g.fill();g.stroke();g.fillStyle='#0b2a3b';g.beginPath();g.arc(552,104,8,0,Math.PI*2);g.fill();g.strokeStyle='#d4f3f4';g.beginPath();g.arc(552,104,11,0,Math.PI*2);g.stroke();g.strokeStyle='#94ecff';g.beginPath();g.moveTo(510,86);g.quadraticCurveTo(495,125,510,166);g.stroke();g.fillStyle='#b9e7f1';g.font='13px system-ui';g.fillText('Schematic side fish · injury overlay is NOT biological damage computation',20,25);
+if(severity){const [cx,cy]=center;g.save();g.strokeStyle=['','#ffc06a','#ef8a6d','#df4e61','#ff3254'][severity];g.lineWidth=severity*1.3+2;g.beginPath();g.arc(cx,cy,10+severity*8,0,Math.PI*2);g.stroke();for(let n=0;n<severity+1;n++){const off=n*12-severity*6;g.beginPath();g.moveTo(cx+off-5,cy-9);g.lineTo(cx+off+4,cy+10);g.stroke()}g.restore()}}
+for(const id of ['woundRegion','woundSeverity'])$(id).onchange=injuryDraw;injuryDraw();
+
+// One requestAnimationFrame loop; measured stats reflect actual conditions.
+function frame(ts){if(!lastFrame){lastFrame=ts;lastMonitor=ts}const dt=Math.min(.1,Math.max(0,(ts-lastFrame)/1000));lastFrame=ts;frames++;if(runOcean){acc+=dt;let steps=0;while(acc>=STEP&&steps<4){tickOcean();acc-=STEP;steps++}}if(ts-lastMonitor>=1000){const sec=(ts-lastMonitor)/1000;renderFps=frames/sec;simTps=stepsDone/sec;frames=0;stepsDone=0;lastMonitor=ts;$('actualFps').textContent=renderFps.toFixed(0);$('actualTps').textContent=simTps.toFixed(0);$('timeActualFps').textContent=renderFps.toFixed(0)+' FPS'}if(activeTab==='spatial'){inspectFish();drawOcean()}requestAnimationFrame(frame)}requestAnimationFrame(frame);
+// Non-visual correctness tests surfaced via console. Production tests belong in the core package.
+function selfTest(){const result=[];let ids0=[101,102,103,104],removed=ids0.indexOf(102);ids0[removed]=ids0[ids0.length-1];ids0.pop();result.push(['swap-remove',ids0.join(',')==='101,104,103']);const packed=(3|(5<<3)|(9<<8)|(7<<12));result.push(['packing',((packed>>>12)&15)===7&&(packed&7)===3]);let arr=new Float32Array([1,2,3]);result.push(['typed array',arr.BYTES_PER_ELEMENT===4]);const q=Math.round(12.74/30*255);result.push(['quantization',Math.abs(q/255*30-12.74)<=30/510+1e-10]);result.push(['grid parity',queryNeighbors().parity]);console.info('ASCuarium v7 legacy checks',result);return result}
+window.ASCLab={fields,decisions,selfTest,queryNeighbors};selfTest();
+</script><script>
+/**
+ * ASCuarium Living Mechanics Lab v7 extensions.
+ * Educational-only canvas renderers and instrumented controls.
+ * No numeric biology or collision model in this script is a production rule.
+ */
+(() => {
+  const byId = id => document.getElementById(id);
+  const clamp = (x,a,b) => Math.min(b,Math.max(a,x));
+  const fmt = (x,d=2) => Number.isFinite(x)?x.toLocaleString('en-US',{maximumFractionDigits:d}):'—';
+  const colors={ink:'#081d31',aqua:'#82e1e2',gold:'#f3cd83',mint:'#8be5b9',muted:'#bad2e2',dark:'#355269',wine:'#bb737c'};
+  // a typographic fish is an icon / presentation symbol, not a physical collision mesh.
+  function glyphFish(g,cx,cy,size=20,color=colors.aqua,dir=1,phase=0) {
+    g.save();g.translate(cx,cy);g.scale(dir,1);g.fillStyle=color;g.textAlign='center';g.textBaseline='middle';
+    g.font=`bold ${size}px Consolas,ui-monospace,monospace`;
+    g.fillText(`><(((°>`,0,Math.sin(phase)*Math.min(3,size*.11));
+    g.restore();
+  }
+  // 1. Editable body mass / physics: consistent cgs dimensions, toy force/drag strategy.
+  function massAscii(t=0){
+    const g=byId('massCanvas')?.getContext('2d');if(!g)return;
+    const L=Number(byId('lengthSlider').value),H=Number(byId('heightSlider').value),D=Number(byId('widthSlider').value);
+    g.fillStyle='#071d31';g.fillRect(0,0,780,240);
+    g.strokeStyle='#315672';for(let y=55;y<220;y+=45){g.beginPath();g.moveTo(14,y);g.lineTo(766,y);g.stroke()}
+    const sz=clamp(20+Math.log10(L+1)*15,21,67);
+    glyphFish(g,374,125,sz,'#83dce7',1,t/500);
+    g.textAlign='start';g.fillStyle='#e8f7fa';g.font='14px ui-monospace,monospace';g.fillText('ASCII GLYPH VIEW  /  NOT TO SCALE',21,26);
+    g.font='12px ui-monospace,monospace';g.fillStyle='#ffe2a7';g.fillText('Length: '+(L>=100?(L/100).toFixed(2)+'m':L.toFixed(2)+'cm'),23,201);
+    g.fillStyle='#cfb5ff';g.fillText('Height: '+H.toFixed(2)+'cm',280,201);
+    g.fillStyle='#89e3c4';g.fillText('Width (Z): '+D.toFixed(2)+'cm',522,201);
+    g.strokeStyle='#f4cf88';g.lineWidth=2;g.beginPath();g.moveTo(252,173);g.lineTo(505,173);g.stroke();
+    for(const x of [252,505]){g.beginPath();g.moveTo(x,168);g.lineTo(x,179);g.stroke()}
+    g.fillStyle='#8daebd';g.fillText('The glyph is a render asset; body dimensions stay in World.',23,229);
+  }
+  function updatePhysics(){
+    const m=Math.max(0.000001,Number(byId('massRaw').textContent.replaceAll(',','').replace(' g','')));
+    const thrust=Number(byId('thrustForce').value),v=Number(byId('initialSpeed').value),drag=Number(byId('dragCoefficient').value);
+    byId('thrustVal').textContent=thrust;byId('initialSpeedVal').textContent=v;byId('dragVal').textContent=drag.toFixed(2);
+    const net=thrust-drag*v*v,a=net/m,after=Math.max(0,v+a*1),energy=Math.max(0,(m/2)*(after*after-v*v));
+    byId('simAccel').textContent=fmt(a,3)+' cm/s²';byId('simSpeed').textContent=fmt(after,3)+' cm/s';
+    byId('simEnergy').textContent=fmt(energy,2)+' erg';byId('simHeavyAccel').textContent=fmt(net/(10*m),3)+' cm/s²';
+  }
+  for(const id of ['massPreset','lengthSlider','heightSlider','widthSlider','densitySlider','thrustForce','initialSpeed','dragCoefficient']){
+    byId(id)?.addEventListener('input',()=>{updatePhysics();massAscii()});byId(id)?.addEventListener('change',()=>{updatePhysics();massAscii()});
+  }
+  // 2. Memory estimator: quantities only; no pointer/texture/runtime overhead implied.
+  function updateMemory(){
+    const count=Number(byId('memCount').value),optional=byId('memOptional').checked,pack=byId('memPacked').checked,quant=byId('memZ16').checked;
+    const base=fields.filter(f=>f[0]!=='Extended').reduce((a,f)=>a+f[3],0);
+    const extended=fields.filter(f=>f[0]==='Extended').reduce((a,f)=>a+f[3],0);
+    const bytes=base+(optional?extended:0)-(pack?1:0);
+    const shotBytes=(quant?2:4)+8;const mib=x=>(x/1048576).toFixed(2)+' MiB';
+    byId('memCountText').textContent=fmt(count,0);
+    byId('runtimeBytes').textContent=bytes+' B';byId('runtimeTotal').textContent=mib(count*bytes);
+    byId('snapshotBytes').textContent=shotBytes+' B';byId('snapshotTotal').textContent=mib(count*shotBytes);
+    const g=byId('memoryChart').getContext('2d');g.fillStyle=colors.ink;g.fillRect(0,0,790,195);
+    const bars=[['Baseline with optional',base+extended,'#a08ef4'],['Current choice',bytes,'#69cfde'],['XYZ-only snapshot',shotBytes,'#d9b171']];
+    bars.forEach(([label,v,color],i)=>{const y=30+i*54;g.fillStyle='#c4d4e5';g.font='13px ui-monospace,monospace';g.fillText(label,18,y);
+      g.fillStyle='#21354f';g.fillRect(257,y-12,403,19);g.fillStyle=color;g.fillRect(257,y-12,403*v/(base+extended),19);
+      g.fillStyle='#e8f4fb';g.fillText(`${v}B`,679,y)});
+    g.fillStyle='#8facbf';g.font='11px system-ui';g.fillText('Lower bytes ≠ faster simulation; benchmark CPU + memory + render workload.',18,185);
+  }
+  for(const id of ['memCount','memOptional','memPacked','memZ16'])byId(id).addEventListener('input',updateMemory);
+  // 3. Live spatial inspection: don't suggest Z affects X/Y position. Show the 3D link explicitly.
+  const rawDrawOcean=drawOcean;
+  drawOcean=function(){
+    rawDrawOcean();
+    const src=oceanFish[selected];if(!src)return;
+    const g=byId('ocean').getContext('2d'),d=byId('depthMap').getContext('2d');
+    const x=src.x/W*VIEW_W,y=src.y/H*VIEW_H,z=src.z/D*180;
+    glyphFish(g,x,y,Math.max(12,23-11*(src.z/D)),colors.gold,1,performance.now()/370);
+    g.font='12px ui-monospace,monospace';g.fillStyle=colors.gold;g.fillText(`Z ${(src.z/100).toFixed(1)}m`,clamp(x+19,10,VIEW_W-90),clamp(y+30,20,VIEW_H-9));
+    d.strokeStyle='#ffd17b';d.setLineDash([4,4]);d.lineWidth=1.7;d.beginPath();d.moveTo(x/VIEW_W*440,16);d.lineTo(x/VIEW_W*440,z);d.stroke();d.setLineDash([]);
+    d.fillStyle='#ffdd94';d.font='bold 12px ui-monospace,monospace';d.fillText(`Selected Z=${(src.z/100).toFixed(2)}m`,13,165);
+    const radius=Number(byId('senseRadius').value);
+    byId('senseReadout').textContent=`Radius ${(radius/100).toFixed(1)} m · selected Z ${(src.z/100).toFixed(1)} m · neighbors ${lastSearch.neighbors} · grid candidates ${lastSearch.checked}`;
+    byId('spatialNarrative').textContent=`XY side-view location stays ${(src.x/100).toFixed(1)}m / ${(src.y/100).toFixed(1)}m. Moving Z changes true 3D distance, the yellow top-view ring, and potentially the green neighbors. ${lastSearch.neighbors} within ${(radius/100).toFixed(1)}m.`;
+  };
+  byId('fishDepth').addEventListener('pointerdown',()=>{if(oceanFish[selected])oceanFish[selected].vz=0});
+  byId('senseRadius').addEventListener('input',()=>{inspectFish();drawOcean()});
+  const sensorLimits={vision:[200,1800,800],lateral:[100,700,400],chemical:[400,2300,1100]};
+  byId('sensorPreset').addEventListener('change',()=>{const [min,max,val]=sensorLimits[byId('sensorPreset').value];let el=byId('senseRadius');el.min=min;el.max=max;el.value=val;inspectFish();drawOcean()});
+  byId('depthMap').addEventListener('pointerdown',ev=>{
+    const b=byId('depthMap').getBoundingClientRect(),x=(ev.clientX-b.left)/b.width*W,z=(ev.clientY-b.top)/b.height*D;
+    let best=Infinity,index=-1;oceanFish.forEach((f,i)=>{const dist=(f.x-x)**2+(f.z-z)**2;if(dist<best){best=dist;index=i}});
+    if(index>=0){selected=index;inspectFish();drawOcean()}
+  });
+  // 4. Contact: raw body distance and corrected positions. Every stage is observable.
+  function contactLab(){
+    const dx=Number(byId('contactX').value),dz=Number(byId('contactZ').value),mode=byId('contactMode').value;
+    const rA=26,rB=21,target=rA+rB,dist=Math.hypot(dx,dz),hit=dist<target;
+    let nx=dx,nz=dz;
+    if(hit&&mode!=='test'){
+      const ratio=target/Math.max(0.0001,dist);nx=dx===0&&dz===0?target:dx*ratio;nz=dx===0&&dz===0?0:dz*ratio;
+    }
+    const g=byId('collisionCanvas').getContext('2d');g.fillStyle='#081c2e';g.fillRect(0,0,780,285);
+    g.fillStyle='#b3d7e9';g.font='bold 13px ui-monospace,monospace';g.fillText('SIDE / X-Y',21,22);g.fillText('TOP / X-Z',407,22);
+    g.strokeStyle='#37516a';g.beginPath();g.moveTo(386,17);g.lineTo(386,270);g.stroke();
+    function ring(x,y,r,color,dashed){g.setLineDash(dashed?[5,5]:[]);g.strokeStyle=color;g.lineWidth=1.5;g.beginPath();g.arc(x,y,r*2,0,Math.PI*2);g.stroke();g.setLineDash([])}
+    const ax=150,ay=137,bx=150+dx*2,brx=150+nx*2;
+    ring(ax,ay,rA,'#73cde2',false);ring(bx,ay,rB,'#657e97',true);if(hit&&mode!=='test')ring(brx,ay,rB,'#eabe73',false);
+    glyphFish(g,ax,ay,23,'#78d9e9');glyphFish(g,brx,ay,22,hit?'#e8c87e':'#8be6b9',-1);
+    g.font='11px ui-monospace,monospace';g.fillStyle='#d5eafa';g.fillText('A',140,90);g.fillText('B',brx-10,85);
+    g.fillStyle='#93abc2';g.fillText('Dashed: before',20,239);g.fillStyle='#eacf86';g.fillText('Gold: after response',20,257);
+    const tx=500,tz=125,rawX=tx+dx*1.5,rawZ=tz+dz*.75,resX=tx+nx*1.5,resZ=tz+nz*.75;
+    ring(tx,tz,rA,'#73cde2',false);ring(rawX,rawZ,rB,'#637993',true);
+    if(hit&&mode!=='test')ring(resX,resZ,rB,'#eabe73',false);
+    g.fillStyle='#7bd5e7';g.beginPath();g.arc(tx,tz,6,0,Math.PI*2);g.fill();
+    g.fillStyle='#f5d48e';g.beginPath();g.arc(resX,resZ,6,0,Math.PI*2);g.fill();
+    g.fillStyle='#d4e6f2';g.fillText(`Raw distance: ${dist.toFixed(1)} cm`,414,248);
+    g.fillText(`3D contact: ${hit?'YES':'NO'}`,414,265);
+    byId('detectPhase').textContent=hit?`Broadphase candidate; 3D sphere overlap ${fmt(target-dist,1)}cm`:'3D proxies do not intersect';
+    byId('intentPhase').textContent=mode==='attack'?'Intent=attack: allow approach and emit contact':mode==='test'?'Detection only: no steering or resolution':'Intent=neutral: attempt avoidance before overlap';
+    byId('resolvePhase').textContent=hit&&mode!=='test'?'Separated to tangent contact in this demo':hit?'Overlap kept for inspection':'No contact response required';
+    byId('contactEvent').textContent=mode==='attack'&&hit?'Event candidate: BiteAttempt / ContactStarted. Damage and biological effects are NOT calculated.':hit&&mode==='test'?'Detected overlap; the dashed raw body would intersect. Resolution disabled.':hit?'Fallback correction moved Fish B to the nearest contact boundary. Real steering should begin before impact.':'No collision. Detection, behavior and resolution remain distinct systems.';
+  }
+  for(const id of ['contactX','contactZ','contactMode']){byId(id).addEventListener('input',contactLab);byId(id).addEventListener('change',contactLab)}
+  // 5. Anatomical injury: ASCII / glyph substitutions and descriptive biological hypotheses only.
+  function injuryAscii(){
+    const zone=byId('woundRegion').value,level=Number(byId('woundSeverity').value),g=byId('injuryCanvas').getContext('2d');
+    g.fillStyle='#071d30';g.fillRect(0,0,720,250);
+    for(let y=45;y<239;y+=28){g.strokeStyle='#1c394f';g.beginPath();g.moveTo(0,y);g.lineTo(720,y);g.stroke()}
+    const rows=["      ___/^^\\_____", "   ><((((°)))))>   ", "      \\_________/ "];
+    const shift={tail:[1,3],body:[1,9],gills:[1,12],eye:[1,9]}[zone];
+    const gridRows=rows.map(row=>row.split(''));
+    if(level){
+      if(zone==='tail'){gridRows[1][3]=level>2?' ':'/';gridRows[1][4]=level>3?' ':'x'}
+      if(zone==='eye'){const idx=rows[1].indexOf('°');gridRows[1][idx]=level>=3?' ':'·'}
+      if(zone==='gills'){gridRows[1][12]=level>=3?' ':'/';if(level>=4)gridRows[1][13]=' '}
+      if(zone==='body'){for(let j=0;j<level;j++)gridRows[1][8+j]=j%2?' ':'/'}
+    }
+    const lines=gridRows.map(r=>r.join(''));
+    g.font='bold 32px ui-monospace,Consolas,monospace';g.textBaseline='middle';g.textAlign='center';
+    lines.forEach((row,i)=>{g.fillStyle=level&&i===1?'#bde2db':'#77b9d2';g.fillText(row,360,76+i*44)});
+    g.fillStyle='#f3cf8d';g.font='12px ui-monospace,monospace';g.textAlign='left';g.fillText(`INJURY: ${zone.toUpperCase()} | SEVERITY ${level}/4 (VISUAL SCALE)`,17,20);
+    g.fillStyle='#99bed2';g.fillText('Changed glyphs illustrate local damage; not anatomical destruction.',17,227);
+    const effects={tail:['Propulsion candidate','No validated coefficient'],body:['Body shape / drag candidate','No validated survival rule'],gills:['Oxygen uptake candidate','No validated respiratory model'],eye:['Vision candidate','No validated sensory model']};
+    byId('injuryMovement').textContent=level?effects[zone][0]:'None';byId('injuryFunction').textContent=level?effects[zone][1]:'None';
+  }
+  for(const id of ['woundRegion','woundSeverity']){byId(id).addEventListener('input',injuryAscii);byId(id).addEventListener('change',injuryAscii)}
+  // 6. Habitat: a conceptual salinity profile, not fish survival prediction.
+  function habitatDraw(){const river=Number(byId('riverInfluence').value)/100,g=byId('habitatCanvas').getContext('2d');
+    byId('riverValue').textContent=Math.round(river*100)+'%';g.fillStyle='#0c223c';g.fillRect(0,0,810,290);
+    for(let col=0;col<90;col++){
+      const t=col/89,localSalinity=clamp(35*(1-river*Math.exp(-t*4.4)),0,35),hue=188+(localSalinity/35)*50;
+      g.fillStyle=`hsl(${hue} 43% ${27+localSalinity*.1}%)`;g.fillRect(col*9,0,10,250);
+      if(col%15===0){g.fillStyle='#d7eefe';g.font='12px ui-monospace,monospace';g.fillText(`${localSalinity.toFixed(1)}‰`,col*9+8,44)}
+    }
+    g.fillStyle='#dceffc';g.font='bold 13px ui-monospace,monospace';g.fillText('RIVER INPUT',15,21);g.fillText('OPEN OCEAN',648,21);
+    g.fillStyle='#94e9ea';g.font='bold 36px ui-monospace,monospace';g.fillText('><(((°>',95,156);
+    g.fillStyle='#d6a7ff';g.fillText('><(((°>',560,186);
+    g.font='12px ui-monospace,monospace';g.fillStyle='#e5f3ff';g.fillText('Salinity gradient is only a visualization; no tolerance or population model.',17,272)
+  }
+  byId('riverInfluence').addEventListener('input',habitatDraw);
+  // 7. Interpolated reference fish versus intentional per-frame bug: a live-time illustration.
+  let lastAnimationTs=0;
+  function animatedTime(ts){const g=byId('speedCanvas').getContext('2d'),hz=Number(byId('hzSlider').value),tps=Number(byId('tpsSelect').value);
+    const t=(ts/1000)%2.5,dt=Math.min(t,1.8),correct=35*dt,wrong=hz*dt;
+    g.fillStyle='#071d31';g.fillRect(0,0,680,175);
+    for(const y of [61,125]){g.strokeStyle='#2e506a';g.beginPath();g.moveTo(18,y);g.lineTo(660,y);g.stroke()}
+    const base=30,width=590;
+    glyphFish(g,base+correct/90*width,61,16,'#8fe8b5',1,ts/250);
+    glyphFish(g,base+Math.min(wrong/900,1)*width,125,16,'#ff8896',1,ts/250);
+    g.fillStyle='#e2f2f8';g.font='12px ui-monospace,monospace';g.fillText('✓ 35 cm/s independent of render Hz',23,21);g.fillText('✕ 1 cm / render frame (WRONG)',23,94);
+    g.fillText(`elapsed ${dt.toFixed(2)}s`,520,21);
+    byId('correctTravel').textContent=fmt(correct,1)+' cm';byId('badTravel').textContent=fmt(wrong,1)+' cm';
+    byId('targetTick').textContent=tps+' Hz';byId('observedHz').textContent=(typeof renderFps!=='undefined'?Math.round(renderFps):'—')+' FPS';
+  }
+  // Overlay errors are isolated from the existing main simulation event loop.
+  function v7Frame(ts){if(typeof activeTab!=='undefined'){
+    if(activeTab==='time')animatedTime(ts);
+    else if(activeTab==='mass'&&ts-lastAnimationTs>110){massAscii(ts);lastAnimationTs=ts;}
+  }requestAnimationFrame(v7Frame)}
+  // New decision data are visible in v6's built-in decision register.
+  decisions.push(
+    ['Habitat defaults: marine','locked','Main scene is marine. Freshwater and brackish habitats are separate environment types.'],
+    ['Mixed species and environment','locked','Zebrafish is first research species, not default cohabitant in seawater.'],
+    ['Mass affects starter movement','locked','Replaceable basic force/mass dynamics; physical calibration remains open.'],
+    ['Distinct collision intents','locked','Neutral fish avoid contact. Curious, territorial and feeding actions can attempt contact.'],
+    ['Collision response vs injury','open','Shape resolution and bite/impact damage are distinct; anatomy effect model awaits research.'],
+    ['Dynamic sensory policies','trial','Sense radii and modality demo only; species-specific sensory calibration not validated.'],
+    ['16-bit Z snapshots','trial','Quantization optional; specify bounds/error tolerance and compare serialized sizes.'],
+    ['Marine/freshwater salinity grid','open','Coordinate environmental gradients and habitat compatibility before ecosystems.']
+  );drawDecisions();
+  updateMemory();updatePhysics();injuryAscii();contactLab();habitatDraw();
+  requestAnimationFrame(v7Frame);
+  // Additional lightweight correctness probes exposed for tests and developer tools.
+  window.ASCV7={
+    geometryMass:(l,h,w,rho)=>Math.PI*l*h*w*rho/6,
+    contact:(dx,dz,r1=26,r2=21)=>Math.hypot(dx,dz)<r1+r2,
+    quantizeZ16:z=>Math.round(clamp(z,0,3000)/3000*65535),
+    memoryBytes:()=>Number(byId('runtimeBytes').textContent.replace(' B','')),
+    phaseState:()=>({contact:byId('contactEvent').textContent,neighbors:Number(byId('neighCount').textContent)}),
+    updateMemory,contactLab,injuryAscii,massAscii
+  };
+})();
+
+</script><script>/**
+ * ASCuarium v8 Living Mechanics demos.
+ * Purely educational; any biology number is a model hypothesis until calibrated.
+ * Owned in this file: sidebar controls, growth, water probe, collision, time,
+ * ASCII anatomy. Old v7 nodes remain hidden only for compatibility testing.
+ */
+(() => {
+  'use strict';
+  const el = id => document.getElementById(id);
+  const val = id => Number(el(id).value);
+  const clamp = (x,lo,hi) => Math.max(lo, Math.min(hi,x));
+  const fmt = (x,n=2) => x.toLocaleString('en-US',{maximumFractionDigits:n});
+  const palette={text:'#eaf6ff',muted:'#aec9de',cyan:'#7be1eb',gold:'#fbd28d',coral:'#fb8491',mint:'#94edc5',purple:'#c7afff',sea:'#0a1c2f'};
+  function fill(c,x,y,w,h,color){c.fillStyle=color;c.fillRect(x,y,w,h)}
+  function text(c,s,x,y,size=14,color=palette.text,align='left'){
+    c.fillStyle=color;c.font=`${size}px ui-monospace,Consolas,monospace`;c.textAlign=align;c.textBaseline='alphabetic';c.fillText(s,x,y);
+  }
+  function line(c,x1,y1,x2,y2,color='#486885',width=1,dash=[]){c.save();c.beginPath();c.strokeStyle=color;c.lineWidth=width;c.setLineDash(dash);c.moveTo(x1,y1);c.lineTo(x2,y2);c.stroke();c.restore()}
+  function showGlyphFish(ctx,x,y,scale=1,color=palette.cyan,dir=1){
+    ctx.save();ctx.translate(x,y);ctx.scale(dir*scale,scale);
+    ctx.fillStyle=color;ctx.textAlign='center';ctx.textBaseline='middle';ctx.font='bold 29px ui-monospace,Consolas,monospace';ctx.fillText('><(((°>',0,0);ctx.restore();
+  }
+  function sampleCanvasPoint(ev,canvas){
+    const r=canvas.getBoundingClientRect();return {x:clamp((ev.clientX-r.left)/r.width*canvas.width,0,canvas.width),y:clamp((ev.clientY-r.top)/r.height*canvas.height,0,canvas.height)};
+  }
+  // Sidebar is an alternate UI for legacy showTab() and presentation slides.
+  const originalShowTab=showTab;
+  const closeNav=()=>{document.body.classList.remove('sidebar-open');el('openSidebar').setAttribute('aria-expanded','false');el('navOverlay').hidden=true;};
+  showTab=function(id){originalShowTab(id);for(const b of document.querySelectorAll('[data-target]')){b.classList.toggle('selected',b.dataset.target===id);b.setAttribute('aria-current',b.dataset.target===id?'page':'false');}closeNav();};
+  document.querySelectorAll('[data-target]').forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.target)));
+  el('openSidebar').addEventListener('click',()=>{document.body.classList.toggle('sidebar-open');const open=document.body.classList.contains('sidebar-open');el('openSidebar').setAttribute('aria-expanded',String(open));el('navOverlay').hidden=!open;});
+  el('sideClose').addEventListener('click',closeNav);el('navOverlay').addEventListener('click',closeNav);
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeNav();});
+  // Basic programmatic health inspection for tests.
+  const checks=[];function check(name,ok){checks.push({name,ok:!!ok})}
+  // Growth: age is days, nutrition and oxygen are long-run conditions.
+  const growthCtx=el('growthCanvas').getContext('2d');
+  function growthAt(age,genes,food,oxygen,temp){
+    const env=Math.max(.08, (0.25+0.75*food)*(0.32+0.68*oxygen)*Math.exp(-Math.pow((temp-27)/9,2)));
+    const length=0.35+(4.25*genes-0.35)*(1-Math.exp(-0.029*env*Math.max(0,age)));
+    const height=length*0.22, width=length*0.13;
+    const structuralMass=Math.max(0.001,0.016*Math.pow(length,3));
+    const reserves=0.07*food*structuralMass;
+    return {length,height,width,mass:structuralMass+reserves,env};
+  }
+  function growthDraw(){
+    const age=val('growAge'),genes=val('growGenes'),food=val('growFood')/100,oxygen=val('growOxygen')/100,temp=val('growTemp');
+    el('growAgeText').textContent=age+' days';el('growGenesText').textContent=genes.toFixed(2)+'×';el('growFoodText').textContent=Math.round(food*100)+'%';el('growOxygenText').textContent=Math.round(oxygen*100)+'%';el('growTempText').textContent=temp.toFixed(1)+'°C';
+    const g=growthAt(age,genes,food,oxygen,temp);
+    el('growLength').textContent=g.length.toFixed(2)+' cm';el('growMass').textContent=g.mass.toFixed(3)+' g';el('growDimensions').textContent=g.height.toFixed(2)+' / '+g.width.toFixed(2);el('growStage').textContent=age<30?'Early':age<90?'Juvenile*':'Adult-like*';
+    const c=growthCtx;fill(c,0,0,800,330,palette.sea);
+    text(c,'ILLUSTRATIVE LENGTH OVER AGE · NOT SPECIES-CALIBRATED',22,27,13,palette.gold);
+    const left=58,right=764,top=54,bottom=240,maxL=5.9;
+    for(let i=0;i<=4;i++){let y=bottom-i*(bottom-top)/4;line(c,left,y,right,y,'#24445c');text(c,(i*maxL/4).toFixed(1),15,y+4,11,palette.muted);}
+    for(let i=0;i<=4;i++){let x=left+i*(right-left)/4;line(c,x,top,x,bottom,'#193950');text(c,String(i*50)+'d',x,bottom+20,11,palette.muted,'center')}
+    c.beginPath();for(let day=0;day<=200;day+=2){const p=growthAt(day,genes,food,oxygen,temp),x=left+day/200*(right-left),y=bottom-p.length/maxL*(bottom-top);if(day===0)c.moveTo(x,y);else c.lineTo(x,y);}c.strokeStyle=palette.mint;c.lineWidth=3;c.stroke();
+    const px=left+age/200*(right-left),py=bottom-g.length/maxL*(bottom-top);line(c,px,top,px,bottom,palette.gold,1,[5,4]);c.fillStyle=palette.gold;c.beginPath();c.arc(px,py,6,0,Math.PI*2);c.fill();
+    text(c,`${g.length.toFixed(2)} cm at day ${age}`,clamp(px,130,660),Math.max(50,py-12),12,palette.gold,'center');
+    const size=clamp(0.6+g.length/5,0.45,1.5);showGlyphFish(c,615,300,size,palette.cyan,1);text(c,'Illustrative body size',30,307,11,palette.muted);
+  }
+  for(const id of ['growAge','growGenes','growFood','growOxygen','growTemp'])el(id).addEventListener('input',growthDraw);growthDraw();
+  check('growth monotonic age',growthAt(160,1,.8,.8,27).length>growthAt(30,1,.8,.8,27).length);
+  check('poor food lowers growth',growthAt(100,1,.2,.8,27).length<growthAt(100,1,.9,.8,27).length);
+  // Collision: demonstration uses spheres for first phase and response, not organ mesh.
+  const contactCtx=el('v8CollisionCanvas').getContext('2d');let biteTarget='body';
+  function collisionState(dx,dz){const range=46,dist=Math.hypot(dx,dz);return {range,dist,penetration:Math.max(0,range-dist),overlap:dist<range};}
+  function collisionDraw(){
+    const dx=val('v8CollisionX'),dz=val('v8CollisionZ'),intent=el('v8CollisionIntent').value,st=collisionState(dx,dz);
+    el('v8CollisionXRead').textContent=dx+' cm';el('v8CollisionZRead').textContent=dz+' cm';el('v8Dist').textContent=st.dist.toFixed(1)+' cm';el('v8Overlap').textContent=st.overlap?st.penetration.toFixed(1)+' cm':'None';
+    el('v8Response').textContent=st.overlap?'Separate':'No contact';
+    const event=st.overlap&&intent==='predation'?'BiteAttempt':st.overlap&&intent==='territorial'?'ThreatContact':st.overlap&&intent==='curious'?'SocialContact':'—';el('v8ContactEvent').textContent=event;
+    el('v8CollisionExplain').textContent=st.overlap?`3D overlap detected. Separation moves the bodies apart. Intent “${intent}” can produce ${event==='—'?'no special contact event':event+' ('+biteTarget+')'}.`:'No 3D collision, even if projected sprites look close. The Z offset is included in the test.';
+    const c=contactCtx;fill(c,0,0,820,360,palette.sea);text(c,'BEFORE · DETECTION',20,30,13,palette.gold);text(c,'AFTER · RESOLUTION',430,30,13,palette.mint);line(c,410,10,410,335,'#385775',2);
+    const y=170,a1=140,b1=140+dx*1.1;const resolved=st.overlap?st.range:st.dist;
+    // Convert a 3D separation into a projected X distance. This is illustrative, not a rigid-body solver.
+    const outX=st.overlap ? (st.dist===0?st.range:(dx/st.dist)*resolved) : dx;
+    const renderPair=(baseX,distX,label)=>{
+      showGlyphFish(c,baseX,y,1.1,palette.cyan,1);showGlyphFish(c,baseX+distX,y,1.1,palette.coral,-1);
+      for(const [xx,rad,col] of [[baseX,22,palette.cyan],[baseX+distX,24,palette.coral]]){c.save();c.strokeStyle=col;c.globalAlpha=.4;c.setLineDash([5,4]);c.beginPath();c.arc(xx,y,rad,0,Math.PI*2);c.stroke();c.restore();}
+      text(c,label,baseX,y+98,11,palette.muted);
+    };
+    renderPair(a1,dx*1.12,'Original X positions');renderPair(560,outX*1.12,'Corrected proxy positions');
+    if(st.overlap){text(c,'CONTACT',204,78,12,palette.coral,'center');text(c,'✓ SEPARATED',615,78,12,palette.mint,'center')}else{text(c,'NO 3D CONTACT',205,78,12,palette.mint,'center');}
+    text(c,'Z gap: '+dz+' cm',20,325,12,palette.purple);text(c,'Bite target: '+biteTarget,430,325,12,palette.gold);
+  }
+  for(const id of ['v8CollisionX','v8CollisionZ','v8CollisionIntent']){el(id).addEventListener('input',collisionDraw);el(id).addEventListener('change',collisionDraw)}
+  document.querySelectorAll('[data-bite]').forEach(b=>b.addEventListener('click',()=>{biteTarget=b.dataset.bite;document.querySelectorAll('[data-bite]').forEach(x=>x.classList.toggle('chosen',x===b));collisionDraw()}));collisionDraw();
+  check('collision overlap zero',collisionState(0,0).overlap);check('collision separated in Z',!collisionState(0,55).overlap);
+  // Water probe is synthetic, designed to teach field sampling not provide survival predictions.
+  const waterCtx=el('v8WaterCanvas').getContext('2d');let probe={x:.50,y:.52};
+  function waterSample(x,y,river,zDepthM=12){
+    const riverMix=river*Math.exp(-3.6*x)*(0.80+0.20*(1-y));
+    const salinity=clamp(35*(1-riverMix),0,35);
+    return {salinity,temp:26+1.2*x-1.1*y-0.035*zDepthM,pH:7.15+0.92*salinity/35,oxygen:7.5-1.6*x+.6*(1-y)+.008*zDepthM,tan:.015+.11*riverMix,kind:salinity<.5?'fresh':salinity<30?'brackish':'marine'};
+  }
+  function waterDraw(){
+    const river=val('v8River')/100,z=val('v8WaterZ');el('v8RiverText').textContent=Math.round(river*100)+'%';el('v8WaterZText').textContent=z.toFixed(1)+' m';el('v8WaterZValue').textContent=z.toFixed(1)+' m';const c=waterCtx;
+    for(let i=0;i<82;i++){const x=i/81,v=waterSample(x,.5,river),t=v.salinity/35;fill(c,i*10,0,11,310,`rgb(${Math.round(16+26*t)},${Math.round(88-24*t)},${Math.round(106+41*t)})`);}
+    for(let i=0;i<=10;i++){line(c,i*82,0,i*82,310,'#cce5f0',.4,[2,7]);}
+    for(let i=0;i<26;i++){const x=(i*83)%820,y=45+(i*57)%230;line(c,x,y,x+28,y+Math.sin(i)*2,'#a9d8eb',.7);}
+    text(c,'RIVER / ESTUARY',16,24,14,'#e1fbff');text(c,'COASTAL SEA',804,24,14,'#e1fbff','right');
+    const px=probe.x*820,py=probe.y*310;line(c,px-20,py,px+20,py,palette.gold,2);line(c,px,py-20,px,py+20,palette.gold,2);
+    c.fillStyle=palette.gold;c.beginPath();c.arc(px,py,5,0,Math.PI*2);c.fill();
+    const a=waterSample(probe.x,probe.y,river,z);
+    el('v8Salinity').textContent=a.salinity.toFixed(1)+' PSU';el('v8Temp').textContent=a.temp.toFixed(1)+' °C';el('v8Ph').textContent=a.pH.toFixed(2);el('v8Oxygen').textContent=a.oxygen.toFixed(2)+' mg/L';el('v8Tan').textContent=a.tan.toFixed(3)+' mg N/L';el('v8WaterX').textContent=(probe.x*100).toFixed(1)+' / '+((1-probe.y)*50).toFixed(1)+' m';el('v8WaterClass').textContent=a.kind;
+    const species=el('v8HabitatSpecies').value;
+    el('v8HabitatNote').textContent=`Selected: ${species==='zebrafish'?'Zebrafish (freshwater)':'Clownfish (marine)'} · Sample: ${a.kind}. Habitat mismatch is only a flag for future verified tolerance curves, not a survival prediction. Synthetic TAN is not used to infer toxicity.`;
+  }
+  el('v8WaterCanvas').addEventListener('pointerdown',e=>{const p=sampleCanvasPoint(e,el('v8WaterCanvas'));probe={x:p.x/820,y:p.y/310};waterDraw()});
+  el('v8WaterCanvas').addEventListener('pointermove',e=>{if(e.buttons){const p=sampleCanvasPoint(e,el('v8WaterCanvas'));probe={x:p.x/820,y:p.y/310};waterDraw()}});
+  el('v8WaterCanvas').addEventListener('keydown',e=>{if(['ArrowRight','ArrowLeft','ArrowUp','ArrowDown'].includes(e.key)){e.preventDefault();probe.x=clamp(probe.x+(e.key==='ArrowRight'?.025:e.key==='ArrowLeft'?-.025:0),0,1);probe.y=clamp(probe.y+(e.key==='ArrowDown'?.025:e.key==='ArrowUp'?-.025:0),0,1);waterDraw()}});
+  el('v8River').addEventListener('input',waterDraw);el('v8WaterZ').addEventListener('input',waterDraw);el('v8HabitatSpecies').addEventListener('change',waterDraw);waterDraw();
+  check('water synthetic salinity drops with river',waterSample(0,.4,.95).salinity<waterSample(1,.4,.95).salinity);
+  // Anatomy combines region picking + visual effects on one fish.
+  const anatomCtx=el('v8AnatomyCanvas').getContext('2d');let selectedOrgan='body';const wounds={body:0,tail:0,dorsal:0,pectoral:0,gills:0,eye:0};
+  const regionData={body:{label:'Body',role:'Structure',p:[425,177]},tail:{label:'Tail',role:'Propulsion',p:[175,174]},dorsal:{label:'Dorsal fin',role:'Stability',p:[376,99]},gills:{label:'Gills',role:'Gas exchange',p:[580,165]},pectoral:{label:'Pectoral fin',role:'Steering',p:[480,217]},eye:{label:'Eye',role:'Vision',p:[644,146]}};
+  function anatomyDraw(){const c=anatomCtx;fill(c,0,0,820,350,palette.sea);text(c,'ASCII-INSPIRED ANATOMICAL MAP · NOT VALIDATED DAMAGE',16,26,12,palette.gold);
+    for(let i=0;i<9;i++)line(c,15,58+i*30,802,58+i*30,'#1a3449',.7);
+    // Body and fins, a scalable schematic species-aware glyph view.
+    c.fillStyle='#245b73';c.strokeStyle='#90dbea';c.lineWidth=2;c.beginPath();c.moveTo(216,180);c.bezierCurveTo(328,72,598,91,676,161);c.bezierCurveTo(712,193,590,275,434,265);c.bezierCurveTo(301,255,248,221,216,180);c.closePath();c.fill();c.stroke();
+    c.beginPath();c.moveTo(221,177);c.lineTo(128,113);c.lineTo(144,257);c.closePath();c.fill();c.stroke();
+    c.beginPath();c.moveTo(322,122);c.lineTo(353,72);c.lineTo(433,110);c.closePath();c.fill();c.stroke();
+    text(c,'<> <> <> <> <> <>',350,171,18,'#66aec6');text(c,'<> <> <> <> <> <>',340,195,18,'#66aec6');
+    c.strokeStyle='#9edce9';c.beginPath();c.arc(640,147,10,0,Math.PI*2);c.stroke();c.fillStyle='#f1ce9b';c.beginPath();c.arc(640,147,4,0,Math.PI*2);c.fill();
+    line(c,572,132,579,199,'#97d6e4',3);
+    for(const [id,info] of Object.entries(regionData)){
+      const [x,y]=info.p; const active=id===selectedOrgan;const w=wounds[id];
+      c.strokeStyle=active?palette.gold:'#8bc8dd';c.lineWidth=active?3:1;c.setLineDash(active?[]:[4,5]);c.beginPath();c.arc(x,y,active?27:17,0,Math.PI*2);c.stroke();c.setLineDash([]);
+      if(w>0){text(c,['','×','××','//×','////×'][w],x,y+5,Math.round(15+w*3),w>=3?palette.coral:palette.gold,'center')}
+    }
+    text(c,'Selected: '+regionData[selectedOrgan].label+' · severity '+wounds[selectedOrgan]+'/4',20,325,13,palette.text);
+    el('v8Severity').value=wounds[selectedOrgan];el('v8SeverityText').textContent=wounds[selectedOrgan]+' / 4 · '+['none','minor','moderate','major','critical'][wounds[selectedOrgan]];
+    el('v8OrganName').textContent=regionData[selectedOrgan].label;el('v8OrganFunction').textContent=regionData[selectedOrgan].role;
+    el('v8OrganCondition').textContent=wounds[selectedOrgan]===0?'Intact':'Affected · demo';
+    document.querySelectorAll('[data-organ]').forEach(b=>b.classList.toggle('chosen',b.dataset.organ===selectedOrgan));
+  }
+  function selectOrgan(id){selectedOrgan=id;anatomyDraw()}
+  document.querySelectorAll('[data-organ]').forEach(b=>b.addEventListener('click',()=>selectOrgan(b.dataset.organ)));
+  el('v8Severity').addEventListener('input',()=>{wounds[selectedOrgan]=val('v8Severity');anatomyDraw()});
+  el('v8AnatomyCanvas').addEventListener('pointerdown',e=>{const p=sampleCanvasPoint(e,el('v8AnatomyCanvas'));let min=Infinity,key='body';for(const [id,info] of Object.entries(regionData)){const d=Math.hypot(p.x-info.p[0],p.y-info.p[1]);if(d<min){min=d;key=id;}}selectOrgan(key)});
+  el('v8AnatomyCanvas').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();const keys=Object.keys(regionData);selectOrgan(keys[(keys.indexOf(selectedOrgan)+1)%keys.length]);}});anatomyDraw();
+  // Time diagram. We use actual wall-clock for animation; Hz is hypothetical.
+  const timeCtx=el('v8TimeCanvas').getContext('2d');let resetTime=performance.now(),frames=0,lastRateStamp=resetTime,actualRate=0;
+  function timeDraw(ts){const elapsed=(ts-resetTime)/1000,hz=val('v8Hz'),tps=val('v8Tps'),step=1/tps,drawTime=elapsed%8;
+    el('v8HzText').textContent=hz+' Hz';el('v8TimeStep').textContent=(step*1000).toFixed(1)+' ms';el('v8LogicalHz').textContent=hz+' Hz';
+    frames++;if(ts-lastRateStamp>=1000){actualRate=frames/((ts-lastRateStamp)/1000);frames=0;lastRateStamp=ts;}el('v8PhysicalFps').textContent=actualRate?actualRate.toFixed(0)+' FPS':'measuring…';
+    const c=timeCtx;fill(c,0,0,820,300,palette.sea);
+    text(c,'SAME speed target: 40 cm / second',18,26,13,palette.gold);
+    const labels=[['Time-based + interpolation',palette.mint],['Fixed tick / no interpolation',palette.cyan],['Per-frame bug at selected Hz',palette.coral]];
+    for(let i=0;i<3;i++){
+      const y=90+i*82;line(c,15,y+23,805,y+23,'#365a75',2);text(c,labels[i][0],21,y-10,12,labels[i][1]);
+      const progress=i===0?drawTime*40:i===1?Math.floor(drawTime/step)*step*40:drawTime*40*(hz/60);
+      const xx=clamp(33+((progress%240)/240)*740,33,773);showGlyphFish(c,xx,y+18,.6,labels[i][1]);
+    }
+    requestAnimationFrame(timeDraw);
+  }
+  el('v8TimeRestart').addEventListener('click',()=>resetTime=performance.now());requestAnimationFrame(timeDraw);
+  check('typed growth precision safe',new Float32Array([1.5])[0]===1.5);
+  window.ASCLabV8={growthAt,collisionState,waterSample,checks};
+  console.info('ASCuarium v8 self-checks:', checks.every(c=>c.ok)?'PASS':'FAIL',checks);
+})();
+</script><script>
+(() => {
+'use strict';
+const el = id => document.getElementById(id);
+const clamp = (x,a,b)=>Math.max(a,Math.min(b,x));
+const ctx = id => el(id)?.getContext('2d');
+const oceanBg = (c,w,h,upper='#0a263d',lower='#061423') => {let g=c.createLinearGradient(0,0,0,h);g.addColorStop(0,upper);g.addColorStop(1,lower);c.fillStyle=g;c.fillRect(0,0,w,h)};
+const fish = (c,x,y,scale=1,color='#86e6dc',tail='left') => {c.save();c.translate(x,y);c.scale(scale,scale);c.fillStyle=color;c.font='bold 24px Consolas,monospace';c.textAlign='center';c.fillText(tail==='left'?'><(((°>':'<°)))><',0,5);c.restore()};
+// Existing simulation pause must not be confused with ongoing canvas redraw.
+let prevPaused=false;
+function pauseLabel(){const paused=el('pauseOcean')?.textContent==='Resume';const p=el('v9PauseFlag');if(p)p.hidden=!paused;if(paused!==prevPaused){p?.setAttribute('aria-live','polite');prevPaused=paused;}}
+el('pauseOcean')?.addEventListener('click',()=>requestAnimationFrame(pauseLabel));
+el('stepOcean')?.addEventListener('click',()=>requestAnimationFrame(pauseLabel));
+// A clean collision scenario: approach, preemptive steering, exact contact separation.
+// Explicit scenario in X/Y/Z. Opposing fish face their actual travel directions.
+let contactRunning=false, actorX=675,actorY=166,actorZ=0, targetFishX=220,targetFishY=166,contactLast=0,emitted=false,contactState='Ready';
+const contactC=ctx('v9ContactCanvas');
+const contactMode=()=>el('v8CollisionIntent')?.value||'avoid';
+const contactRadius=44;const threshold=contactRadius*2;
+function resetContact(){actorX=675;actorY=166;actorZ=Number(el('v8CollisionZ')?.value||0);targetFishX=220;targetFishY=166;contactState='Ready';emitted=false;contactRunning=false;el('v9ContactPlay').textContent='▶ Run scenario';drawContact(0)}
+function faceFish(c,x,y,dir,color,size=1.35){c.save();c.translate(x,y);c.scale(dir*size,size);c.font='bold 27px Consolas, monospace';c.textAlign='center';c.fillStyle=color;c.fillText('><(((°>',0,8);c.restore()}
+function drawContact(dt){
+ const c=contactC,mode=contactMode(); if(!c)return;
+ let dx=actorX-targetFishX,dy=actorY-targetFishY,dz=actorZ,dist=Math.hypot(dx,dy,dz);
+ if(contactRunning){
+   if(mode==='avoid'){
+      // Leave the other fish's path in Z before crossing its X position.
+      if(dx>155){actorX-=dt*90;contactState='Approaching'}
+      else if(dx>80){actorZ+=dt*105;actorX-=dt*27;contactState='Steering into depth (Z)'}
+      else {actorZ+=dt*60;actorX-=dt*105;contactState='Passing around (Z)'}
+   }else if(mode==='curious'){
+      actorX-=dt*85;contactState='Curious approach';
+   }else if(mode==='territorial'){
+      actorX-=dt*120;contactState='Territorial approach';
+   }else {actorX-=dt*132;contactState='Predatory approach';}
+   dx=actorX-targetFishX;dy=actorY-targetFishY;dz=actorZ;dist=Math.hypot(dx,dy,dz);
+   if(dist<threshold){ // Stable overlap forbidden in every mode.
+      const overlap=threshold-dist,planar=Math.max(1e-5,Math.hypot(dx,dy));
+      if(mode==='avoid'){actorZ=Math.sign(actorZ||1)*Math.max(Math.abs(actorZ),threshold);contactState='Emergency depth avoidance';}
+      else {actorX+=(dx/planar)*overlap;actorY+=(dy/planar)*overlap;contactState='Contact → separate';}
+      if(!emitted){emitted=true;contactRunning=false;el('v9ContactPlay').textContent='↻ Replay';}
+   }
+   if(actorX<-60||actorZ>300){contactRunning=false;el('v9ContactPlay').textContent='↻ Replay';contactState='Passed safely';}
+ }
+ const d=Math.hypot(actorX-targetFishX,actorY-targetFishY,actorZ),gap=Math.max(0,d-threshold);
+ const evt=emitted?(mode==='predation'?'BiteAttempt → Flee':mode==='territorial'?'TerritorialContact':mode==='curious'?'SocialContact':'CollisionAvoided'):'—';
+ el('v9ContactDist').textContent=d.toFixed(1)+' cm';el('v9ContactGap').textContent=gap.toFixed(1)+' cm';
+ el('v9ContactDecision').textContent=contactState;el('v9ContactEvt').textContent=evt;
+ oceanBg(c,820,310);c.save();c.strokeStyle='#345672';c.setLineDash([4,5]);c.beginPath();c.moveTo(0,218);c.lineTo(820,218);c.stroke();c.setLineDash([]);c.restore();
+ c.fillStyle='#bcdef0';c.font='bold 13px system-ui';c.fillText('SIDE · X / Y',14,23);c.fillText('TOP · X / Z',14,177);
+ // Side projection: a big Z offset changes light/size but not XY proximity.
+ c.strokeStyle='#86b9d455';c.beginPath();c.arc(targetFishX,75,31,0,Math.PI*2);c.arc(actorX,75,31,0,Math.PI*2);c.stroke();
+ const depthFade=Math.max(.25,1-Math.abs(actorZ)/420);faceFish(c,targetFishX,75,+1,'#7bdeed');faceFish(c,actorX,75,-1,`rgba(255,192,134,${depthFade})`);
+ // Top camera shows actual avoiding detour through Z.
+ const mapZ=z=>232+z*.18;const drawDot=(x,z,color)=>{c.fillStyle=color;c.beginPath();c.arc(x,mapZ(z),6,0,Math.PI*2);c.fill();c.strokeStyle=color+'66';c.beginPath();c.arc(x,mapZ(z),contactRadius*.52,0,Math.PI*2);c.stroke()};
+ drawDot(targetFishX,0,'#7bdeed');drawDot(actorX,actorZ,'#ffc486');
+ c.strokeStyle='#ffce8788';c.lineWidth=2;c.beginPath();c.moveTo(actorX,mapZ(0));c.lineTo(actorX,mapZ(actorZ));c.stroke();
+ c.fillStyle='#cce5f2';c.font='12px system-ui';c.fillText('A fixed',targetFishX-21,40);c.fillText('B moves left',Math.max(15,actorX-43),40);
+ c.fillText(`B depth offset: ${actorZ.toFixed(0)} cm`,525,187);c.fillText(`Behavior: ${contactState}`,525,207);
+ c.fillText(`Distance XYZ: ${d.toFixed(1)} cm`,525,233);c.fillText(`Event: ${evt}`,525,254);
+ if(mode==='predation'&&emitted){c.fillStyle='#f5a0a6';c.font='bold 17px system-ui';c.fillText('BITE ATTEMPT → FLEE',445,41);}
+ if(mode==='curious') {c.fillStyle='#d4b0ff';c.font='bold 19px system-ui';c.fillText('?',actorX,44)}
+ if(mode==='territorial'){c.fillStyle='#ff9b90';c.font='bold 19px system-ui';c.fillText('!',actorX,44)}
+ if(mode==='avoid'){c.fillStyle='#bde8f7';c.font='bold 12px system-ui';c.fillText('Z escape',actorX+30,mapZ(actorZ)-12)}
+}
+el('v9ContactPlay').addEventListener('click',()=>{if(!contactRunning&&contactState!=='Ready')resetContact();contactRunning=true;el('v9ContactPlay').textContent='▶ Running…';});
+el('v9ContactReset').addEventListener('click',resetContact);el('v8CollisionIntent')?.addEventListener('change',resetContact);el('v8CollisionZ')?.addEventListener('input',resetContact);resetContact();
+// Time: identical elapsed-time displacement, different sample timing.
+const timeC=ctx('v9TimingCanvas');const started=performance.now();
+function drawTiming(ts){if(!timeC)return;const c=timeC,secs=(ts-started)/1000, hz=Number(el('v8Hz')?.value||165),tps=Number(el('v8Tps')?.value||30),speed=44;
+ oceanBg(c,820,175,'#10253d','#101d31');
+ const rows=[['Elapsed-time', '#79e9cb',secs*speed],['Fixed tick', '#89baff',Math.floor(secs*tps)/tps*speed],['Per-frame bug', '#ff8197',secs*speed*hz/60]];
+ rows.forEach(([name,color,v],i)=>{let y=35+i*51; c.fillStyle=color;c.font='12px system-ui';c.fillText(name,15,y-12);c.strokeStyle='#45627e';c.beginPath();c.moveTo(180,y);c.lineTo(800,y);c.stroke();let x=180+((v%430)/430)*590;fish(c,x,y-.5,.58,color);});
+}
+// Water-field modes for the same probe position. Not a calibrated chemical or hydrodynamics model.
+const waterC=ctx('v9WaterCanvas');let waterLayer='salinity';let wProbe={x:.51,y:.52};
+const interpolate=(a,b,t)=>a.map((v,i)=>Math.round(v+(b[i]-v)*t));
+const cmap=(value,low,high)=>{let t=clamp(value,0,1);const p=t<=.5?interpolate(low,[28,92,143],t*2):interpolate([28,92,143],high,(t-.5)*2);return `rgb(${p.join(',')})`;};
+function sampleWater(x,y){const river=Number(el('v8River')?.value||55)/100,depth=Number(el('v8WaterZ')?.value||12);const mix=river*Math.exp(-3.6*x)*(.80+.20*(1-y));const salinity=clamp(35*(1-mix),0,35);return {salinity,temperature:26+1.2*x-1.1*y-.035*depth,oxygen:7.5-1.6*x+.6*(1-y)+.008*depth,ph:7.15+.92*salinity/35,tan:.015+.11*mix,current:.5+1.4*(1-x)*Math.exp(-1.1*y)};}
+function waterColor(v){const ranges={salinity:[0,35],temperature:[19,29],oxygen:[4,9],ph:[6.9,8.4],tan:[0,.16],current:[0,2]};const [min,max]=ranges[waterLayer],t=(v[waterLayer]-min)/(max-min);return cmap(t,[21,43,84],waterLayer==='temperature'||waterLayer==='tan'?[249,109,65]:[116,212,198]);}
+function drawWater(){if(!waterC)return;const c=waterC,W=820,H=284;for(let y=0;y<H;y+=7){for(let x=0;x<W;x+=9){c.fillStyle=waterColor(sampleWater(x/W,y/H));c.fillRect(x,y,10,8);}}
+ c.strokeStyle='#ffffff25';for(let x=0;x<=W;x+=82){c.beginPath();c.moveTo(x,0);c.lineTo(x,H);c.stroke()};for(let y=0;y<=H;y+=56){c.beginPath();c.moveTo(0,y);c.lineTo(W,y);c.stroke()};
+ if(waterLayer==='current'){for(let y=32;y<H;y+=47)for(let x=45;x<W;x+=75){let v=sampleWater(x/W,y/H).current,len=8+v*17;c.strokeStyle='#f0d4a6';c.beginPath();c.moveTo(x,y);c.lineTo(x+len,y-3);c.moveTo(x+len,y-3);c.lineTo(x+len-7,y-8);c.moveTo(x+len,y-3);c.lineTo(x+len-7,y+3);c.stroke()}}
+ c.strokeStyle='#ffdb85';c.lineWidth=2;const depthShade=Math.min(.53,(Number(el('v8WaterZ')?.value||0)/30)*.50);c.fillStyle=`rgba(0,9,32,${depthShade})`;c.fillRect(0,0,W,H); const px=wProbe.x*W,py=wProbe.y*H;c.beginPath();c.moveTo(px-14,py);c.lineTo(px+14,py);c.moveTo(px,py-14);c.lineTo(px,py+14);c.stroke();c.fillStyle='#ebfaff';c.font='13px system-ui';c.fillText(`${waterLayer.toUpperCase()} · SAMPLE XY  (${(wProbe.x*100).toFixed(0)}m, ${(wProbe.y*50).toFixed(0)}m)`,15,24);c.fillText(`Z = ${el('v8WaterZ')?.value||12}m · synthetic field`,15,46);const flowing=sampleWater(.5,.72).current;fish(c,((performance.now()*.025*flowing+130)%840),216,.75,'#a7eff4');updateWaterMetrics();
+}
+function waterPointer(ev){const r=el('v9WaterCanvas').getBoundingClientRect();wProbe={x:clamp((ev.clientX-r.left)/Math.max(1,r.width),0,1),y:clamp((ev.clientY-r.top)/Math.max(1,r.height),0,1)};drawWater();}
+function updateWaterMetrics(){const v=sampleWater(wProbe.x,wProbe.y);const z=Number(el('v8WaterZ')?.value||0);const a=['v8Salinity','v8Temp','v8Ph','v8Oxygen','v8Tan','v8WaterX','v8WaterZValue','v8WaterClass'];const vals=[v.salinity.toFixed(2)+' PSU',v.temperature.toFixed(2)+' °C',v.ph.toFixed(2),v.oxygen.toFixed(2)+' mg/L',v.tan.toFixed(3)+' mg N/L',(100*wProbe.x).toFixed(1)+' / '+(50*(1-wProbe.y)).toFixed(1)+' m',z.toFixed(1)+' m',v.salinity<0.5?'freshwater':v.salinity<30?'brackish':'marine'];a.forEach((k,i)=>{const node=el(k);if(node)node.textContent=vals[i]});const node=el('v8HabitatNote');if(node)node.textContent='Sample water quality here. Species suitability requires documented tolerance profiles; do not infer survival from toy values.';}
+el('v9WaterCanvas').addEventListener('pointerdown',waterPointer);
+document.querySelectorAll('.v9-water-layer').forEach(b=>b.addEventListener('click',()=>{waterLayer=b.dataset.layer;document.querySelectorAll('.v9-water-layer').forEach(b=>b.classList.toggle('activebtn',b.dataset.layer===waterLayer));drawWater()}));
+for(const id of ['v8River','v8WaterZ'])el(id)?.addEventListener('input',drawWater);drawWater();
+// Anatomic ASCII skin with SVG-like hit regions (semantic zones) and severity marks.
+const anatomyC=ctx('v9AnatomyCanvas');const anatomyZones=[['eye',665,140],['gills',565,171],['body',407,173],['dorsal',414,114],['pectoral',480,217],['tail',197,174]];
+let activeOrgan='body';const damages={eye:0,gills:0,body:0,dorsal:0,pectoral:0,tail:0};
+function zoneColor(name){return damages[name]>0?`rgba(255,${Math.max(100,205-damages[name]*20)},111,.95)`:'#78d9ed'}
+function drawAnatomy(){if(!anatomyC)return;const c=anatomyC; oceanBg(c,820,344);
+ const polys={body:[[260,166],[300,118],[450,107],[590,127],[664,155],[632,197],[495,225],[332,224]],tail:[[263,174],[111,91],[129,251]],dorsal:[[355,118],[410,50],[475,116]],pectoral:[[461,184],[433,258],[524,227]]};
+ Object.entries(polys).forEach(([name,poly])=>{c.beginPath();poly.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));c.closePath();c.fillStyle=name==='body'?'#1a526c':'#225275';c.fill();c.strokeStyle=name===activeOrgan?'#fbc677':'#75cad3';c.lineWidth=name===activeOrgan?4:1.4;c.stroke()});
+ c.beginPath();c.arc(642,156,7,0,Math.PI*2);c.fillStyle='#e8f9fb';c.fill();c.beginPath();c.arc(644,155,3,0,Math.PI*2);c.fillStyle='#091b2b';c.fill();
+ c.strokeStyle='#5cbed1';c.lineWidth=2;c.beginPath();c.arc(555,171,16,-1.3,1.5);c.stroke();
+ c.font='bold 25px Consolas, monospace';c.fillStyle='#c7f7fa';c.textAlign='center';c.fillText('><(((°>',438,185);
+ // stylized ASCII outlines: do not pretend they are anatomically correct.
+ const severity=damages[activeOrgan]||0;
+ anatomyZones.forEach(([key,x,y])=>{c.beginPath();c.arc(x,y,key===activeOrgan?20:11,0,Math.PI*2);c.strokeStyle=key===activeOrgan?'#ffdd83':'#8ab4cd85';c.lineWidth=key===activeOrgan?3:1;c.stroke();c.fillStyle=zoneColor(key);c.font=key===activeOrgan?'bold 16px Consolas':'12px Consolas';c.fillText(damages[key]>0?'✕':'·',x,y+5);});
+ if(severity>0){const item=anatomyZones.find(z=>z[0]===activeOrgan),[key,x,y]=item;c.fillStyle='#ffb178';c.font='bold 19px Consolas';c.fillText('x'.repeat(Math.min(3,severity)),x+28,y-21);}
+ c.fillStyle='#bad7e3';c.font='13px system-ui';c.textAlign='left';c.fillText(`Selected: ${activeOrgan} · Prototype severity: ${severity}/4`,20,29);c.fillText('Blue: anatomy template   •   Gold: selected zone   •   Orange: localized visual effect',20,322);
+}
+function selectAnat(name){activeOrgan=name;el('v8Severity').value=damages[name]||0; const btn=document.querySelector(`[data-organ="${name}"]`);btn?.click();drawAnatomy();}
+el('v9AnatomyCanvas').addEventListener('pointerdown',ev=>{const r=el('v9AnatomyCanvas').getBoundingClientRect(),x=(ev.clientX-r.left)*820/r.width,y=(ev.clientY-r.top)*344/r.height;let best='body',d=Infinity;for(const [k,a,b] of anatomyZones){const cur=Math.hypot(x-a,y-b);if(cur<d){d=cur;best=k}}selectAnat(best)});
+el('v8Severity')?.addEventListener('input',()=>{damages[activeOrgan]=+el('v8Severity').value;drawAnatomy()});document.querySelectorAll('#v8OrganBtns [data-organ]').forEach(b=>b.addEventListener('click',()=>{activeOrgan=b.dataset.organ;el('v8Severity').value=damages[activeOrgan]||0;drawAnatomy()}));drawAnatomy();
+// Structural length vs body condition: normalized dimensions are deliberately illustrative.
+const conditionC=ctx('v9ConditionCanvas');
+function drawCondition(){
+ if(!conditionC)return;
+ const reserve=+el('v9Reserve').value,repro=+el('v9Repro').value;
+ el('v9ReserveText').textContent=reserve+'%';el('v9ReproText').textContent=repro+'%';
+ const c=conditionC;oceanBg(c,820,175);const age=Number(el('growAge')?.value||70),L=Number(el('growLength')?.textContent?.split(' ')[0]||3);
+ const bodyRows=reserve<25?['   __/\\__','><(( ° ))>','   \\__/ ']:reserve<70?['   ___/\\___','><((( ° )))>','   \\____/']:['    ____/\\____','><(((( ° ))))>','    \\______/'];
+ c.font=`bold ${Math.min(31,18+L*2)}px Consolas,monospace`;c.textAlign='center';c.fillStyle='#9be9eb';
+ bodyRows.forEach((r,i)=>c.fillText(r,390,55+i*42));
+ c.fillStyle='#b9cfdf';c.textAlign='left';c.font='12px system-ui';c.fillText('ASCII template · condition affects body outline, not instantly SL',20,20);
+ c.fillStyle='#e7c8fe';c.fillText(`Reserve ${reserve}%   |   Reproductive allocation ${repro}%   |   Age ${age} days`,20,160);
+ el('v9ConditionReadout').textContent=`Body condition changes visually; structural growth follows age, genetics and habitat in the growth curve below. Illustrative only.`;
+}
+for(const id of ['v9Reserve','v9Repro','growAge','growGenes','growFood','growOxygen','growTemp'])el(id).addEventListener('input',drawCondition);drawCondition();
+// FishDex species cards. Source-backed labels; no invented tolerances.
+const species={zebra:{name:'Danio rerio',water:'Freshwater',repro:'Egg scattering',note:'Freshwater zebrafish. Research reference: morphology, development stages and laboratory strains. Do not use the marine world as its default habitat.',url:'https://zfin.org',source:'ZFIN',sal:0,art:'#88dcff'},clown:{name:'Amphiprion ocellaris',water:'Marine',repro:'Egg laying',note:'Marine reef-associated anemonefish. Species-specific reef habitat, behavior and reproductive biology require independently verified parameters.',url:'https://www.fishbase.se/Fieldguide/FieldGuideSummary.php?c_code=585&genusname=Amphiprion&speciesname=ocellaris',source:'FishBase',sal:35,art:'#ffaf6e'}};
+const dexC=ctx('v9SpeciesCanvas');let dexCurrent='zebra';
+function setSpecies(k){dexCurrent=k;const s=species[k];el('v9SpeciesName').textContent=s.name;el('v9SpeciesWater').textContent=s.water;el('v9SpeciesRepro').textContent=s.repro;el('v9SpeciesNotes').textContent=s.note;el('v9SpeciesSources').innerHTML=`<a target="_blank" rel="noopener noreferrer" href="${s.url}">Species source: ${s.source} ↗</a>`;el('v9SpeciesSal').value=s.sal;drawSpecies(performance.now());}
+function drawSpecies(t){const s=species[dexCurrent],c=dexC;if(!c)return;const sal=+el('v9SpeciesSal').value,temp=+el('v9SpeciesTemp').value;el('v9SpeciesSalRead').textContent=sal;el('v9SpeciesTempRead').textContent=temp;
+ const ctx2=c; oceanBg(ctx2,820,300,sal<4?'#163c53':'#0d2748',sal<4?'#12372b':'#091c36');for(let i=0;i<8;i++){let x=(i*113+t*.025*(i%2?1:-1))%840;ctx2.beginPath();ctx2.arc(x,240-i*24,3+i%4,0,Math.PI*2);ctx2.fillStyle='#afecff60';ctx2.fill()}
+ fish(ctx2,370+Math.sin(t/1600)*55,142+Math.sin(t/500)*9,4,s.art);ctx2.fillStyle='#daeef7';ctx2.font='13px system-ui';ctx2.fillText(`${s.name} · ${sal.toFixed(0)} ppt · ${temp.toFixed(0)}°C`,24,32);
+ el('v9SpeciesWarning').textContent=`Demonstration only: water salinity ${sal} ppt, ${temp}°C. Without a vetted life-stage tolerance profile we do not calculate suitability or survival.`;
+}
+el('v9Species').addEventListener('change',e=>setSpecies(e.target.value));for(const id of ['v9SpeciesSal','v9SpeciesTemp'])el(id).addEventListener('input',()=>drawSpecies(performance.now()));setSpecies('zebra');
+// Only active canvases are animated; hidden topics do not waste drawing work.
+let lastFrame=performance.now();function loop(ts){const dt=clamp((ts-lastFrame)/1000,0,.06);lastFrame=ts;const active=document.querySelector('.page:not([hidden])')?.id;
+ if(active==='collision'){drawContact(dt)}else if(active==='time'){}else if(active==='fishdex'){drawSpecies(ts)}else if(active==='habitat' && Math.round(ts/100)%2===0){drawWater()}
+ requestAnimationFrame(loop);
+}requestAnimationFrame(loop);
+window.ASCLabV9={sampleWater,collisionReset:resetContact};
+})();
+</script><script>
+/* Ocean, biology and timing design experiments. Measurements are explicitly provisional. */
+(()=>{'use strict';const $=id=>document.getElementById(id),num=id=>Number($(id)?.value||0),clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+// Ocean: exact hydrostatic approximation; illustrative optical attenuation, NOT a species tolerance rule.
+function depthDraw(){const c=$('v10DepthCanvas').getContext('2d'),z=num('v10Depth'),cloud=num('v10Turbid');$('v10DepthText').textContent=z.toFixed(0)+' m';$('v10TurbidText').textContent=cloud<35?'Clear':cloud<70?'Moderate':'Murky';
+ const abs=1+1025*9.80665*z/101325,ext=abs-1,light=Math.exp(-(0.012+cloud*.00055)*z);
+ $('v10Pressure').textContent=abs.toFixed(2)+' atm';$('v10PressureExtra').textContent=ext.toFixed(2)+' atm';$('v10Light').textContent=(100*light).toFixed(2)+'% (toy)';$('v10Zone').textContent=z<200?'Sunlit':z<1000?'Twilight':'Aphotic boundary';
+ const g=c.createLinearGradient(0,0,0,330);g.addColorStop(0,'#145880');g.addColorStop(1,'#020c1d');c.fillStyle=g;c.fillRect(0,0,800,330);
+ for(let n=0;n<=10;n++){let y=24+n*28;c.strokeStyle='#ffffff22';c.beginPath();c.moveTo(38,y);c.lineTo(790,y);c.stroke();}
+ const yy=30+z/1000*265;c.fillStyle='#85bffb';for(let i=0;i<8;i++){let x=80+i*92;c.fillRect(x,6,2,Math.max(0,150*(1-cloud/100)*(1-z/1800)))}
+ c.fillStyle='#e8f5ff';c.font='14px system-ui';c.fillText('Surface',13,21);c.fillText('1000m',13,307);c.fillStyle='#ffce8d';c.font='bold 26px Consolas,monospace';c.fillText('><(((°>',clamp(400+Math.sin(z)*14,100,650),yy);c.font='12px system-ui';c.fillText(`${z} m · pressure ${abs.toFixed(2)} atm`,490,24);
+ c.font='12px system-ui';c.fillStyle='#a8cbe0';c.fillText('Visible depth position is scaled 0–1000m for this learning illustration.',15,323);
+}
+for(const id of ['v10Depth','v10Turbid'])$(id).addEventListener('input',depthDraw);depthDraw();
+// Clock: fixed simulation tick accumulator; accelerated biological time is not used to change movement speed.
+let wall=0,sim=0,bio=0,acc=0,ticks=0,paused=false,last=performance.now();
+const reset=()=>{wall=0;sim=0;bio=0;acc=0;ticks=0;last=performance.now()};$('v10BioReset').onclick=reset;
+$('v10BioPause').onclick=()=>{paused=!paused;$('v10BioPause').textContent=paused?'Resume':'Pause'};
+$('v10BioStep').onclick=()=>{let h=1/Math.max(1,num('v10BioTPS'));sim+=h;bio+=h*num('v10BioScale');ticks++;drawClock()};
+function drawClock(){const c=$('v10ClockCanvas').getContext('2d');c.fillStyle='#081d31';c.fillRect(0,0,820,195);const vals=[['Wall time',wall,'#7ce4ce'],['Physics time',sim,'#79bdec'],['Biological time',bio,'#e9c588']];
+ vals.forEach(([label,v,col],i)=>{let y=44+i*57;c.fillStyle='#d9e8f4';c.font='13px system-ui';c.fillText(label,18,y-12);c.fillStyle='#253a55';c.fillRect(160,y-25,630,17);c.fillStyle=col;c.fillRect(160,y-25,(v%60)/60*630,17);c.fillStyle='#f0f8fe';c.fillText(`${v.toFixed(1)} s`,682,y+15)});
+ $('v10RealClock').textContent=wall.toFixed(1)+' s';$('v10SimClock').textContent=sim.toFixed(1)+' s';$('v10BiolClock').textContent=bio>=86400?(bio/86400).toFixed(3)+' days':bio>=3600?(bio/3600).toFixed(2)+' h':bio.toFixed(1)+' s';$('v10TickCount').textContent=ticks.toLocaleString('en-US');
+}
+function clockLoop(ts){const dt=Math.min(.1,Math.max(0,(ts-last)/1000));last=ts; if(document.querySelector('.page:not([hidden])')?.id==='bioclock'){wall+=dt;if(!paused)acc+=dt;const step=1/Math.max(1,num('v10BioTPS'));let n=0;while(!paused&&acc>=step&&n<6){acc-=step;sim+=step;bio+=step*num('v10BioScale');ticks++;n++;}drawClock()}requestAnimationFrame(clockLoop)}
+reset();drawClock();requestAnimationFrame(clockLoop);
+// Food and digestion: the stage sequence is a contract for a later calibrated system, not assumed assimilation rates.
+let stage=0;const stages=['Forage / choose food','Ingestion','Digestion / gut processing','Assimilation & reserves','Waste & excretion'];
+const diets={zebrafish:{fit:['zooplankton','algae','insect','detritus'],label:'Omnivore (varies by life stage)'},predator:{fit:['fish','zooplankton'],label:'Predatory template, not calibrated'},filter:{fit:['zooplankton','algae'],label:'Filter-feeder template, not calibrated'}};
+function drawDiet(){const species=$('v10FeedSpecies').value,food=$('v10Food').value,fit=diets[species].fit.includes(food);
+ $('v10MealStage').textContent=stages[stage];$('v10FoodFit').textContent=fit?'Potential food':'Not typical';$('v10FoodAssim').textContent='Unknown';$('v10FoodWaste').textContent=stage>=4?'Feces + dissolved N':'Pending';
+ const c=$('v10DietCanvas').getContext('2d');c.fillStyle='#071b2e';c.fillRect(0,0,820,285);c.strokeStyle='#31516a';c.beginPath();c.moveTo(28,145);c.lineTo(792,145);c.stroke();
+ const labels=['FOOD','MOUTH','GUT','RESERVES','WATER'];const info=['search','ingest','digest','allocate','excrete'];
+ labels.forEach((name,i)=>{let x=85+i*160;c.fillStyle=i===stage?'#71559d':'#183952';c.strokeStyle=i===stage?'#d4bcff':'#416380';c.lineWidth=i===stage?3:1;c.beginPath();c.roundRect(x-63,98,127,81,13);c.fill();c.stroke();c.fillStyle='#fff';c.font='bold 14px system-ui';c.textAlign='center';c.fillText(name,x,129);c.font='11px system-ui';c.fillStyle='#c4daed';c.fillText(info[i],x,153);if(i<4){c.fillStyle='#f3cf8d';c.font='19px system-ui';c.fillText('→',x+80,145)}});
+ c.textAlign='left';c.font='14px system-ui';c.fillStyle=fit?'#90e6c7':'#f0bc9d';c.fillText(`${diets[species].label} • ${food} • ${fit?'possible intake':'needs verified dietary suitability'}`,20,42);c.fillStyle='#bbcadb';c.font='12px system-ui';c.fillText('No numeric digestion or ammonia coefficients are assumed by this prototype.',20,257);
+}
+$('v10FeedNext').onclick=()=>{stage=(stage+1)%5;drawDiet()};$('v10FeedReset').onclick=()=>{stage=0;drawDiet()};for(const id of ['v10FeedSpecies','v10Food'])$(id).addEventListener('change',drawDiet);drawDiet();
+// Mass movement visual: arrows illustrate predicted speed as a function of toy force/mass.
+let massFrame=0;function drawMassVelocity(ts){const node=$('v10VelocityCanvas');if(!node)return; if(document.querySelector('.page:not([hidden])')?.id!=='mass'){requestAnimationFrame(drawMassVelocity);return;}const c=node.getContext('2d'),v0=num('initialSpeed'),speedText=$('simSpeed')?.textContent||'0';const v1=clamp(Number.parseFloat(speedText)||0,0,1000);c.fillStyle='#071b2c';c.fillRect(0,0,780,108);
+ c.strokeStyle='#2c5374';c.beginPath();c.moveTo(20,72);c.lineTo(760,72);c.stroke();let dist0=(ts*.02*Math.min(v0,100))%720,dist1=(ts*.02*Math.min(v1,100))%720;
+ c.fillStyle='#91dff0';c.font='bold 19px Consolas,monospace';c.fillText('><(((°>',20+dist0,37);c.fillStyle='#fbd38e';c.fillText('><(((°>',20+dist1,66);c.fillStyle='#d7eaf7';c.font='11px system-ui';c.fillText(`Current ${v0} cm/s (teal) · Predicted ${v1.toFixed(1)} cm/s (gold)`,20,101);
+ requestAnimationFrame(drawMassVelocity)}requestAnimationFrame(drawMassVelocity);
+window.ASCV10={hydrostaticAtDepth:z=>1+1025*9.80665*z/101325, foodStages:stages, resetBiologicalClock:reset};
+})();
+</script><script>addEventListener('load',()=>{const id=decodeURIComponent(location.hash.slice(1));if(id){const target=document.querySelector('[data-target="'+id.replace(/[^a-z0-9_-]/gi,'')+'"]');target?.click();}});</script>
+</body></html>

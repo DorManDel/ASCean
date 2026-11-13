@@ -1,0 +1,30 @@
+name: Development Hub preview verification
+on:
+  pull_request:
+    branches: [development]
+    paths: ['site/**', 'docs/**', 'prompts/**', '.github/workflows/hub-preview.yml']
+  push:
+    branches: [development]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify-hub:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test deterministic vignette and genome helper
+        run: |
+          node --test site/shared/mini-ecosystem-prototype.test.mjs site/shared/dev-register.test.mjs
+          node --check site/hub/hub.mjs
+          node --check site/hub/mini-tanks.mjs
+          node --check site/hub/browser-smoke.mjs
+      - name: Package static development preview (not deployed)
+        uses: actions/upload-artifact@v4
+        with:
+          name: ascean-development-hub-preview
+          path: site/
+          retention-days: 14
