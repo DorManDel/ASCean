@@ -24,3 +24,12 @@ Record device/browser, render FPS, simulation TPS, total JS heap (when available
 
 ## Explicit exclusions from M0
 No fake autonomous learning, no invented biological equations, no WebGL/WASM rewrite, no merging of older ASCuarium or MobiLab projects, no unreviewed public scientific claims.
+
+## Development Hub / next action (2026-11-13)
+
+- Recover the owner's two prior HTML laboratories as *reference archives* in ASCean, not as validated production modules.
+- Launch a searchable Mechanics Catalog and a Developer & AI register with decision IDs/statuses and source links.
+- Test the first four independently seeded mini aquarium vignettes: mating/spawning, food/waste, predation/XYZ escape, social investigation. Each has step, pause, reset and event traces.
+- Use `development` as the integration gate; feature PRs target it. Preserve main for owner-approved releases only.
+- Codex M1 starts by extracting a reusable World/Clock and tests, then wiring both Ocean and Lab to that same implementation. See `prompts/CODEX_INIT_OCEAN_M1.md`.
+- After Codex M1, promote only source-implemented mechanics from scenario fixtures into the full Ocean.
