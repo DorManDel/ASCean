@@ -18,5 +18,9 @@ jobs:
         run: |
           node --check site/shared/world-prototype.mjs
           node --check site/lab/lab.mjs
+          node --check site/hub/hub.mjs
+          node --check site/hub/mini-tanks.mjs
       - name: Algorithmic correctness tests
-        run: node --test site/shared/world-prototype.test.mjs
+        run: |
+          node --test site/shared/world-prototype.test.mjs
+          node --test site/shared/mini-ecosystem-prototype.test.mjs
