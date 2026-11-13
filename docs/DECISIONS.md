@@ -7,7 +7,7 @@ State: **ACCEPTED** = user-approved direction; **PROVISIONAL** = first candidate
 | A-001 | ACCEPTED | New independent public repository **ASCean** | Separate from old ASCuarium and MobiLab |
 | A-002 | ACCEPTED | Two apps in same repository: Ocean Simulator + Mechanics Lab | Single codebase for approved mechanisms |
 | A-003 | ACCEPTED | TypeScript-first; C++/WASM may come later | Start simple, profile first |
-| A-004 | ACCEPTED | \`World\` data owner, systems modular; renderer separate | Extensible simulation and testability |
+| A-004 | ACCEPTED | `World` data owner, systems modular; renderer separate | Extensible simulation and testability |
 | A-005 | ACCEPTED | cm, seconds, grams internally; adaptive UI units | Fish can span large size/mass ranges |
 | A-006 | ACCEPTED | X 100m, Y 50m, Z 30m initial world | Side view XY, genuine XYZ space |
 | A-007 | ACCEPTED | Marine scene default; freshwater/brackish allowed in dedicated habitats | Species-specific ecological suitability |
@@ -37,4 +37,4 @@ State: **ACCEPTED** = user-approved direction; **PROVISIONAL** = first candidate
 | O-008 | OPEN | Target devices, FPS/TPS/energy/ram budgets, rendering backend | No measured baselines yet |
 | D-001 | DEFERRED | C++/WASM, per-fish heavy ML, advanced hydrodynamics | Only after profiling and model validation |
 
-**Change policy:** convert a provisional/open item to accepted via dated decision record with rationale, alternatives, owner approval, supporting evidence and impact. Do not silently replace earlier decisions. Add ADR files under \`docs/decisions/\` when meaningful.
+**Change policy:** convert a provisional/open item to accepted via dated decision record with rationale, alternatives, owner approval, supporting evidence and impact. Do not silently replace earlier decisions. Add ADR files under `docs/decisions/` when meaningful.

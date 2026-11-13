@@ -2,7 +2,7 @@
 
 **Intention:** design with the user, prototype visually, validate, delegate implementation to Codex, use Claude Code or independent reviewer as a second perspective, and keep a compact checkpoint in private PCM.
 
-\`\`\`text
+```text
 Question / user intent
     → short mechanism specification and alternatives
     → interactive Mechanics Lab preview (isolated)
@@ -12,7 +12,7 @@ Question / user intent
     → independent code review and user signoff
     → merge and deploy
     → verify deployed SHA and log PCM checkpoint
-\`\`\`
+```
 
 ## Who owns what
 - **User:** product priority, mechanics behavior and release approval.
@@ -25,10 +25,10 @@ Question / user intent
 Project: ASCean. Date; repo/branch/commit; mechanism ID; decision state/change; source PR; tests, OS/browser/device; evidence links; quantitative metrics if measured; known caveats; next action; release/rollback status. **No fabricated token/energy/time usage.**
 
 ## Branching / integration
-- Each bounded milestone/mechanism on \`feature/*\` or \`docs/*\` branch.
+- Each bounded milestone/mechanism on `feature/*` or `docs/*` branch.
 - Open a PR, use CI, approve and only then merge. No auto-merge/deploy from a proposal.
 - On any conflict, refresh source state; do not force-push over unknown user changes.
 - The public ASCean Pages may host demonstrations and docs; PCM itself stays private with owner-only access.
 
 ## Codex working contract
-Codex receives \`AGENTS.md\`, the decision IDs, target files, constraints, acceptance criteria, tests and a bounded implementation request. It should not consume the full chat transcript or turn provisional mock values into production equations.
+Codex receives `AGENTS.md`, the decision IDs, target files, constraints, acceptance criteria, tests and a bounded implementation request. It should not consume the full chat transcript or turn provisional mock values into production equations.

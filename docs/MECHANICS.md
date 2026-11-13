@@ -33,8 +33,8 @@
 - **Science:** avoid guessed organ, genome, lifespan or toxin thresholds. Link each measured parameter to source/experiment and expose uncertainty.
 
 ## Mechanism template
-Each mechanism in \`docs/mechanics/<slug>.md\` should include:
-\`\`\`text
+Each mechanism in `docs/mechanics/<slug>.md` should include:
+```text
 ID / status / owner / revision
 Problem · expected behavior · alternative approaches
 Data contract (inputs, units, outputs, storage)
@@ -42,4 +42,4 @@ Interactive experiment & expected observations
 Scientific basis vs illustrative assumptions
 Correctness tests · performance budget · mobile tests
 Decision links · changed source paths · rollback plan
-\`\`\`
+```

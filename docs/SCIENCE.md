@@ -23,8 +23,8 @@ Each species parameter needs: species/taxon ID, measurement definition (SL vs TL
 Mass (g) ≠ energy. Total body wet mass is derived from *nonoverlapping* physical components: tissue + reserves + digestive contents + reproductive contents and anything else explicitly defined. Store a cached total only with invalidation tests. Nitrogen waste and feces affect the environment; detritus can feed appropriate species. Growth must account for energy/available matter; reproductive outputs must transfer mass from parent stores rather than creating it.
 
 ## Physical dimensions and water
-- Default in-world units: cm, s, g. \`bodyMassG\` can represent microgram–tonne range numerically, but precision and meaningful fish-specific scales require benchmark/validation.
-- Pressure \`Pabs = Psurface + rho*g*h\` with \`h\` the vertical submerged depth, not the Z-coordinate viewed from the side. Explicitly convert CGS world units to SI when using SI physical constants.
+- Default in-world units: cm, s, g. `bodyMassG` can represent microgram–tonne range numerically, but precision and meaningful fish-specific scales require benchmark/validation.
+- Pressure `Pabs = Psurface + rho*g*h` with `h` the vertical submerged depth, not the Z-coordinate viewed from the side. Explicitly convert CGS world units to SI when using SI physical constants.
 - Light depends on spectral attenuation, surface illumination and water properties; pressure, temperature and oxygen affect fish differently by species/life stage.
 - Zebrafish is freshwater; it belongs in a suitable research habitat, not the default saltwater mix. Clownfish and deep-water species need different profiles/regions.
 

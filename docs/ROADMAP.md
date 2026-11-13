@@ -11,10 +11,10 @@
 | **M6 Learning/Scaling** | memory/adaptation experiments, WebGL/workers/WASM evaluation | A/B evidence of benefit, correctness preserved, device benchmarks |
 
 ## M0 deliverables in detail
-1. Create root workspace with \`apps/ocean\`, \`apps/mechanics-lab\`, \`packages/core\` and \`tests\`; stub other packages as boundaries, not fake implementations.
+1. Create root workspace with `apps/ocean`, `apps/mechanics-lab`, `packages/core` and `tests`; stub other packages as boundaries, not fake implementations.
 2. Keep both apps buildable, but ensure only one minimal test mechanism with truthful status.
 3. Add CI for typecheck, lint, unit tests, build; smoke accessibility on narrow viewport as tooling permits.
-4. Introduce \`src\` ownership contracts, seeded clock/RNG, logging adapter and minimal performance harness.
+4. Introduce `src` ownership contracts, seeded clock/RNG, logging adapter and minimal performance harness.
 5. Publish a design/implementation status page in the Lab with links to tested source and decision IDs.
 6. Prepare GitHub Pages workflow *as a PR* and release only after explicit owner review and verification.
 7. Create a **private PCM checkpoint proposal**, linked to ASCean PR and exact source SHA.

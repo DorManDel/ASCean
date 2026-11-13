@@ -1,6 +1,6 @@
 # Architecture proposal — one repository, two applications
 
-\`\`\`text
+```text
                     docs / mechanisms / decisions / evidence
                                  |
     +----------------------------+-----------------------------+
@@ -18,12 +18,12 @@
                   behavior + species definitions
                            |
                        rendering
-\`\`\`
+```
 
 ## World and identity
-- \`World\` owns active entity counts, dense numeric columns, capacity, creation/removal and identity resolution.
-- Initial storage candidate: Structure of Arrays via TypedArrays. \`fishId\` is stable; \`slot\` is movable. Spawn/delete uses dense indexing and swap-and-remove, updating \`id→slot\`.
-- \`Map<FishId,Slot>\` is *identity lookup*; a separate **3D spatial index** answers who is nearby. These solve different problems.
+- `World` owns active entity counts, dense numeric columns, capacity, creation/removal and identity resolution.
+- Initial storage candidate: Structure of Arrays via TypedArrays. `fishId` is stable; `slot` is movable. Spawn/delete uses dense indexing and swap-and-remove, updating `id→slot`.
+- `Map<FishId,Slot>` is *identity lookup*; a separate **3D spatial index** answers who is nearby. These solve different problems.
 - Shared species reference data is stored once. Optional genome, anatomy, injury, lineage and gut state use separate registries or handles. A field's hot/warm/cold class is about access patterns, not disk storage.
 - Example logical groups: Identity, Motion, Biology, Behavior, Extended Data. These are semantic groups, **not** a requirement to allocate one object per fish.
 
@@ -34,7 +34,7 @@
 - Seeded PRNG and stable update order for replay. Capture snapshots plus input/event logs and schema versions.
 
 ## System boundaries (replaceable)
-\`\`\`text
+```text
 Commands / inputs
     ↓
 Scheduler: environment → sensing → behavior → movement/physics
@@ -45,7 +45,7 @@ World / resource registries ←→ SpatialIndex
 Renderer                 Metrics / Benchmarks
     ↓
 Ocean UI & Lab UI
-\`\`\`
+```
 
 System order and frequencies are initial **proposals**; correctness tests can change them. Separate broad-phase spatial search from exact XYZ distance and physical contact resolution. Intended predation/social contact does not permit permanent body penetration.
 
@@ -59,7 +59,7 @@ System order and frequencies are initial **proposals**; correctness tests can ch
 Start Canvas 2D / glyph rendering with cached assets; compare real update/render/DOM cost. Preserve source/solver independence so WebGL, Worker or later C++/WASM is optional, not assumed. Avoid premature bit packing and quantization; test positional accuracy, speed, total heap impact and snapshot round-trips first. A million fish at 72 raw numeric bytes/fish costs ~68.7MiB **before** index maps, registries, physics, graphics and JS overhead.
 
 ## Repository shape (target, not completed)
-\`\`\`text
+```text
 ASCean/
   apps/ocean/
   apps/mechanics-lab/
@@ -72,4 +72,4 @@ ASCean/
   packages/rendering/
   docs/ decisions/ research/ mechanics/
   tests/ benchmarks/ prompts/
-\`\`\`
+```

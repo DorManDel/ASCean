@@ -30,14 +30,14 @@ The original [ASCuarium](https://github.com/DorManDel/ASCuarium) and [MobiLab](h
 
 ## Initial architectural target (not yet implemented)
 
-\`\`\`text
+```text
 apps/ocean             apps/mechanics-lab
            \           /
              packages/*
 core · physics · environment · biology · behavior · species · rendering
                  |
                tests / benchmarks / evidence
-\`\`\`
+```
 
 **Language:** TypeScript first. **Simulation:** world coordinates in cm, seconds, grams; world X=100m, Y=50m, Z=30m. **View:** XY side projection with true Z depth. **Data:** typed-array SoA and stable entity IDs as a starting design. **Rendering:** ASCII/Canvas first; WebGL/WASM only with profiling evidence.
 

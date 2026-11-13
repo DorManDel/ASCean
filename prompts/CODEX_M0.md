@@ -3,11 +3,11 @@
 You are implementing the **foundation only** for [ASCean](https://github.com/DorManDel/ASCean), an independent TypeScript-first ocean simulation.
 
 ## Before coding
-Read \`AGENTS.md\`, \`docs/DECISIONS.md\`, \`docs/ARCHITECTURE.md\`, \`docs/LAB_SPEC.md\`, \`docs/ROADMAP.md\`, \`docs/SCIENCE.md\`. Audit existing repo and cite the exact current base SHA. Explain ambiguities briefly. Do not edit ASCuarium, MobiLab or PCM repositories in this task.
+Read `AGENTS.md`, `docs/DECISIONS.md`, `docs/ARCHITECTURE.md`, `docs/LAB_SPEC.md`, `docs/ROADMAP.md`, `docs/SCIENCE.md`. Audit existing repo and cite the exact current base SHA. Explain ambiguities briefly. Do not edit ASCuarium, MobiLab or PCM repositories in this task.
 
 ## M0 deliverables
-- Set up a small TypeScript workspace with \`apps/ocean\`, \`apps/mechanics-lab\`, \`packages/core\` and tests; other packages may be documented boundary stubs.
-- Build a minimal runnable side-view canvas with a real \`World\` data owner and a reproducible seed; do not claim biological realism.
+- Set up a small TypeScript workspace with `apps/ocean`, `apps/mechanics-lab`, `packages/core` and tests; other packages may be documented boundary stubs.
+- Build a minimal runnable side-view canvas with a real `World` data owner and a reproducible seed; do not claim biological realism.
 - Include a single reusable mechanics demonstration that imports from the same core package as Ocean (not duplicated calculation code).
 - Add a test harness for fish ID vs dense slot, swap-and-remove, seed determinism, fixed-step timing and basic XYZ→XY projection.
 - Add CI for typecheck, tests and build; introduce performance logging without fabricated FPS or heap numbers.
