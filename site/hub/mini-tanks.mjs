@@ -3,7 +3,7 @@ const $=id=>document.getElementById(id);
 const tanks=new Map(Object.keys(SCENARIOS).map(id=>[id,createScenario(id)]));
 const templates=Object.entries(SCENARIOS).map(([id,info])=>`<article class="tank-card panel" data-tank-card="${id}"><div class="tank-top"><div><h3>${info.name}</h3><p>${info.objective}</p></div><span class="tiny-status">Illustrative</span></div><canvas class="tank-canvas" width="400" height="400" aria-label="Interactive ${info.name} scenario"></canvas><div class="tank-tools"><button data-tank-action="play" data-tank="${id}">▶ Play</button><button data-tank-action="step" data-tank="${id}" title="Single 0.5-second step">+ 0.5s</button><button data-tank-action="reset" data-tank="${id}">↺ Reset</button></div>${id==='predation'?`<label class="scenario-option">Predation outcome<select id="predationMode"><option value="escape">Escape via XYZ</option><option value="contact">Contact / bite attempt</option></select></label>`:''}<div class="tank-footer"><div class="tank-progress"><i></i></div><div class="tank-report" aria-live="polite">Ready · ${info.caveat}</div></div></article>`).join('');
 $('miniTankGrid').innerHTML=templates;
-function syncButtons(id){const s=tanks.get(id);const b=$(`[data-tank-action="play"][data-tank="${id}"]`);if(b)b.textContent=s.playing?'Ⅱ Pause':s.t>=12?'↺ Replay':'▶ Play';}
+function syncButtons(id){const s=tanks.get(id);const b=document.querySelector(`[data-tank-action="play"][data-tank="${id}"]`);if(b)b.textContent=s.playing?'Ⅱ Pause':s.t>=12?'↺ Replay':'▶ Play';}
 $('miniTankGrid').addEventListener('click',e=>{const b=e.target.closest('[data-tank-action]');if(!b)return;const id=b.dataset.tank,s=tanks.get(id);if(!s)return;
  if(b.dataset.tankAction==='play'){if(s.t>=SCENARIOS[id].duration)resetScenario(s);s.playing=!s.playing;}
  if(b.dataset.tankAction==='step'){s.playing=false;advanceScenario(s,.25);advanceScenario(s,.25);}
@@ -12,7 +12,7 @@ $('miniTankGrid').addEventListener('click',e=>{const b=e.target.closest('[data-t
 });
 $('predationMode').onchange=e=>{const s=tanks.get('predation');s.mode=e.target.value;resetScenario(s);syncButtons('predation');draw('predation');};
 export function showOffspringInTank(children){const s=tanks.get('mating');setOffspring(s,children);s.playing=true;syncButtons('mating');draw('mating');}
-function draw(id){const root=$(`[data-tank-card="${id}"]`),s=tanks.get(id),info=SCENARIOS[id],c=root.querySelector('canvas'),ctx=c.getContext('2d'),w=c.width,h=c.height,data=sampleScenario(s);
+function draw(id){const root=document.querySelector(`[data-tank-card="${id}"]`),s=tanks.get(id),info=SCENARIOS[id],c=root.querySelector('canvas'),ctx=c.getContext('2d'),w=c.width,h=c.height,data=sampleScenario(s);
  const bg=ctx.createLinearGradient(0,0,0,h);bg.addColorStop(0,'#16516b');bg.addColorStop(1,'#051b32');ctx.fillStyle=bg;ctx.fillRect(0,0,w,h);
  ctx.strokeStyle='#a5d4ef0d';for(let i=0;i<w;i+=40){ctx.beginPath();ctx.moveTo(i,0);ctx.lineTo(i,h);ctx.stroke();}
  for(let i=0;i<9;i++){const x=(i*53+19)%w,y=(i*97+20)%h;ctx.beginPath();ctx.arc(x,y,2.5,0,Math.PI*2);ctx.strokeStyle='#b4e9f94d';ctx.stroke();}
