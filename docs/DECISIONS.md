@@ -49,3 +49,5 @@ State: **ACCEPTED** = user-approved direction; **PROVISIONAL** = first candidate
 | P-007 | PROVISIONAL | Seeded toy diploid trait inheritance shown in Hub as experimental model | Needs species-specific scientific evidence before it can be called DNA simulation |
 
 The `site/shared/dev-register.mjs` mirrors key entries. Changes to an accepted decision require owner review and updates to both places. A successful demo is not a biological calibration.
+
+| P-008 | PROVISIONAL | Food & Gut Anatomy X-ray, ingestion timeline and dry-mass ledger in a restored standalone reference | The provided 55% assimilation and duration are teaching inputs, not validated biological rates |
