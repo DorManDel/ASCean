@@ -11,7 +11,7 @@ $('miniTankGrid').addEventListener('click',e=>{const b=e.target.closest('[data-t
  syncButtons(id);draw(id);
 });
 $('predationMode').onchange=e=>{const s=tanks.get('predation');s.mode=e.target.value;resetScenario(s);syncButtons('predation');draw('predation');};
-export function showOffspringInTank(children){const s=tanks.get('mating');setOffspring(s,children);s.playing=true;syncButtons('mating');draw('mating');}
+export function showOffspringInTank(children,autoplay=true){const s=tanks.get('mating');setOffspring(s,children);s.playing=autoplay;syncButtons('mating');draw('mating');}
 function draw(id){const root=document.querySelector(`[data-tank-card="${id}"]`),s=tanks.get(id),info=SCENARIOS[id],c=root.querySelector('canvas'),ctx=c.getContext('2d'),w=c.width,h=c.height,data=sampleScenario(s);
  const bg=ctx.createLinearGradient(0,0,0,h);bg.addColorStop(0,'#16516b');bg.addColorStop(1,'#051b32');ctx.fillStyle=bg;ctx.fillRect(0,0,w,h);
  ctx.strokeStyle='#a5d4ef0d';for(let i=0;i<w;i+=40){ctx.beginPath();ctx.moveTo(i,0);ctx.lineTo(i,h);ctx.stroke();}
