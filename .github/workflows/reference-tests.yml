@@ -23,4 +23,4 @@ jobs:
       - name: Algorithmic correctness tests
         run: |
           node --test site/shared/world-prototype.test.mjs
-          node --test site/shared/mini-ecosystem-prototype.test.mjs
+          node --test site/shared/mini-ecosystem-prototype.test.mjs site/shared/dev-register.test.mjs
