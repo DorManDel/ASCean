@@ -2,9 +2,11 @@
 export class FixedStepClock {
   paused=false; accumulator=0;
   readonly step:number;
-  constructor(tps=30,readonly maxSteps=4){
+  readonly maxSteps:number;
+  constructor(tps=30,maxSteps=4){
     if(!(tps>0)||!(maxSteps>0))throw new RangeError("clock");
     this.step=1/tps;
+    this.maxSteps=maxSteps;
   }
   advance(elapsed:number,update:(dt:number)=>void):number{
     if(this.paused)return 0;
