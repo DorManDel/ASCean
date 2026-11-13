@@ -1,5 +1,11 @@
 /** Curated source-backed design register; mirrored in docs/DECISIONS.md. */
 export const DECISIONS=[
+ {id:'A-021',status:'accepted',topic:'Central Reference & Data registry',why:'Versioned source links, provenance, dataset permissions and per-fish data field comparison are required before implementing real species biology.'},
+ {id:'A-022',status:'accepted',topic:'Verify third-party data and software rights',why:'Public Github code, papers, FishBase records and ocean videos have different rights; no unlicensed copying or bulk import.'},
+ {id:'A-023',status:'accepted',topic:'One research-informed MVP engine slice for Codex',why:'Start with a deterministic reusable World and water-relative movement, not sixty untested biological abilities.'},
+ {id:'P-009',status:'provisional',topic:'Initial research source priority',why:'SwimmingIndividuals → FiMoS and OpenDrift → OceanBioME → OSMOSE; revisit with data-quality and licensing evidence.'},
+ {id:'P-010',status:'provisional',topic:'Partition fish data by ownership and update rate',why:'Species-shared parameters differ from per-individual hot SoA state, temporary search fields and derived/snapshot data.'},
+ 
  {id:'A-001',status:'accepted',topic:'Independent ASCean repository',why:'Protect the original ASCuarium and MobiLab; build an extensible standalone simulator.'},
  {id:'A-002',status:'accepted',topic:'One engine, two applications',why:'Mechanics Lab and Ocean Simulator should use the same engine systems after approval.'},
  {id:'A-004',status:'accepted',topic:'World owns state, systems own behavior',why:'Keep rendering, biology, physics and decision models replaceable.'},
