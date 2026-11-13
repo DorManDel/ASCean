@@ -8,7 +8,7 @@ const traits=[['bodyLength','Body length',4,12],['tailPower','Tail power',0,100]
 const presets=[{name:'Parent A',bodyLength:8,bodyShape:1,tailPower:65,boldness:35,curiosity:75,regeneration:65,sociability:65,aggression:30,gillEfficiency:70,color:'#36bddb'},
 {name:'Parent B',bodyLength:8,bodyShape:2,tailPower:78,boldness:75,curiosity:45,regeneration:65,sociability:65,aggression:30,gillEfficiency:70,color:'#e79b56'}];
 let descriptors=structuredClone(presets),rng,parents=[],children=[],breedCount=0;
-function createFounders(){rng=rngFromSeed($('seed').value);parents=descriptors.map((d,i)=>founder(d.name,d,rng,'P'+(i+1)));children=[];breedCount=0;renderParents();renderChildren();}
+function createFounders(){rng=rngFromSeed($('seed').value);parents=descriptors.map((d,i)=>founder(d.name,d,rng,'P'+(i+1)));children=[];breedCount=0;renderParents();renderChildren();showOffspringInTank([],false);}
 function fishView(fish,mini=false){const ph=phenotype(fish);return `<div class="fish-stage"><code style="color:${ph.color}">${escapeText(fishAscii(ph))}</code></div>`;}
 function renderParents(){const root=$('parents');root.innerHTML=parents.map((fish,i)=>{
  const p=phenotype(fish);const d=descriptors[i];
