@@ -1,0 +1,8 @@
+{
+  "name": "@ascean/mechanics-lab",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@ascean/core": "*"
+  }
+}
