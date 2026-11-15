@@ -49,7 +49,7 @@ Source code inspected directly at the upstream main branch on 2026-11-13.
 - [src/energy.jl](https://github.com/mattwoodstock/SwimmingIndividuals/blob/main/src/energy.jl) — bioenergetic/recruitment models and fallbacks when some optional parameter files are absent. Fallbacks are **not raw measurements**.
 - [PLOS 2026 paper](https://doi.org/10.1371/journal.pcbi.1013610) — source, inputs and processing scripts are reportedly available in the repository/supporting material; the paper reports comparisons with migration, diving and King Mackerel growth observations.
 
-Agent fields in construct_individuals: 
+Agent fields in construct_individuals:
 - Identity/spatial: unique_id, x, y, z, pool_x, pool_y, pool_z, cell_id, sorted_id, temp_idx, cell_starts, cell_ends.
 - Body/energy: length, abundance, biomass_ind, biomass_school, biomass_init, energy, gut_fullness, cost, ration_energy, ration_biomass, successful_ration.
 - Life: alive, active, mature, age, generation, repro_energy.
@@ -109,4 +109,4 @@ We have **designed**, not implemented, extra compartments: separate SL/TL, body 
 **P2:** use OceanBioME as a conceptual reference for detritus → nutrients → plankton, with mass conservation.
 **P3:** use OSMOSE for size-dependent predation/food-web rules once predator physics and stomach events are real.
 
-Every experiment must attach a source, assumptions, a source/evidence status, a reproducible seed, tests, a screenshot/visual comparison, and a review decision. 
+Every experiment must attach a source, assumptions, a source/evidence status, a reproducible seed, tests, a screenshot/visual comparison, and a review decision.
