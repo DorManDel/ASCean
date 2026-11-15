@@ -20,6 +20,7 @@ const fieldData={
 function pageTo(id){
  if(!pages.includes(id))return;
  current=id;
+ try{localStorage.setItem('ascean-lab-page-1',id);}catch{}
  for(const p of pages) $("page-"+p).classList.toggle("is-current",p===id);
  document.querySelectorAll("[data-page]").forEach(b=>b.setAttribute("aria-current",b.dataset.page===id?"page":"false"));
  $("navigation").classList.remove("open");$("scrim").classList.remove("open");
@@ -205,4 +206,5 @@ function frame(now){
  if(now-fpsWindow>=1000){const seconds=(now-fpsWindow)/1000;$("actualFps").textContent=Math.round(frameCount/seconds);$("actualTps").textContent=Math.round(tickCount/seconds);frameCount=0;tickCount=0;fpsWindow=now;updateCounts();}
  requestAnimationFrame(frame);
 }
-pageTo("space");requestAnimationFrame(frame);
+let savedPage='space';try{savedPage=localStorage.getItem('ascean-lab-page-1')||'space';}catch{}
+pageTo(pages.includes(savedPage)?savedPage:'space');requestAnimationFrame(frame);

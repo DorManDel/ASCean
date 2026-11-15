@@ -1,0 +1,29 @@
+{
+  "name": "ascean",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "apps/ocean",
+    "apps/mechanics-lab"
+  ],
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test tests/*.test.ts && node --test site/shared/*.test.mjs",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "smoke": "node tests/browser-smoke.mjs",
+    "benchmark": "tsx benchmarks/core.ts",
+    "smoke:dev": "node tests/browser-smoke.mjs --dev",
+    "smoke:living": "node tests/living-browser.mjs",
+    "benchmark:living": "tsx benchmarks/living.ts"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.6",
+    "playwright": "1.65.1",
+    "tsx": "4.23.15",
+    "typescript": "7.0.2",
+    "vite": "8.3.8"
+  }
+}

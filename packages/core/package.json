@@ -1,0 +1,6 @@
+{
+  "name": "@ascean/core",
+  "private": true,
+  "type": "module",
+  "exports": { ".": "./src/index.ts", "./living": "./src/living/index.ts" }
+}

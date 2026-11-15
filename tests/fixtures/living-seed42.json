@@ -1,0 +1,1305 @@
+{
+  "schema": 1,
+  "initial": {
+    "schema": 1,
+    "model": "living-1",
+    "definition": {
+      "schema": 1,
+      "model": "living-1",
+      "runId": "trial-42",
+      "seed": 42,
+      "count": 1,
+      "species": "forager",
+      "habitat": {
+        "name": "shallow marine",
+        "kind": "marine",
+        "temperatureC": 24,
+        "salinityPsu": 35,
+        "oxygenMgL": 7,
+        "turbidity": 0,
+        "surfaceY": 500,
+        "densityKgM3": 1025,
+        "surfaceLight": 1,
+        "attenuationPerM": 0.05,
+        "current": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      "parameters": {
+        "speed": 45,
+        "acceleration": 60,
+        "turnRate": 2,
+        "visionRange": 320,
+        "fovDegrees": 140,
+        "passive": false
+      },
+      "motion": "steering"
+    },
+    "tick": 0,
+    "rng": 1083814273,
+    "nextId": 2,
+    "sequence": 0,
+    "fish": [
+      {
+        "id": 1,
+        "species": "forager",
+        "habitatKind": "marine",
+        "position": {
+          "x": 150,
+          "y": 250,
+          "z": 150
+        },
+        "heading": {
+          "x": 0.9998037924413707,
+          "y": -0.019808498677401663,
+          "z": 0
+        },
+        "desired": {
+          "x": 0.9998037924413707,
+          "y": -0.019808498677401663,
+          "z": 0
+        },
+        "swimVelocity": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "waterDrift": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "worldVelocity": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "gutG": 0,
+        "structuralG": 2,
+        "reserveG": 0.2,
+        "capacityG": 1,
+        "goal": "ready",
+        "target": null,
+        "perceived": {
+          "tick": 0,
+          "candidates": 0,
+          "detected": [],
+          "rejected": []
+        },
+        "pathCm": 0,
+        "collisions": 0,
+        "firstFoodTick": null
+      }
+    ],
+    "food": [],
+    "obstacles": [],
+    "foodInputG": 0,
+    "foodOutputG": 0,
+    "events": [],
+    "observations": [],
+    "discardedEvents": 0,
+    "discardedObservations": 0
+  },
+  "commands": [
+    {
+      "schema": 1,
+      "runId": "trial-42",
+      "tick": 0,
+      "sequence": 0,
+      "action": {
+        "type": "addFood",
+        "position": {
+          "x": 340,
+          "y": 250,
+          "z": 150
+        },
+        "quantityG": 0.3
+      }
+    }
+  ],
+  "final": {
+    "schema": 1,
+    "model": "living-1",
+    "definition": {
+      "schema": 1,
+      "model": "living-1",
+      "runId": "trial-42",
+      "seed": 42,
+      "count": 1,
+      "species": "forager",
+      "habitat": {
+        "name": "shallow marine",
+        "kind": "marine",
+        "temperatureC": 24,
+        "salinityPsu": 35,
+        "oxygenMgL": 7,
+        "turbidity": 0,
+        "surfaceY": 500,
+        "densityKgM3": 1025,
+        "surfaceLight": 1,
+        "attenuationPerM": 0.05,
+        "current": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      "parameters": {
+        "speed": 45,
+        "acceleration": 60,
+        "turnRate": 2,
+        "visionRange": 320,
+        "fovDegrees": 140,
+        "passive": false
+      },
+      "motion": "steering"
+    },
+    "tick": 600,
+    "rng": 1083814273,
+    "nextId": 3,
+    "sequence": 1,
+    "fish": [
+      {
+        "id": 1,
+        "species": "forager",
+        "habitatKind": "marine",
+        "position": {
+          "x": 300.2048195183676,
+          "y": 267.7006939098383,
+          "z": 150
+        },
+        "heading": {
+          "x": 0.5906347190369685,
+          "y": -0.8069390489176499,
+          "z": 0
+        },
+        "desired": {
+          "x": 0.5906347190369684,
+          "y": -0.8069390489176499,
+          "z": 0
+        },
+        "swimVelocity": {
+          "x": 9.302496824832252,
+          "y": -12.709290020452984,
+          "z": 0
+        },
+        "waterDrift": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "worldVelocity": {
+          "x": 9.302496824832929,
+          "y": -12.7092900204525,
+          "z": 0
+        },
+        "gutG": 0.3,
+        "structuralG": 2,
+        "reserveG": 0.2,
+        "capacityG": 1,
+        "goal": "search (no visible food)",
+        "target": null,
+        "perceived": {
+          "tick": 600,
+          "candidates": 0,
+          "detected": [],
+          "rejected": []
+        },
+        "pathCm": 419.4256949470124,
+        "collisions": 0,
+        "firstFoodTick": 139
+      }
+    ],
+    "food": [],
+    "obstacles": [],
+    "foodInputG": 0.3,
+    "foodOutputG": 0,
+    "events": [
+      {
+        "schema": 1,
+        "tick": 0,
+        "type": "command",
+        "detail": "{\"type\":\"addFood\",\"position\":{\"x\":340,\"y\":250,\"z\":150},\"quantityG\":0.3}"
+      },
+      {
+        "schema": 1,
+        "tick": 1,
+        "type": "decision",
+        "entityId": 1,
+        "detail": "approach visible food; hunger=1.000; visible=2; target=2"
+      },
+      {
+        "schema": 1,
+        "tick": 139,
+        "type": "ingest",
+        "entityId": 1,
+        "amountG": 0.02,
+        "detail": "Food 2 → gut; visual eligibility + distance ≤10 cm"
+      },
+      {
+        "schema": 1,
+        "tick": 140,
+        "type": "ingest",
+        "entityId": 1,
+        "amountG": 0.02,
+        "detail": "Food 2 → gut; visual eligibility + distance ≤10 cm"
+      },
+      {
+        "schema": 1,
+        "tick": 141,
+        "type": "ingest",
+        "entityId": 1,
+        "amountG": 0.02,
+        "detail": "Food 2 → gut; visual eligibility + distance ≤10 cm"
+      },
+      {
+        "schema": 1,
+        "tick": 142,
+        "type": "ingest",
+        "entityId": 1,
+        "amountG": 0.02,
+        "detail": "Food 2 → gut; visual eligibility + distance ≤10 cm"
+      },
+      {
+        "schema": 1,
+        "tick": 143,
+        "type": "ingest",
+        "entityId": 1,
+        "amountG": 0.02,
+        "detail": "Food 2 → gut; visual eligibility + distance ≤10 cm"
+      },
+      {
+        "schema": 1,
+        "tick": 144,
+        "type": "ingest",
+        "entityId": 1,
+        "amountG": 0.02,
+        "detail": "Food 2 → gut; visual eligibility + distance ≤10 cm"
+      },
+      {
+        "schema": 1,
+        "tick": 145,
+        "type": "ingest",
+        "entityId": 1,
+        "amountG": 0.02,
+        "detail": "Food 2 → gut; visual eligibility + distance ≤10 cm"
+      },
+      {
+        "schema": 1,
+        "tick": 146,
+        "type": "ingest",
+        "entityId": 1,
+        "amountG": 0.02,
+        "detail": "Food 2 → gut; visual eligibility + distance ≤10 cm"
+      },
+      {
+        "schema": 1,
+        "tick": 147,
+        "type": "ingest",
+        "entityId": 1,
+        "amountG": 0.02,
+        "detail": "Food 2 → gut; visual eligibility + distance ≤10 cm"
+      },
+      {
+        "schema": 1,
+        "tick": 148,
+        "type": "ingest",
+        "entityId": 1,
+        "amountG": 0.02,
+        "detail": "Food 2 → gut; visual eligibility + distance ≤10 cm"
+      },
+      {
+        "schema": 1,
+        "tick": 149,
+        "type": "ingest",
+        "entityId": 1,
+        "amountG": 0.02,
+        "detail": "Food 2 → gut; visual eligibility + distance ≤10 cm"
+      },
+      {
+        "schema": 1,
+        "tick": 150,
+        "type": "ingest",
+        "entityId": 1,
+        "amountG": 0.02,
+        "detail": "Food 2 → gut; visual eligibility + distance ≤10 cm"
+      },
+      {
+        "schema": 1,
+        "tick": 151,
+        "type": "ingest",
+        "entityId": 1,
+        "amountG": 0.02,
+        "detail": "Food 2 → gut; visual eligibility + distance ≤10 cm"
+      },
+      {
+        "schema": 1,
+        "tick": 152,
+        "type": "ingest",
+        "entityId": 1,
+        "amountG": 0.02,
+        "detail": "Food 2 → gut; visual eligibility + distance ≤10 cm"
+      },
+      {
+        "schema": 1,
+        "tick": 153,
+        "type": "ingest",
+        "entityId": 1,
+        "amountG": 0.019999999999999993,
+        "detail": "Food 2 → gut; visual eligibility + distance ≤10 cm"
+      },
+      {
+        "schema": 1,
+        "tick": 154,
+        "type": "decision",
+        "entityId": 1,
+        "detail": "search (no visible food); hunger=0.700; visible=; target=none"
+      }
+    ],
+    "observations": [
+      {
+        "schema": 1,
+        "tick": 10,
+        "fishId": 1,
+        "position": {
+          "x": 153.66666666666666,
+          "y": 250,
+          "z": 150
+        },
+        "goal": "approach visible food",
+        "detected": [
+          2
+        ],
+        "gutG": 0,
+        "pathCm": 3.666666666666657,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 20,
+        "fishId": 1,
+        "position": {
+          "x": 164,
+          "y": 250,
+          "z": 150
+        },
+        "goal": "approach visible food",
+        "detected": [
+          2
+        ],
+        "gutG": 0,
+        "pathCm": 14,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 30,
+        "fishId": 1,
+        "position": {
+          "x": 178.86666666666667,
+          "y": 250,
+          "z": 150
+        },
+        "goal": "approach visible food",
+        "detected": [
+          2
+        ],
+        "gutG": 0,
+        "pathCm": 28.866666666666674,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 40,
+        "fishId": 1,
+        "position": {
+          "x": 193.86666666666667,
+          "y": 250,
+          "z": 150
+        },
+        "goal": "approach visible food",
+        "detected": [
+          2
+        ],
+        "gutG": 0,
+        "pathCm": 43.866666666666674,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 50,
+        "fishId": 1,
+        "position": {
+          "x": 208.86666666666667,
+          "y": 250,
+          "z": 150
+        },
+        "goal": "approach visible food",
+        "detected": [
+          2
+        ],
+        "gutG": 0,
+        "pathCm": 58.866666666666674,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 60,
+        "fishId": 1,
+        "position": {
+          "x": 223.86666666666667,
+          "y": 250,
+          "z": 150
+        },
+        "goal": "approach visible food",
+        "detected": [
+          2
+        ],
+        "gutG": 0,
+        "pathCm": 73.86666666666667,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 70,
+        "fishId": 1,
+        "position": {
+          "x": 238.86666666666667,
+          "y": 250,
+          "z": 150
+        },
+        "goal": "approach visible food",
+        "detected": [
+          2
+        ],
+        "gutG": 0,
+        "pathCm": 88.86666666666667,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 80,
+        "fishId": 1,
+        "position": {
+          "x": 253.86666666666667,
+          "y": 250,
+          "z": 150
+        },
+        "goal": "approach visible food",
+        "detected": [
+          2
+        ],
+        "gutG": 0,
+        "pathCm": 103.86666666666667,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 90,
+        "fishId": 1,
+        "position": {
+          "x": 268.8666666666667,
+          "y": 250,
+          "z": 150
+        },
+        "goal": "approach visible food",
+        "detected": [
+          2
+        ],
+        "gutG": 0,
+        "pathCm": 118.86666666666667,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 100,
+        "fishId": 1,
+        "position": {
+          "x": 283.8666666666667,
+          "y": 250,
+          "z": 150
+        },
+        "goal": "approach visible food",
+        "detected": [
+          2
+        ],
+        "gutG": 0,
+        "pathCm": 133.86666666666667,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 110,
+        "fishId": 1,
+        "position": {
+          "x": 298.8666666666667,
+          "y": 250,
+          "z": 150
+        },
+        "goal": "approach visible food",
+        "detected": [
+          2
+        ],
+        "gutG": 0,
+        "pathCm": 148.86666666666667,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 120,
+        "fishId": 1,
+        "position": {
+          "x": 313.7133333333333,
+          "y": 250,
+          "z": 150
+        },
+        "goal": "approach visible food",
+        "detected": [
+          2
+        ],
+        "gutG": 0,
+        "pathCm": 163.7133333333333,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 130,
+        "fishId": 1,
+        "position": {
+          "x": 324.2757718829557,
+          "y": 250,
+          "z": 150
+        },
+        "goal": "approach visible food",
+        "detected": [
+          2
+        ],
+        "gutG": 0,
+        "pathCm": 174.27577188295572,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 140,
+        "fishId": 1,
+        "position": {
+          "x": 330.5853237853148,
+          "y": 250,
+          "z": 150
+        },
+        "goal": "approach visible food",
+        "detected": [
+          2
+        ],
+        "gutG": 0.04,
+        "pathCm": 180.5853237853148,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 150,
+        "fishId": 1,
+        "position": {
+          "x": 334.363085579299,
+          "y": 250,
+          "z": 150
+        },
+        "goal": "approach visible food",
+        "detected": [
+          2
+        ],
+        "gutG": 0.23999999999999996,
+        "pathCm": 184.36308557929902,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 160,
+        "fishId": 1,
+        "position": {
+          "x": 338.42317545609563,
+          "y": 250.11007392921348,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 188.42569494701212,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 170,
+        "fishId": 1,
+        "position": {
+          "x": 343.62562433588926,
+          "y": 250.7914672669565,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 193.67569494701203,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 180,
+        "fishId": 1,
+        "position": {
+          "x": 348.70908941084355,
+          "y": 252.09075709578883,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 198.92569494701203,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 190,
+        "fishId": 1,
+        "position": {
+          "x": 353.60045658400213,
+          "y": 253.9892560831296,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 204.17569494701203,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 200,
+        "fishId": 1,
+        "position": {
+          "x": 358.2293746503357,
+          "y": 256.4596586338806,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 209.425694947012,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 210,
+        "fishId": 1,
+        "position": {
+          "x": 362.52926713900916,
+          "y": 259.46643361938214,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 214.67569494701203,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 220,
+        "fishId": 1,
+        "position": {
+          "x": 366.43828986467184,
+          "y": 262.96633541198156,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 219.9256949470121,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 230,
+        "fishId": 1,
+        "position": {
+          "x": 369.90022041557216,
+          "y": 266.90902587514626,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 225.17569494701203,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 240,
+        "fishId": 1,
+        "position": {
+          "x": 372.86526678523,
+          "y": 271.23779836320404,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 230.42569494701198,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 250,
+        "fishId": 1,
+        "position": {
+          "x": 375.2907835173365,
+          "y": 275.8903933176202,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 235.67569494701198,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 260,
+        "fishId": 1,
+        "position": {
+          "x": 377.1418850637653,
+          "y": 280.7998937293114,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 240.925694947012,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 270,
+        "fishId": 1,
+        "position": {
+          "x": 378.39194753393286,
+          "y": 285.89568758780547,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 246.175694947012,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 280,
+        "fishId": 1,
+        "position": {
+          "x": 379.0229916189825,
+          "y": 291.1044834746023,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 251.4256949470121,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 290,
+        "fishId": 1,
+        "position": {
+          "x": 379.0259411832983,
+          "y": 296.3513646937322,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 256.6756949470121,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 300,
+        "fishId": 1,
+        "position": {
+          "x": 378.40075380409826,
+          "y": 301.56086677823856,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 261.92569494701206,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 310,
+        "fishId": 1,
+        "position": {
+          "x": 377.1564213815891,
+          "y": 306.658062875102,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 267.1756949470121,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 320,
+        "fishId": 1,
+        "position": {
+          "x": 375.31084081090904,
+          "y": 311.569641397809,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 272.42569494701223,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 330,
+        "fishId": 1,
+        "position": {
+          "x": 372.8905565759477,
+          "y": 316.2249604469812,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 277.67569494701235,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 340,
+        "fishId": 1,
+        "position": {
+          "x": 369.9303789672466,
+          "y": 320.55706383362053,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 282.9256949470123,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 350,
+        "fishId": 1,
+        "position": {
+          "x": 366.47288341504867,
+          "y": 324.50364409178303,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 288.1756949470122,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 360,
+        "fishId": 1,
+        "position": {
+          "x": 362.5677981384526,
+          "y": 328.00793862993174,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 293.42569494701206,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 370,
+        "fishId": 1,
+        "position": {
+          "x": 358.2712889179499,
+          "y": 331.0195461318687,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 298.6756949470121,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 380,
+        "fishId": 1,
+        "position": {
+          "x": 353.6451512782644,
+          "y": 333.4951514651704,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 303.92569494701206,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 390,
+        "fishId": 1,
+        "position": {
+          "x": 348.7559217001102,
+          "y": 335.39914867096905,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 309.17569494701195,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 400,
+        "fishId": 1,
+        "position": {
+          "x": 343.6739206440684,
+          "y": 336.70415307478453,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 314.4256949470122,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 410,
+        "fishId": 1,
+        "position": {
+          "x": 338.4722411505092,
+          "y": 337.3913951528565,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 319.67569494701223,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 420,
+        "fishId": 1,
+        "position": {
+          "x": 333.22569756225187,
+          "y": 337.45099048910504,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 324.9256949470121,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 430,
+        "fishId": 1,
+        "position": {
+          "x": 328.0097494901998,
+          "y": 336.88208194000134,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 330.17569494701206,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 440,
+        "fishId": 1,
+        "position": {
+          "x": 322.8994164982598,
+          "y": 335.6928519626303,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 335.42569494701223,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 450,
+        "fishId": 1,
+        "position": {
+          "x": 317.96819911733826,
+          "y": 333.90040492863363,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 340.67569494701206,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 460,
+        "fishId": 1,
+        "position": {
+          "x": 313.28702170717474,
+          "y": 331.53052111667944,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 345.9256949470121,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 470,
+        "fishId": 1,
+        "position": {
+          "x": 308.92321237054773,
+          "y": 328.61728592171926,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 351.1756949470121,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 480,
+        "fishId": 1,
+        "position": {
+          "x": 304.93953459146513,
+          "y": 325.20259961401376,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 356.4256949470122,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 490,
+        "fishId": 1,
+        "position": {
+          "x": 301.3932845250275,
+          "y": 321.3355746989301,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 361.6756949470121,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 500,
+        "fishId": 1,
+        "position": {
+          "x": 298.3354669223968,
+          "y": 317.0718295451212,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 366.9256949470122,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 510,
+        "fishId": 1,
+        "position": {
+          "x": 295.8100615433189,
+          "y": 312.47268844064183,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 372.1756949470122,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 520,
+        "fishId": 1,
+        "position": {
+          "x": 293.85339060718906,
+          "y": 307.6042995823755,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 377.42569494701206,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 530,
+        "fishId": 1,
+        "position": {
+          "x": 292.4935963804389,
+          "y": 302.53668368449166,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 382.6756949470122,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 540,
+        "fishId": 1,
+        "position": {
+          "x": 291.7502364139651,
+          "y": 297.34272688953934,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 387.9256949470122,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 550,
+        "fishId": 1,
+        "position": {
+          "x": 291.6340022521889,
+          "y": 292.0971324668619,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 393.17569494701235,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 560,
+        "fishId": 1,
+        "position": {
+          "x": 292.1465656594775,
+          "y": 286.8753463757724,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 398.4256949470124,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 570,
+        "fishId": 1,
+        "position": {
+          "x": 293.28055457561123,
+          "y": 281.7524721468191,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 403.67569494701246,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 580,
+        "fishId": 1,
+        "position": {
+          "x": 295.0196591461228,
+          "y": 276.80219068811266,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 408.92569494701246,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 590,
+        "fishId": 1,
+        "position": {
+          "x": 297.3388663025029,
+          "y": 272.09570055284377,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 414.1756949470125,
+        "status": "sampled"
+      },
+      {
+        "schema": 1,
+        "tick": 600,
+        "fishId": 1,
+        "position": {
+          "x": 300.2048195183676,
+          "y": 267.7006939098383,
+          "z": 150
+        },
+        "goal": "search (no visible food)",
+        "detected": [],
+        "gutG": 0.3,
+        "pathCm": 419.4256949470124,
+        "status": "sampled"
+      }
+    ],
+    "discardedEvents": 0,
+    "discardedObservations": 0
+  },
+  "metrics": {
+    "status": "modeled",
+    "reached": 1,
+    "latencySeconds": 4.633333333333333,
+    "pathCm": 419.4256949470124,
+    "collisions": 0,
+    "foodBalanceErrorG": 0
+  },
+  "note": "Illustrative model; logs are bounded samples. Metrics describe modeled outcomes, not biological validation. Timings are not replay state."
+}

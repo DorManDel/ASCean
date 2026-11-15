@@ -1,6 +1,6 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#071220"><title>ASCean Ocean Sandbox</title><link rel="stylesheet" href="../assets/site.css"></head><body>
-<header class="topbar"><a class="brand" href="../"><span class="mark">🌊</span>ASCean / Ocean</a><nav class="toplinks"><a href="../lab/">Lab</a><a href="../">Home</a></nav></header>
-<main class="container"><div class="lab-intro"><div><div class="eyebrow">Shared World Prototype</div><h1>Ocean Sandbox</h1><p>A small technical side-view preview. No real swimming physics, genetics or ecological life model yet.</p></div></div>
+<header class="topbar"><a class="brand" href="../"><span class="mark">🌊</span>ASCean / Ocean</a><nav class="toplinks"><a href="../hub/">Development Hub</a><a href="../lab/">Core Lab</a><a href="../">Home</a></nav></header>
+<main class="container"><p class="btnrow"><a class="btn" href="../ocean/living/">Living Ocean V1</a><a class="btn" href="../lab/living/">Living Lab / Sandbox</a></p><div class="lab-intro"><div><div class="eyebrow">Shared World Prototype</div><h1>Ocean Sandbox</h1><p>A small technical side-view preview. No real swimming physics, genetics or ecological life model yet.</p></div></div>
 <div class="lab-grid"><section class="panel"><canvas class="canvas" id="ocean" width="1000" height="565" aria-label="Animated reference ASCII fish projected from a three-dimensional World"></canvas>
 <div class="metrics"><div class="metric"><span class="name">Entities</span><strong id="count">180</strong></div><div class="metric"><span class="name">FPS (measured)</span><strong id="fps">—</strong></div><div class="metric"><span class="name">TPS (measured)</span><strong id="tps">—</strong></div></div>
 <div class="btnrow"><button id="play">⏸ Pause</button><button id="step">+1 Tick</button><button id="add">+20 Fish</button><button id="reset">Reset Seed</button></div></section>
@@ -20,7 +20,7 @@ function paint(){
    c.fillStyle="hsl("+Math.round(174+depth*85)+" 85% 74%)";
    c.font=Math.round(12+(1-depth)*8)+"px Consolas,monospace";
    const x=world.x[i]/world.extents.x*w,y=(1-world.y[i]/world.extents.y)*h;
-   c.fillText(world.vx[i]<0?"><(((°<":"<°)))><",x,y);
+   c.fillText(world.vx[i]<0?"<o)))><":"><(((o>",x,y);
  }
  c.globalAlpha=1;c.textAlign="left";c.font="13px Consolas,monospace";c.fillStyle="#d8f4ff";c.fillText("SIDE VIEW XY  ·  TRUE XYZ WORLD  ·  REFERENCE MOTION",14,22);
  if(paused)c.fillText("PAUSED",14,42);

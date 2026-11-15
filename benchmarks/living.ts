@@ -1,0 +1,12 @@
+import {writeFileSync,mkdirSync} from 'node:fs';
+import {cpus,platform,release} from 'node:os';
+import {Trial,definition,meter,exportCsv} from '../packages/core/src/living';
+mkdirSync('tests/fixtures',{recursive:true});
+const t=new Trial(definition(42));t.command({type:'addFood',position:{x:340,y:250,z:150},quantityG:.3});
+for(let i=0;i<600;i++)t.step();
+Trial.replay(t.result());
+writeFileSync('tests/fixtures/living-seed42.json',JSON.stringify(t.result(),null,2)+'\n');
+writeFileSync('tests/fixtures/living-seed42.csv',exportCsv(t.result()));
+const result={environment:{node:process.version,os:`${platform()} ${release()}`,cpu:cpus()[0]?.model},rows:meter(),heapBytes:process.memoryUsage().heapUsed,heapStatus:'measured whole-process sample, not retained per-fish memory'};
+mkdirSync('test-results',{recursive:true});writeFileSync('test-results/living-meter.json',JSON.stringify(result,null,2));
+console.log(JSON.stringify(result,null,2));
