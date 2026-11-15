@@ -35,3 +35,9 @@ docs/ tests/ benchmarks/ prompts/
 ```
 
 **Do not implement all packages in M0.** Establish build/test boundaries and a minimal vertical slice first.
+
+## Development branch / recent UX decision
+- New work is proposed as a small `feature/*` PR targeting `development`. `main` stays the protected production deployment source and is never auto-merged.
+- Hub files `site/hub/` and `site/shared/mini-ecosystem-prototype.mjs` include **scripted educational vignettes**, not domain biology. New engine modules must be reusable without browser globals, with deterministic source-driven tests.
+- When a new mechanic is designed, record its status, reference and contract in `docs/MECHANICS_INTEGRATION_QUEUE.md` and update the on-site register. Keep private PCM check-ins separate.
+- Preview CI must not deploy to the public Pages environment; use PR artifact until an isolated preview host is explicitly set up.

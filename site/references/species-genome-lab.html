@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ASCean · Species & Genome Lab v0.8</title>
+<style>
+:root{color-scheme:dark;font-family:Inter,system-ui,Arial,sans-serif;--bg:#080d1b;--panel:#141b2e;--raised:#1b2540;--line:#344363;--muted:#a9b8d1;--accent:#ffe084;--purple:#b8a5ff}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -10%,#252954,#080d1b 70%);color:#f1f6ff;font-size:14px;line-height:1.45}header,main{max-width:1050px;margin:auto;padding:16px}header{padding-bottom:4px}h1{font-size:clamp(20px,4vw,30px);margin:4px 0 5px}h2{font-size:17px;margin:0 0 12px}h3{font-size:15px;margin:0 0 10px}.subtitle,.hint,.meta{color:var(--muted)}.tag{border:1px solid #8d70c0;border-radius:99px;padding:3px 8px;font-size:11px;color:#dacbff;display:inline-block}nav{display:flex;gap:6px;margin-top:12px}button,select,input{font:inherit}button{border:1px solid #566184;color:#f7f5ff;background:#263250;border-radius:11px;padding:11px 12px;cursor:pointer;font-weight:650;min-height:42px}button:active{transform:translateY(1px)}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}button.primary{background:#5743a4;color:white;border-color:#aa9cf2}button.yellow{background:#d9ae53;color:#121625;border-color:#ffe084}.tab{flex:1}.tab[aria-selected=true]{background:#5644a7}.pane{background:rgba(19,27,47,.94);border:1px solid var(--line);border-radius:17px;padding:15px;margin-bottom:13px;box-shadow:0 8px 28px #0002}.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.editor{border:1px solid #405173;background:#111a30;border-radius:14px;padding:12px;min-width:0}.fishview{background:linear-gradient(135deg,#0a4263,#062339);border-radius:12px;min-height:100px;display:flex;align-items:center;justify-content:center;position:relative;padding:14px;margin:8px 0 10px;overflow:hidden}.fishview code{font-family:Consolas,monospace;font-size:clamp(14px,3.6vw,26px);font-weight:750;white-space:pre;letter-spacing:0.2px;text-shadow:0 0 10px currentColor}.smallfish{min-height:85px}.smallfish code{font-size:clamp(14px,2.6vw,20px)}.muted,.note{font-size:12px;color:var(--muted)}.detail{border:1px solid #344365;padding:12px;border-radius:12px;margin-top:10px}.detail summary{font-weight:700;cursor:pointer}.control{display:flex;align-items:center;gap:8px;margin:9px 0;min-width:0}.control label{font-size:12px;color:#c5d3e7;flex:1}.control input[type=range]{flex:1.8;min-width:0;accent-color:#bfacff}.control output{width:33px;text-align:right;font-variant-numeric:tabular-nums}.control select{background:#222d48;border:1px solid #536487;color:white;padding:8px;border-radius:9px;max-width:58%}input[type=color]{width:42px;height:34px;border:0;background:transparent}.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}input[type=text]{min-width:0;flex:1;color:white;background:#101a2c;border:1px solid #566582;padding:12px;border-radius:10px}.stats{display:flex;gap:5px 12px;flex-wrap:wrap;font-size:12px;color:#cbd7e6}.offspring{border:1px solid #394c6d;border-radius:11px;padding:11px;background:#0f1c32}.offspring .fishview{margin:6px 0}.actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}.actions button{font-size:12px;padding:8px;min-height:34px}.bar{background:#303b55;height:9px;border-radius:99px;overflow:hidden;margin-top:7px}.bar span{display:block;height:100%;background:#65b9b3;transition:width .18s}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}p{margin:7px 0 12px}ul{padding-left:18px} .highlight{color:#f2d97b}.noaccess{color:#ffbeac}footer{color:#8b9ab2;text-align:center;padding:15px;font-size:12px}.hidden{display:none!important}#births{min-height:40px}#recoveryRows{display:grid;grid-template-columns:1fr 1fr;gap:12px} .readout{font-size:24px;font-variant-numeric:tabular-nums;font-weight:700}.tint{color:#aebcfd}svg{display:block;max-width:100%}@media(max-width:680px){header,main{padding:11px}.grid2,.grid3{grid-template-columns:1fr}.pane{padding:12px;border-radius:14px}.editor{padding:11px}.fishview{min-height:85px;margin:7px 0}.control{gap:5px}.control label{max-width:45%}#recoveryRows{grid-template-columns:1fr 1fr}h1{line-height:1.2}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header><div class="tag">ASCean · v0.8 concept prototype</div><h1>Species, Genome & Personality Lab</h1><div class="subtitle">Build two ASCII parents · Breed inheritable traits · Compare injury recovery</div><nav role="tablist"><button role="tab" class="tab" id="breedTab" aria-selected="true">Breeding Lab</button><button role="tab" class="tab" id="trialTab" aria-selected="false">Recovery Trial</button></nav></header>
+<main>
+<section id="breedPane">
+ <section class="pane"><div class="row"><h2>World seed</h2><span class="tag">Reproducible</span></div><div class="toolbar"><input type="text" id="seed" value="ASCEAN-2026-001" aria-label="Simulation seed"/><button id="reset">Reset parents</button></div><div class="hint">The seed determines founders, allele choices and mutations. Slider edits change heritable alleles; same seed and inputs reproduce results.</div></section>
+ <section class="grid2" id="parents"></section>
+ <section class="pane"><div class="row"><h2>Next generation</h2><span class="tag">One allele / parent / locus</span></div><div class="toolbar"><label for="mutation">Mutation chance</label><input type="range" id="mutation" min="0" max="10" value="2" step=".5"><output id="mutationValue">2%</output><button class="primary" id="breed">Breed 5 offspring</button></div><div id="births"><p class="hint">Design both parents, then breed to generate a new generation of ASCII fish.</p></div></section>
+ <section class="pane"><h3>What this prototype does—and does not—model</h3><p class="note">Diploid loci, random segregation and rare bounded mutation. Editing sliders changes the heritable genotype, not merely appearance. Pigmentation and morphology are inherited. This does not implement linked chromosomes, crossing-over, mating eligibility, selection pressure or real molecular genetics yet. Body parts remain species constrained and offspring are not automatically introduced into a running world.</p></section>
+</section>
+<section id="trialPane" class="hidden">
+ <section class="pane"><h2>Matched Control vs Treatment</h2><p class="hint">Both groups start with the same fish, injury and regeneration trait. The only experimental variable is damage to the fin's structural base. Toy coefficients are illustrative, not biologically calibrated.</p>
+  <div class="control"><label for="damage">Fin tissue lost</label><input type="range" min="0" max="100" value="85" id="damage"><output id="damageVal">85%</output></div>
+  <div class="control"><label for="baseDamage">Treatment: fin-base damage</label><input type="range" min="0" max="100" value="80" id="baseDamage"><output id="baseVal">80%</output></div>
+  <div class="control"><label for="regeneration">Inherited regeneration tendency</label><input type="range" min="0" max="100" value="80" id="regeneration"><output id="regenVal">80%</output></div>
+  <div class="control"><label for="ticks">Recovery ticks</label><input type="range" min="0" max="400" value="200" step="10" id="ticks"><output id="ticksVal">200</output></div>
+  <div id="recoveryRows"><article class="editor"><strong>Control</strong><p class="note">Same wound · Base intact</p><div id="healthyResult" class="readout"></div><div class="bar"><span id="healthyBar"></span></div><p id="healthyCeiling" class="note"></p></article><article class="editor"><strong>Treatment</strong><p class="note">Same wound · Base damaged</p><div id="treatedResult" class="readout"></div><div class="bar"><span id="treatedBar"></span></div><p id="treatedCeiling" class="note"></p></article></div>
+  <div class="detail"><strong>Chemical signalling</strong><p class="note">Bleeding and alarm cues are different fields. Which species detects them—and how—belongs to the ecological sensing system.</p><div class="control"><label for="skinDamage">Skin injury signal</label><input type="range" id="skinDamage" min="0" max="100" value="55"><output id="skinVal">55%</output></div><div class="stats"><span id="bloodResult"></span><span id="alarmResult"></span></div></div>
+ </section>
+</section>
+</main><footer>ASCean Foundation v0.8 · Standalone educational Lab · No game source files modified</footer>
+<script>
+/* =============================================================
+ * Genetics.js — ASCean educational genetics and injury model
+ * Responsibilities: seeded alleles, founder/offspring creation,
+ * phenotype expression, toy regrowth experiment, chemical cues.
+ * Boundaries: no DOM, server, Canvas, global randomness or storage.
+ * NOTE: Biological approximations, not calibrated fish physiology.
+ * ============================================================= */
+(function (root, factory) {
+  const api = factory();
+  if (typeof module === 'object' && module.exports) module.exports = api;
+  else root.ASGenetics = api;
+})(typeof globalThis !== 'undefined' ? globalThis : this, function () {
+  'use strict';
+  const LOCI = Object.freeze({
+    bodyLength:[4,12], bodyShape:[0,2], tailPower:[0,100], gillEfficiency:[0,100],
+    regeneration:[0,100], boldness:[0,100], curiosity:[0,100],
+    sociability:[0,100], aggression:[0,100], pigmentR:[0,255],
+    pigmentG:[0,255], pigmentB:[0,255]
+  });
+  const ORDER = Object.keys(LOCI);
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, Number.isFinite(v)?v:a));
+  function rngFromSeed(input) {
+    let state=2166136261;
+    for(const ch of String(input)) {state ^= ch.charCodeAt(0); state = Math.imul(state,16777619)>>>0;}
+    if(!state) state=0x6d2b79f5;
+    return {
+      next(){state=(state+0x6D2B79F5)>>>0;let t=state;t=Math.imul(t^(t>>>15),t|1);t ^= t+Math.imul(t^(t>>>7),t|61);return ((t^(t>>>14))>>>0)/4294967296;},
+      getState(){return state>>>0;}
+    };
+  }
+  function draw(rng, min, max) {return min+Math.floor(rng.next()*(max-min+1));}
+  function parseHex(s) {const m=/^#?([a-f\d]{6})$/i.exec(s||'');if(!m) return [70,200,230];return [0,2,4].map(i=>parseInt(m[1].slice(i,i+2),16));}
+  function founder(name, descriptor, rng, id) {
+    const rgb=parseHex(descriptor.color);
+    const chosen={bodyLength:Number(descriptor.bodyLength),bodyShape:Number(descriptor.bodyShape),tailPower:Number(descriptor.tailPower),gillEfficiency:Number(descriptor.gillEfficiency),regeneration:Number(descriptor.regeneration),boldness:Number(descriptor.boldness),curiosity:Number(descriptor.curiosity),sociability:Number(descriptor.sociability),aggression:Number(descriptor.aggression),pigmentR:rgb[0],pigmentG:rgb[1],pigmentB:rgb[2]};
+    const genes={};
+    for(const key of ORDER){const [min,max]=LOCI[key];const n=clamp(Math.round(chosen[key]),min,max);const spread=key==='bodyShape'?0:key.startsWith('pigment')?28:key==='bodyLength'?2:12;genes[key]=[clamp(n+draw(rng,-spread,spread),min,max),clamp(n+draw(rng,-spread,spread),min,max)];}
+    return {id,name:name||id,species:'reef-fish-v1',generation:0,parentIds:[],genes};
+  }
+  function breed(a,b,rng,id,mutationRate=0.02) {
+    if(a.species!==b.species) throw Error('Species incompatible: hybridization must be explicitly configured');
+    const genes={};let mutations=0;
+    for(const key of ORDER) {
+      const [low,high]=LOCI[key];
+      genes[key]=[a.genes[key][draw(rng,0,1)],b.genes[key][draw(rng,0,1)]].map(value=>{
+        if(rng.next()>=mutationRate) return value;
+        mutations++; const magnitude=key==='bodyShape'?1:key==='bodyLength'?1:key.startsWith('pigment')?draw(rng,1,9):draw(rng,1,6);
+        return clamp(value+(rng.next()<.5?-1:1)*magnitude,low,high);
+      });
+    }
+    return {id,name:id,species:a.species,generation:Math.max(a.generation,b.generation)+1,parentIds:[a.id,b.id],genes,mutations};
+  }
+  function phenotype(fish) {
+    const v={};for(const key of ORDER){const al=fish.genes[key];v[key]=Math.round((al[0]+al[1])/2);}
+    const h=n=>clamp(v[n],0,255).toString(16).padStart(2,'0');
+    v.color='#'+h('pigmentR')+h('pigmentG')+h('pigmentB');v.bodyShape=clamp(Math.round(v.bodyShape),0,2);
+    return v;
+  }
+  function fishAscii(ph,dir=1){
+    const n=clamp(Math.round(ph.bodyLength),4,12);
+    let mid='(' .repeat(Math.max(2,n-2));
+    if(ph.bodyShape===0)mid='=' .repeat(Math.max(2,n-2));
+    if(ph.bodyShape===2)mid='O'.repeat(Math.max(2,n-2));
+    const right='><'+mid+'°>';
+    return dir===1?right:'<°'+(ph.bodyShape===0?'=':ph.bodyShape===2?'O':')').repeat(Math.max(2,n-2))+'><';
+  }
+  function recoveryTrial(initialIntegrity,regenTrait,baseDamage,ticks){
+    const integrity=clamp(initialIntegrity,0,1),r=clamp(regenTrait/100,0,1),base=clamp(baseDamage,0,1),days=clamp(ticks,0,10000);
+    // Toy policy: greater structural root damage reduces the achievable ceiling.
+    const ceiling=clamp(1-base*0.85,integrity,1);
+    const rate=0.001+r*0.003;return {integrity:clamp(integrity+rate*days,integrity,ceiling),ceiling,rate};
+  }
+  function chemicalSignal(woundSeverity,skinDamage,speciesFactor=1){
+    const wound=clamp(woundSeverity,0,1),skin=clamp(skinDamage,0,1);
+    return {blood:wound*0.75,alarmCue:skin*clamp(speciesFactor,0,1)};
+  }
+  return {LOCI,ORDER,clamp,rngFromSeed,parseHex,founder,breed,phenotype,fishAscii,recoveryTrial,chemicalSignal};
+});
+
+</script>
+<script>
+/* =============================================================
+ * Species_Genome_Lab.html — UI-only demo of domain genetics.
+ * Rules are provided by genetics.js; these handlers do not run
+ * actual world simulation, persistence, or camera interactions.
+ * ============================================================= */
+(()=>{'use strict';const G=window.ASGenetics,$=id=>document.getElementById(id),snap=v=>Math.round(v);let rng,parents=[],children=[];let breedCount=0;
+const traits=[['bodyLength','Body length',4,12,8],['tailPower','Tail power',0,100,55],['gillEfficiency','Gill efficiency',0,100,70],['regeneration','Regeneration',0,100,65],['boldness','Boldness',0,100,50],['curiosity','Curiosity',0,100,60],['sociability','Sociability',0,100,65],['aggression','Aggression',0,100,30]];
+const defaults=[{name:'Parent A',color:'#36bddb',bodyShape:1,tailPower:65,boldness:35,curiosity:75},{name:'Parent B',color:'#e79b56',bodyShape:2,tailPower:78,boldness:75,curiosity:45}];
+const state=defaults.map(d=>Object.assign(Object.fromEntries(traits.map(t=>[t[0],t[4]])),d));
+function escape(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function makePanel(i){const x=state[i];return `<article class="pane editor" data-parent="${i}"><div class="row"><h2>${i?'Parent B':'Parent A'}</h2><span class="tag">Founder G0</span></div><div class="fishview"><code id="parentArt${i}"></code></div><div id="parentMeta${i}" class="stats"></div><details class="detail" ${i===0?'open':''}><summary>Customize inherited traits</summary><div class="control"><label for="color${i}">Pigment color</label><input type="color" id="color${i}" value="${x.color}"></div><div class="control"><label for="shape${i}">Body shape</label><select id="shape${i}"><option value="0">Slim</option><option value="1">Classic</option><option value="2">Round</option></select></div>${traits.map(([id,name,min,max])=>`<div class="control"><label for="${id}${i}">${name}</label><input type="range" id="${id}${i}" min="${min}" max="${max}" value="${x[id]}"><output id="${id}${i}Val">${x[id]}</output></div>`).join('')}</details></article>`}
+function renderParentPreview(i){const x=state[i];const ph=parents[i]?G.phenotype(parents[i]):Object.assign({},x,{color:x.color});$('parentArt'+i).textContent=G.fishAscii(ph);$('parentArt'+i).style.color=x.color;$('parentMeta'+i).innerHTML=`<span>Length: ${x.bodyLength}</span><span>Boldness: ${x.boldness}</span><span>Tail: ${x.tailPower}</span>`;}
+function buildParents(){ $('parents').innerHTML=makePanel(0)+makePanel(1);for(let i=0;i<2;i++){const x=state[i];$('shape'+i).value=x.bodyShape;const set=(field,v)=>{x[field]=v;if(parents[i]){const genome=parents[i].genes;if(field==='color'){const rgb=G.parseHex(v);['pigmentR','pigmentG','pigmentB'].forEach((k,j)=>genome[k]=[rgb[j],rgb[j]]);}else genome[field]=[v,v];parents[i].engineered=true;}renderParentPreview(i);};$('color'+i).addEventListener('input',e=>set('color',e.target.value));$('shape'+i).addEventListener('change',e=>set('bodyShape',Number(e.target.value)));for(const [field] of traits){$(field+i).addEventListener('input',e=>{const v=Number(e.target.value);set(field,v);$(field+i+'Val').textContent=v;});}renderParentPreview(i);}}
+function reset(){rng=G.rngFromSeed($('seed').value);parents=state.map((s,i)=>G.founder(s.name,s,rng,'P'+(i+1)));children=[];breedCount=0;$('births').innerHTML='<p class="hint">Parents are initialized. Breed to see inherited variants.</p>';}
+function offspringCard(child){const p=G.phenotype(child);return `<article class="offspring"><div class="row"><strong>${escape(child.id)}</strong><span class="tag">G${child.generation}</span></div><div class="fishview smallfish"><code style="color:${p.color}">${escape(G.fishAscii(p))}</code></div><div class="stats"><span>Length ${p.bodyLength}</span><span>Tail ${p.tailPower}</span><span>Bold ${p.boldness}</span><span>Social ${p.sociability}</span></div><p class="note">Parents: ${escape(child.parentIds.join(' + '))} · Mutations: ${child.mutations||0}</p><div class="actions"><button data-promote="A" data-child="${escape(child.id)}">Use as parent A</button><button data-promote="B" data-child="${escape(child.id)}">Use as parent B</button></div></article>`;}
+function drawChildren(){ $('births').innerHTML='<div class="grid3">'+children.map(offspringCard).join('')+'</div><p class="note">Select an offspring as a parent to breed successive generations. All children retain allele pairs and lineage IDs.</p>';}
+function breed(){if(!parents.length)reset();const rate=Number($('mutation').value)/100;children=Array.from({length:5},(_,i)=>G.breed(parents[0],parents[1],rng,'G'+(Math.max(...parents.map(p=>p.generation))+1)+'-'+(++breedCount),rate));drawChildren();}
+$('births').addEventListener('click',e=>{const b=e.target.closest('button[data-promote]');if(!b)return;const selected=children.find(c=>c.id===b.dataset.child);if(!selected)return;const i=b.dataset.promote==='A'?0:1;parents[i]=selected;const ph=G.phenotype(selected);Object.assign(state[i],ph,{name:selected.name});buildParents();$('births').insertAdjacentHTML('beforeend',`<p class="highlight">${escape(selected.id)} selected as Parent ${i?'B':'A'}. Preview reflects its genome; press Breed to create the next generation.</p>`);});
+$('breed').addEventListener('click',breed);$('reset').addEventListener('click',reset);$('mutation').addEventListener('input',()=>{$('mutationValue').textContent=$('mutation').value+'%'});
+function updateTrial(){const damage=Number($('damage').value),base=Number($('baseDamage').value),regen=Number($('regeneration').value),ticks=Number($('ticks').value);for(const [id,val] of [['damageVal',damage+'%'],['baseVal',base+'%'],['regenVal',regen+'%'],['ticksVal',ticks]])$(id).textContent=val;const initial=1-damage/100;const c=G.recoveryTrial(initial,regen,0,ticks),t=G.recoveryTrial(initial,regen,base/100,ticks);for(const [name,d]of[['healthy',c],['treated',t]]){$(name+'Result').textContent=Math.round(d.integrity*100)+'%';$(name+'Bar').style.width=(d.integrity*100)+'%';$(name+'Ceiling').textContent='Potential ceiling: '+Math.round(d.ceiling*100)+'%';}const s=G.chemicalSignal(damage/100,Number($('skinDamage').value)/100);$('skinVal').textContent=$('skinDamage').value+'%';$('bloodResult').textContent='Blood proxy: '+Math.round(s.blood*100)+'%';$('alarmResult').textContent='Skin alarm cue: '+Math.round(s.alarmCue*100)+'%';}
+for(const id of ['damage','baseDamage','regeneration','ticks','skinDamage'])$(id).addEventListener('input',updateTrial);
+function switchTab(trial){$('trialPane').classList.toggle('hidden',!trial);$('breedPane').classList.toggle('hidden',trial);$('breedTab').setAttribute('aria-selected',String(!trial));$('trialTab').setAttribute('aria-selected',String(trial));}
+$('breedTab').onclick=()=>switchTab(false);$('trialTab').onclick=()=>switchTab(true);
+buildParents();reset();updateTrial();
+})();
+</script>
+<script>addEventListener('load',()=>{const tab=location.hash.toLowerCase();if(tab.includes('recover')||tab.includes('injur'))document.getElementById('trialTab')?.click();});</script>
+</body></html>

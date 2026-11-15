@@ -73,3 +73,7 @@ ASCean/
   docs/ decisions/ research/ mechanics/
   tests/ benchmarks/ prompts/
 ```
+
+## Living V1 implementation boundary — 2026-11-15
+
+[Living V1](LIVING_V1.md) is the current implementation record: World owns authoritative state; pure water/vision/policy/motion functions live under `packages/core/src/living/`; Ocean, Lab, Inspector and recorder share it. M0 reflection and archived Hub demos remain separate labeled reference models. No calibrated ecosystem, adaptive LOD or complete lifecycle is claimed. The record specifies current ownership, deterministic order, units, food ledger, snapshots and future composition contracts. [Research Factory v1 import](RESEARCH_FACTORY_IMPORT.md) is metadata-only and cannot alter runtime state.

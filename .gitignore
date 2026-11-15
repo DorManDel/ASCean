@@ -2,3 +2,5 @@ node_modules/
 dist/
 test-results/
 .npm-cache/
+screenshots/
+debug.log

@@ -43,3 +43,15 @@ Scientific basis vs illustrative assumptions
 Correctness tests · performance budget · mobile tests
 Decision links · changed source paths · rollback plan
 ```
+
+## 2026-11-13 — Recovered prototypes / status
+
+The Hub restores prior experimental body mass/thrust/drag, geometry, 3D collision stages, water chemistry/pressure, diet/digestion, growth, injury and FishDex as interactive *reference archives*. These are not production engine systems.
+
+New scenario fixtures: spawning, feeding → waste, predator attack/3D escape and social investigation. Their movement/events are deterministic scripted illustrations and are unit-tested as such; the next engine milestone will implement reusable systems and test conservation/physics claims independently.
+
+See `docs/MECHANICS_INTEGRATION_QUEUE.md` for priority, inputs/outputs and acceptance gates.
+
+## Current executable slice
+
+[Living V1](LIVING_V1.md) distinguishes implemented limited vision, heading/current locomotion, food material transfer, inspection and trial replay from the larger planned mechanism register. Reproduction, organ injury and real genetics remain unavailable in this runtime; their archived interactive references are preserved through the Hub.

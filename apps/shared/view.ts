@@ -30,7 +30,7 @@ export function mount(root: HTMLElement, runner: Runner, title: string) {
     context.font = '24px monospace'; context.textAlign = 'center'; context.fillStyle = '#83f5d0';
     for (const e of runner.world.entities()) {
       context.globalAlpha = 1 - .6 * e.position.z / EXTENTS.z;
-      context.fillText(e.velocity.x < 0 ? '><(((°<' : '<°)))><',
+      context.fillText(e.velocity.x < 0 ? '<o)))><' : '><(((o>',
         55 + e.position.x / EXTENTS.x * 890, 30 + (1 - e.position.y / EXTENTS.y) * 440);
     }
     context.globalAlpha = 1;

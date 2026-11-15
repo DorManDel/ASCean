@@ -1,0 +1,8 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {SCENARIOS,createScenario,advanceScenario,resetScenario,setOffspring,sampleScenario} from './mini-ecosystem-prototype.mjs';
+test('all scenario traces stay within finite bounds',()=>{for(const id of Object.keys(SCENARIOS)){const s=createScenario(id);for(let i=0;i<360;i++)advanceScenario(s,1/30);const f=sampleScenario(s);assert.ok(f.completed);for(const a of f.actors)for(const key of ['x','y','z'])assert.ok(Number.isFinite(a[key])&&a[key]>=0&&a[key]<=1,`${id}:${key}=${a[key]}`);}});
+test('event timing is deterministic',()=>{const a=createScenario('waste'),b=createScenario('waste');for(let i=0;i<360;i++){advanceScenario(a,1/30);advanceScenario(b,1/30);}assert.deepEqual(a.events,b.events);assert.match(a.events.map(x=>x.text).join(' '),/Fecal/);});
+test('breeding outputs only imported offspring after explicit breed',()=>{const s=createScenario('mating');advanceScenario(s,.2);setOffspring(s,[{id:'G1-1',color:'#1188aa'}]);assert.equal(s.t,0);for(let i=0;i<240;i++)advanceScenario(s,1/30);assert.ok(sampleScenario(s).actors.some(a=>a.name==='G1 G1-1'));});
+test('reset restores empty event log',()=>{const s=createScenario('social');for(let i=0;i<200;i++)advanceScenario(s,1/30);assert.ok(s.events.length);resetScenario(s);assert.equal(s.t,0);assert.deepEqual(s.events,[]);});
+test('predator escape changes Z and a contact example does not',()=>{const s=createScenario('predation');for(let i=0;i<180;i++)advanceScenario(s,1/30);const escape=sampleScenario(s).actors[1];assert.ok(escape.z>.12);s.mode='contact';assert.equal(sampleScenario(s).actors[1].z,.12);});

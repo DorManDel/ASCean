@@ -28,7 +28,7 @@ The original [ASCuarium](https://github.com/DorManDel/ASCuarium) and [MobiLab](h
 | [Codex M0 brief](prompts/CODEX_M0.md) | First implementation handoff |
 | [AGENTS.md](AGENTS.md) | Instructions for coding assistants |
 
-## Initial architectural target (not yet implemented)
+## Architectural target (M0 and Living V1 partially implemented)
 
 ```text
 apps/ocean             apps/mechanics-lab
@@ -43,14 +43,29 @@ core · physics · environment · biology · behavior · species · rendering
 
 ## Status
 
-**2026-11-13: M0 design proposal in review.** There is no integrated scientific engine or published Mechanics Lab in this repository yet. Existing prototype HTML files from prior planning are *design references*, not validated engine code. Do not claim a feature works without tests and commit-specific evidence.
+**2026-11-13:** ASCean main contains a source-tested, educational reference Ocean Sandbox + Core Mechanics Lab. The reusable scientific engine is still pending. The expanded Development Hub, historical experiments and breeding prototypes are in a feature PR to `development` and are not yet a production Pages release. Do not claim prototype animations are scientifically calibrated.
 
 **Privacy:** this is a public repository. Never add PCM private registry contents, credentials, unpublished data, or personal information.
 
 ## First experimental website (under review)
 
-The [Ocean Sandbox](site/ocean/) and [Mechanics Lab](site/lab/) are static reference experiences currently proposed in [PR #3](https://github.com/DorManDel/ASCean/pull/3). They share a single educational World module. **No calibrated scientific engine is claimed yet.**
+The [Ocean Sandbox](site/ocean/) and [Core Mechanics Lab](site/lab/) are static reference experiences merged through [PR #3](https://github.com/DorManDel/ASCean/pull/3). They share a single educational World module. **No calibrated scientific engine is claimed yet.**
 
 Website after GitHub Pages is enabled and deployed: https://dormandel.github.io/ASCean/ . Owner must select **Settings → Pages → Source → GitHub Actions**, then verify the deployment. Until verified, this is the expected URL, not a live-site claim.
 
 [Component and bootstrap contracts](docs/ENGINE_COMPONENT_CONTRACTS.md) · [Technology choices](docs/TECH_STACK.md) · [Experiment approval process](docs/EXPERIMENT_PROTOCOL.md) · [Codex M0 foundation prompt](prompts/CODEX_ENGINE_FOUNDATION_M0.md)
+
+## Development Hub — feature review
+
+[ASCean Development Hub](site/hub/) combines the two owner-supplied interactive HTML references, seeded two-fish breeding, four mini aquarium event traces, searchable mechanics and an on-site Developer & AI/decisions reference.
+
+- [Review PR #4](https://github.com/DorManDel/ASCean/pull/4) — feature branch targets `development`, not `main`.
+- [Mechanics audit and integration queue](docs/MECHANICS_INTEGRATION_QUEUE.md)
+- [Branch / safe preview plan](docs/DEV_BRANCH_PREVIEW.md)
+- [Codex Initial Ocean M1 brief](prompts/CODEX_INIT_OCEAN_M1.md)
+
+Production GitHub Pages is separate from the development preview artifact. Do not enable a development Pages deployment that replaces the live main site. Owners approve merges and releases explicitly.
+
+## Living Ocean V1 review branch
+
+The current shared TypeScript experiment and preserved Hub/M0/archive routes are documented in [Living V1](docs/LIVING_V1.md). Run `npm ci` then `npm run dev`; open `/ASCean/ocean/living/` or `/ASCean/lab/living/`. These are causal engine-backed experiments with illustrative coefficients, not validated biology. Source reconciliation, exact dependency SHAs, recorder contracts, tests, saved trials and release gates are in that record. Earlier status descriptions below/above describe the original prototype milestone.
