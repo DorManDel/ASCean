@@ -1,6 +1,6 @@
 # Decision register — 2026-11-13
 
-State: **ACCEPTED** = user-approved direction; **PROVISIONAL** = first candidate requiring experiments; **OPEN** = not decided/calibrated; **DEFERRED** = after first implementation. Approval does not mean implemented or runtime-tested.
+State: **ACCEPTED** = user-approved design direction (not implemented); **REVIEW** = proposed, awaiting final approval; **PROVISIONAL** = first candidate requiring experiments; **OPEN** = not decided/calibrated; **DEFERRED** = after first implementation. Approval does not mean implemented or runtime-tested.
 
 | ID | State | Decision / proposed alternative | Why |
 |---|---|---|---|
@@ -21,6 +21,12 @@ State: **ACCEPTED** = user-approved direction; **PROVISIONAL** = first candidate
 | A-015 | ACCEPTED | FishDex + sourced species profiles + mini ASCII habitat | Learning and research-oriented presentation |
 | A-016 | ACCEPTED | Mechanism lifecycle: design → interactive prototype → review → implement → test → approve → integrate → PCM checkpoint | Prevent drifting specifications |
 | A-017 | ACCEPTED | Existing repositories' main branches untouched; reviewable PRs before merge | Safe history and code governance |
+| E-001 | ACCEPTED | Hybrid ECS + hot SoA, warm/cold/shared data grouped by access pattern | Dense update loops and modular storage; benchmark instead of guessing costs |
+| E-002 | ACCEPTED | Species Blueprint + Component Registry for required/allowed systems and biology-specific validation | Generic core, different anatomies, shared definitions |
+| E-003 | ACCEPTED | Stable uint64 EntityID; generational (uint32 slot, uint32 generation) handle; stable recycled slot table + Free List; dense hot SoA Swap-and-Pop; selective stable/sparse registries; ring buffers for event/sensor/motion/telemetry | Protect stale references and support efficient iteration without moving every entity |
+| E-004 | REVIEW | Proposed: Composition First; interfaces for species-specific mechanisms; max one parent Blueprint; no cycles; depth warning not hard cap; validate/flatten/cache on load; immutable versioned defaults; individual genotype/overrides/runtime state; structured diagnostics | Await final user approval; do not implement as accepted yet |
+| F-001 | ACCEPTED | Stable FieldID Registry and Human/Schema/Memory views with bidirectional anatomical links | Single explainable, typed source of field meaning and storage |
+| W-001 | ACCEPTED | Six-stage mechanism contract: concept → UML → fields → memory/complexity → implementation/lab → validation/checkpoint | Scientific provenance, efficiency, regressions, and reproducibility |
 | P-001 | PROVISIONAL | TypedArray SoA, ID→slot Map, swap-and-remove, 3D sparse grid | Benchmark against alternatives |
 | P-002 | PROVISIONAL | Float32 motion and body metrics, per-field data tiers | Precision and memory must be measured |
 | P-003 | PROVISIONAL | Canvas glyph/ASCII rendering, later optional WebGL | Rendering benchmark needed |
@@ -36,5 +42,7 @@ State: **ACCEPTED** = user-approved direction; **PROVISIONAL** = first candidate
 | O-007 | OPEN | AI memory/learning, ecological time scaling and tiered simulation | Must design benchmarks and ethical/scientific claims |
 | O-008 | OPEN | Target devices, FPS/TPS/energy/ram budgets, rendering backend | No measured baselines yet |
 | D-001 | DEFERRED | C++/WASM, per-fish heavy ML, advanced hydrodynamics | Only after profiling and model validation |
+
+**Foundation refinement (2026-11-20):** See [FOUNDATIONS_REFINEMENT.md](FOUNDATIONS_REFINEMENT.md) for exact E-001–E-004 contracts, diagnostic codes, Field Dictionary and workflow. E-001/E-003 supersede the *storage and identity parts* of provisional P-001; its spatial-grid candidate remains provisional. Distinguish design approval from running implementation and verified benchmarks. E-004 remains **REVIEW** until explicitly approved.
 
 **Change policy:** convert a provisional/open item to accepted via dated decision record with rationale, alternatives, owner approval, supporting evidence and impact. Do not silently replace earlier decisions. Add ADR files under `docs/decisions/` when meaningful.
