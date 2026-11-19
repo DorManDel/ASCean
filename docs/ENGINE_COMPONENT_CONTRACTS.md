@@ -30,7 +30,7 @@ Every accepted module needs typed contract tests, lifecycle/restart, output pari
 
 ## Entity and Blueprint foundation refinement (2026-11-20)
 
-The design conversation accepted E-001/E-002/E-003. The proposed E-004 Blueprint contract is in [FOUNDATIONS_REFINEMENT.md](FOUNDATIONS_REFINEMENT.md) and is **pending final owner approval**.
+The owner approved E-001/E-002/E-003 and E-004 as architectural contracts on 2026-11-20. The specification is in [FOUNDATIONS_REFINEMENT.md](FOUNDATIONS_REFINEMENT.md). E-004 detailed implementation questions are recorded in [FOUNDATIONS_IMPLEMENTATION_BACKLOG.md](FOUNDATIONS_IMPLEMENTATION_BACKLOG.md); no production implementation is implied.
 
 `EngineBootstrap` (engine module lifecycle already defined above) and a future `BlueprintResolver` (species definitions) are distinct, even if the latter is invoked during the former's setup.
 
