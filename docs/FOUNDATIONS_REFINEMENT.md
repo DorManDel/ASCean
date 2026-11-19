@@ -5,6 +5,8 @@
 **Review state:** E-001, E-002, E-003 accepted in design conversation; E-004 **pending final explicit approval**. Field Dictionary and six-stage Mechanics Development Contract agreed as design intent.  
 **Relationship:** complements [DECISIONS.md](DECISIONS.md), [ARCHITECTURE.md](ARCHITECTURE.md), [ENGINE_COMPONENT_CONTRACTS.md](ENGINE_COMPONENT_CONTRACTS.md), and [WORKFLOW.md](WORKFLOW.md).
 
+> **Visual companion:** [Entity Foundations Explorer](../site/foundations/index.html) (branch-local static page; not a deployed production claim). The existing Mechanics Lab links to it and still uses an older reference World identity prototype.
+
 > Goal: one authoritative, scientifically accountable entity/biology engine for Ocean, Mechanics Lab, Fish Inspector and Sandbox. The lab explains the production logic, not a divergent implementation. Preserve existing anatomy and motion features before migration.
 
 ## Foundation decisions
