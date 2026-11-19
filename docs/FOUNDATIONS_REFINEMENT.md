@@ -67,8 +67,8 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-  F[FishBase v1] -->|extends| Z[Zebrafish v1]
-  Z -->|extends| V[Zebrafish variant v1]
+  Z[Zebrafish v1] -->|extends, toward parent| F[FishBase v1]
+  V[Zebrafish variant v1] -->|extends, toward parent| Z
   F -->|schema components| C[Component Registry]
   Z -->|schema components| C
   V --> R[Bootstrap: validate + flatten]
