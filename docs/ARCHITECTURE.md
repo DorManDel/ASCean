@@ -81,7 +81,7 @@ See [FOUNDATIONS_REFINEMENT.md](FOUNDATIONS_REFINEMENT.md) and [DECISIONS.md](DE
 - E-001 and E-003 update the initial single `fishId → slot` candidate: conceptually distinct stable `uint64 EntityID`, generational `uint32 slot + uint32 generation` handles, recycled stable Entity Slots and Free List, and movable dense SoA physics indices with Swap-and-Pop.
 - A recycled *entity slot* does not move other slot entries; removing a *physics dense row* updates the moved entity's slot-to-dense lookup. Do not retain raw addresses to moved rows.
 - Some sparse/stable auxiliary registries are allowed for position-sensitive state. Genome may be cold while still using compact shared reference + individual variants, not necessarily sparse.
-- E-002 Species Blueprint and Registry are accepted. E-004 Composition / Interfaces / bounded-by-validation `extends` remain under review. Bootstrap/validation/flatten must be resolved outside the hot tick.
+- E-002 Species Blueprint and Registry are accepted. E-004 Composition / Interfaces / bounded-by-validation `extends` are accepted design; detailed Merge policies and diagnostic settings remain implementation tasks. Bootstrap/validation/flatten must be resolved outside the hot tick.
 - Ring buffers are intended for events, sensor and motion histories and telemetry, with explicitly different overflow guarantees.
 - Field IDs synchronize Human (anatomy), Schema and logical Memory views; scientific sources and measured complexity accompany relevant fields.
 - This text describes intended contracts. Audit current `site/` and the existing anatomy prototype before modifying or claiming the engine implements them.
