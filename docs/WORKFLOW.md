@@ -32,3 +32,17 @@ Project: ASCean. Date; repo/branch/commit; mechanism ID; decision state/change; 
 
 ## Codex working contract
 Codex receives `AGENTS.md`, the decision IDs, target files, constraints, acceptance criteria, tests and a bounded implementation request. It should not consume the full chat transcript or turn provisional mock values into production equations.
+
+## Mechanics Development Contract — agreed six-stage specification (2026-11-20)
+
+Before a mechanism is implemented or handed to Codex, maintain:
+1. **Concept & Biology:** what it represents, evidence, assumptions, measurable behavior and limits.
+2. **Architecture & UML:** data flow, composition, interfaces, inheritance arrow to parent and dependencies.
+3. **Field Contract:** stable FieldIDs, types, units, owner, update frequency, anatomy landmarks and storage access class.
+4. **Memory & Complexity:** expected/worst-case costs, auxiliary space, memory layout and proposed benchmarks.
+5. **Implementation & Visual Lab:** narrow production module, same authoritative engine, interactive explanation and regression/unit tests.
+6. **Validation & Checkpoint:** scientific and behavioral checks, test evidence, screenshots where needed, reviewed change, owner approval and compact private PCM checkpoint.
+
+Maintain the three Field Dictionary presentations: Human (biological meaning and anatomy), Schema (typed and validated contract), Memory (logical offsets/byte/bit layout, actual measured metrics where available). Document only measurements that actually ran.
+
+This contract refines but does not replace the existing approval flow or grant permission to merge, publish, modify private PCM or rewrite prior anatomy work. See [FOUNDATIONS_REFINEMENT.md](FOUNDATIONS_REFINEMENT.md).
