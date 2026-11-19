@@ -62,7 +62,7 @@ a.f-internal{color:#bcdcff}
 <body>
 <header class="topbar"><a class="brand" href="../"><span class="mark">🌊</span>ASCean</a><nav class="toplinks" aria-label="Main"><a href="../lab/">Mechanics Lab</a><a href="../ocean/">Ocean</a></nav></header>
 <main class="foundation">
-<section class="f-hero"><div><div class="eyebrow">Architecture / Explainable systems / Design review</div><h1>Entity Foundations Explorer</h1><p>See how decisions shape identity, memory, species contracts and the mechanics workflow. The diagrams are <strong>design models</strong>, not implementation or benchmark evidence.</p></div><span class="f-chip review">E-004 pending approval</span></section>
+<section class="f-hero"><div><div class="eyebrow">Architecture / Explainable systems / Design review</div><h1>Entity Foundations Explorer</h1><p>See how decisions shape identity, memory, species contracts and the mechanics workflow. The diagrams are <strong>design models</strong>, not implementation or benchmark evidence.</p></div><span class="f-chip accepted">E-004 · Design approved</span></section>
 <nav class="f-tabs" role="tablist" aria-label="Foundations topics">
 <button id="tab-overview" role="tab" aria-controls="view-overview" aria-selected="true" data-tab="overview">Decisions</button>
 <button id="tab-storage" role="tab" aria-controls="view-storage" aria-selected="false" data-tab="storage">Memory & IDs</button>
@@ -75,7 +75,7 @@ a.f-internal{color:#bcdcff}
 <button class="f-panel f-card" data-open="storage"><span class="f-chip accepted">E-001 · Accepted</span><h3>Hybrid ECS & SoA</h3><p>Hot numeric arrays for frequent motion updates; warm biological state, cold individual data and shared species definitions.</p><small class="f-muted">Explore memory layout →</small></button>
 <button class="f-panel f-card" data-open="blueprint"><span class="f-chip accepted">E-002 · Accepted</span><h3>Species & Components</h3><p>One generic Entity Engine; species-specific anatomy, required components, compatible mechanics and scientific constraints.</p><small class="f-muted">Explore Blueprint contracts →</small></button>
 <button class="f-panel f-card" data-open="storage"><span class="f-chip accepted">E-003 · Accepted</span><h3>Stable Identity & Lifecycle</h3><p>uint64 EntityID; slot + generation handle; Free List and dense physics SoA with Swap-and-Pop.</p><small class="f-muted">Try a deletion →</small></button>
-<button class="f-panel f-card" data-open="blueprint"><span class="f-chip review">E-004 · In Review</span><h3>Composition + Interfaces + Extends</h3><p>Versioned immutable blueprints, one direct config parent, cycle checks, flatten on load and structured diagnostics.</p><small class="f-muted">Inspect inheritance →</small></button>
+<button class="f-panel f-card" data-open="blueprint"><span class="f-chip accepted">E-004 · Accepted</span><h3>Composition + Interfaces + Extends</h3><p>Versioned immutable blueprints, one direct config parent, cycle checks, flatten on load and structured diagnostics.</p><small class="f-muted">Inspect inheritance →</small></button>
 </div>
 <div class="f-panel" style="margin-top:13px"><h3>One engine, many species</h3>
 <div class="f-flow"><div class="f-box"><strong>Entity Engine</strong><small>Identity / lifecycle</small></div><div class="f-arrow">→</div><div class="f-box"><strong>Component Registry</strong><small>Fields / contracts</small></div><div class="f-arrow">→</div><div class="f-box"><strong>Species Blueprints</strong><small>Fish · Octopus · Jellyfish</small></div></div>
