@@ -2,7 +2,7 @@
 
 **Date:** 2026-11-20  
 **Status:** design specification; no implementation or benchmark claim.  
-**Review state:** E-001, E-002, E-003 accepted in design conversation; E-004 **pending final explicit approval**. Field Dictionary and six-stage Mechanics Development Contract agreed as design intent.  
+**Review state:** E-001, E-002, E-003 and E-004 **ACCEPTED as design decisions by owner on 2026-11-20** (not yet implemented or merged). Field Dictionary and six-stage Mechanics Development Contract agreed as design intent.  
 **Relationship:** complements [DECISIONS.md](DECISIONS.md), [ARCHITECTURE.md](ARCHITECTURE.md), [ENGINE_COMPONENT_CONTRACTS.md](ENGINE_COMPONENT_CONTRACTS.md), and [WORKFLOW.md](WORKFLOW.md).
 
 > **Visual companion:** [Entity Foundations Explorer](../site/foundations/index.html) (branch-local static page; not a deployed production claim). The existing Mechanics Lab links to it and still uses an older reference World identity prototype.
@@ -45,7 +45,7 @@ flowchart LR
   SoA --> Swap[Swap-and-Pop on delete]
 ```
 
-## E-004 — Composition, contracts and limited Blueprint extends (PROPOSED: await approval)
+## E-004 — Composition, contracts and limited Blueprint extends (ACCEPTED DESIGN · 2026-11-20)
 
 **Separation of concerns**
 1. **Composition** describes which components an entity has; no deep organism-class hierarchy.
@@ -54,7 +54,7 @@ flowchart LR
 4. **Individual genotype** references a versioned species reference genome and stores represented variants/alleles separately. Phenotype is not automatically determined by a text or byte change without supported genotype-to-phenotype rules.
 5. **Runtime state** (position, velocity, current oxygen, health, etc.) is independent from shared defaults and persistent instance configuration overrides.
 
-**Draft rules**
+**Accepted architectural rules**
 - **Single direct parent:** at most one parent Blueprint for each Blueprint; unrelated to genetic reproduction, which can have two parents.
 - **No cycles:** reject repeated/cyclic parents (e.g. A extends B extends A) during validation.
 - **Depth:** no arbitrary hard depth cap in V1. A configurable warning threshold detects chains that may require simplification. A hard cap may be considered if evidence justifies it; traversal must still have cycle protection and practical resource safeguards.
@@ -142,6 +142,6 @@ Use measured latency distribution (including p95), allocations, capacity vs coun
 
 ## Next review / implementation boundary
 
-- **Pending:** explicit E-004 approval of the rules above and review of the documentation PR.
+- **Approved:** E-004 architectural contract as written above, confirmed by owner on 2026-11-20. This is a design approval, **not** authorization to merge PR #8, deploy, or claim implementation.
 - **Next after approval:** inspect the existing Zebrafish Anatomy Engine, identify working/defective features, map actual anatomy anchors and existing field data, avoid destructive rewrites, then implement narrowly scoped integrations on a separate feature branch.
 - **Not yet proven:** real data layout/overheads, gene-to-trait mapping, production BlueprintResolver, diagnostic implementation or biological calibration.
