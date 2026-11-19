@@ -6,7 +6,7 @@ let paused=false,acc=0,prev=performance.now(),fpsWindow=prev,frameCount=0,tickCo
 const TIME_STEP=1/30;
 let time=0,bodyData={};
 const fieldData={
- id:["Uint32 · stable fish identity","An ID never changes. Dense slots may move after deletion."],
+ id:["Uint32 · stable ID in this toy World (not the E-003 production design)","Approved future E-003 uses a uint64 stable EntityID and a separate slot+generation handle. This toy keeps a simple uint32 ID and movable dense slot."],
  species:["Uint16 / species registry · proposed","The species definition is shared across many fish. Currently absent from the toy World."],
  world:["World instance identifier","World ID is shared by its fish and is not repeated in every numeric column."],
  x:["Float32 × 3 · cm","Three physical coordinates (X horizontal, Y vertical, Z into screen)."],

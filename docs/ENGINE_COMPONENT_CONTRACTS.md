@@ -27,3 +27,17 @@ A World Snapshot is versioned **simulation state**, not an image. Include entiti
 
 ## Testing and integration
 Every accepted module needs typed contract tests, lifecycle/restart, output parity against an oracle where possible, reproducible snapshot roundtrip, lab visualization and mobile/performance measurements. Only after owner approval does the Lab import production packages and the module integrate with the Ocean. PCM checkpoint records only changes and evidence; no private PCM material in public Pages.
+
+## Entity and Blueprint foundation refinement (2026-11-20)
+
+The owner approved E-001/E-002/E-003 and E-004 as architectural contracts on 2026-11-20. The specification is in [FOUNDATIONS_REFINEMENT.md](FOUNDATIONS_REFINEMENT.md). E-004 detailed implementation questions are recorded in [FOUNDATIONS_IMPLEMENTATION_BACKLOG.md](FOUNDATIONS_IMPLEMENTATION_BACKLOG.md); no production implementation is implied.
+
+`EngineBootstrap` (engine module lifecycle already defined above) and a future `BlueprintResolver` (species definitions) are distinct, even if the latter is invoked during the former's setup.
+
+Candidate BlueprintResolver pipeline: `load -> resolve parent links -> validate schema / component contracts / cycle checks -> flatten deterministic configuration -> publish immutable, versioned resolved blueprint -> instantiate entities`. No parent traversal on every fish Tick. Detect cycles and missing parents as errors; configurable long-chain warning without an arbitrary hard depth=2 rule. Structured, deduplicated diagnostics flow into logs and the Lab, not only a transient UI popup.
+
+The hot SoA should not receive raw pointers from optional component code: stable IDs/validated generational handles route through a slot table. Optional biology systems may be updated at their own schedule. Interfaces express contracts for differing physiology but do not mandate per-entity virtual dispatch in every hot loop.
+
+The future Field Dictionary holds stable FieldIDs; synchronized Human / Schema / Memory views link fish anatomy landmarks to real fields and their logical storage layouts. Numeric demo values are not calibrated biological constants.
+
+No implementation claim is made by this contract addition.
