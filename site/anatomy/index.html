@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#071220">
+<title>Living Anatomy Foundation · ASCean</title>
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.anatomy-app{display:grid;grid-template-columns:246px minmax(0,1fr) 292px;gap:12px;padding:14px;max-width:1800px;margin:auto;height:calc(100dvh - 66px);min-height:570px}
+.anatomy-app .pane{min-width:0;min-height:0;overflow:auto;scrollbar-width:thin}
+.anatomy-app .panel{margin-bottom:10px}
+.anatomy-app h1{font-size:clamp(1.12rem,2.4vw,1.75rem);margin:2px 0 9px}
+.anatomy-app h2{font-size:.98rem}
+.anatomy-app p{font-size:.85rem}
+.anatomy-app .eyebrow{font-size:.7rem}
+.anatomy-app .stat{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:7px 0;color:var(--muted);font-size:.81rem}
+.anatomy-app .small{font-size:.76rem;color:var(--muted)}
+.anatomy-app button,.anatomy-app input,.anatomy-app select{touch-action:manipulation}
+.layer-row{display:grid;grid-template-columns:24px minmax(0,1fr) 52px;align-items:center;gap:6px;border:1px solid #304d65;background:#10233b;border-radius:9px;padding:8px;margin:7px 0}
+.layer-row label{font-size:.82rem;font-weight:600}
+.layer-row input[type=range]{grid-column:2 / 4}
+.layer-row output{font-size:.72rem;color:#c3e2ec;text-align:right}
+.part-button{display:flex;align-items:center;justify-content:space-between;width:100%;text-align:left;margin:4px 0;padding:8px 10px;border:1px solid #375771;background:#182f48;color:var(--text);border-radius:9px;font-size:.84rem;min-height:37px}
+.part-button[aria-current=true]{background:#514788;border-color:#c1acf6}
+.status{font-weight:700;color:#92e5ca}
+.stage-pane{display:flex;flex-direction:column;gap:10px}
+.stagehead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.stage-wrap{position:relative;min-height:260px;flex:1;display:grid;place-items:center;background:radial-gradient(circle at 45% 30%,#183f57,#08172a 70%);border:1px solid #315875;border-radius:15px;overflow:hidden}
+.stage-wrap svg{display:block;width:100%;height:100%;max-height:100%;min-height:260px;touch-action:pan-y}
+.stage-hint{position:absolute;left:12px;bottom:11px;padding:6px 9px;background:#071626c9;border:1px solid #42607a;border-radius:9px;font-size:.7rem;color:#d1e4f1;pointer-events:none;max-width:90%}
+.modebar,.btnline,.viewbar{display:flex;gap:7px;flex-wrap:wrap}
+.modebar button,.btnline button,.viewbar button{padding:8px 11px;border:1px solid #466383;border-radius:9px;color:var(--text);background:#21354e;min-height:40px;font-size:.81rem}
+.modebar button[aria-pressed=true],.viewbar button[aria-pressed=true]{background:#574c92;border-color:#c0a7fa}
+.stack-note{background:#102b44;border-left:3px solid #b99df6;padding:9px 11px;font-size:.8rem;color:#c5deef;border-radius:5px 10px 10px 5px}
+#anatomyDiagram [data-part]{cursor:pointer;transition:filter .12s}
+#anatomyDiagram [data-part]:hover{filter:brightness(1.25)}
+#anatomyDiagram .focused{filter:drop-shadow(0 0 9px #ffd995)}
+#anatomyDiagram [data-layer=labels]{pointer-events:none}
+#fieldDetail{white-space:pre-wrap;overflow-wrap:anywhere;font-size:.8rem;line-height:1.6;color:#c5e5f3;background:#081a2d;padding:11px;border-radius:9px;border:1px solid #32506a}
+.field input{width:100%}
+.linkline{display:flex;gap:8px;flex-wrap:wrap}.linkline a{font-size:.81rem}
+#diagnostics{font:11px/1.5 ui-monospace,monospace;color:#ffddaa}
+#versionPill{background:#1b374b;border:1px solid #53748c;border-radius:999px;padding:4px 9px;color:#bde6f2;font-size:.68rem}
+@media(max-width:1080px){.anatomy-app{grid-template-columns:205px minmax(0,1fr);height:auto}.anatomy-app .stage-pane{min-height:440px}.anatomy-app .inspector{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.inspector .panel{margin:0}}
+@media(max-width:720px){.anatomy-app{grid-template-columns:1fr;padding:10px;min-height:0}.stage-pane{grid-row:1}.layer-pane{grid-row:2}.inspector{grid-row:3}.anatomy-app .inspector{display:block}.stage-wrap{min-height:270px}.stage-wrap svg{min-height:270px}.toplinks a{font-size:.7rem;padding:7px 8px}.brand{font-size:.9rem}}
+@media(prefers-reduced-motion:reduce){#anatomyDiagram [data-part]{transition:none}}
+</style>
+</head>
+<body>
+<header class="topbar">
+<a class="brand" href="../"><span class="mark">🧬</span>ASCean Anatomy</a>
+<nav class="toplinks" aria-label="Main navigation">
+<a href="../foundations/">Foundations</a><a href="../lab/">Mechanics Lab</a><a href="../ocean/">Ocean</a>
+</nav></header>
+<main class="anatomy-app">
+<aside class="pane layer-pane" aria-label="Anatomy hierarchy">
+<section class="panel">
+<div class="eyebrow">01 · Layer Registry</div><h2>Independent overlays</h2>
+<p>Toggle visual layers without removing organs. Opacity and visibility are per-inspector instance overrides.</p>
+<div id="layerList"></div>
+<div class="btnline"><button id="presetXray">X-ray preset</button><button id="presetSkin">Skin preset</button><button id="resetVisual">Reset layers</button></div>
+</section>
+<section class="panel">
+<div class="eyebrow">02 · Select part</div><h2>Anatomy parts</h2>
+<div id="partList"></div>
+</section>
+</aside>
+<section class="pane stage-pane" aria-label="Anatomy model display">
+<div class="panel">
+<div class="stagehead"><div><div class="eyebrow">Danio rerio · Adult · Freshwater</div><h1>Anatomy Foundation</h1></div><span id="versionPill">M0 · SCHEMATIC</span></div>
+<p>Source-backed organ identities, illustrative 2D positions and shape. This is <strong>not</strong> a calibrated Zebrafish atlas or a live physiology simulation.</p>
+<div class="modebar"><button id="modeAnatomy" aria-pressed="true">Anatomy</button><button id="modeASCII" aria-pressed="false">ASCII</button><button id="showLandmarks" aria-pressed="false">Landmarks</button><button id="resetAll">Reset instance</button></div></div>
+<div class="stage-wrap" id="stageWrap">
+<svg xmlns="http://www.w3.org/2000/svg" id="anatomyDiagram" viewBox="0 0 1000 480" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Schematic side-view adult Zebrafish with independently selectable organ layers">
+<defs><pattern id="grid" width="25" height="25" patternUnits="userSpaceOnUse"><path d="M25 0H0V25" stroke="#aad8ed" stroke-opacity=".075" fill="none"/></pattern></defs>
+<rect width="1000" height="480" fill="url(#grid)"/>
+<text x="28" y="28" font-size="15" fill="#b3d1df">SIDE VIEW · head at +X · tail at −X</text>
+<text x="28" y="54" font-size="12" fill="#8eafc4">Canvas +Y is downward; World Y is upward</text>
+<g id="anatomyLayers"></g>
+</svg>
+<div class="stage-hint">Select a part to inspect scientific evidence; use layers for an X-ray view.</div>
+</div>
+<section class="panel">
+<div class="stagehead"><strong id="selectionBanner">Heart · anatomy region</strong><span class="status" id="modelStatus">No physiological solver</span></div>
+<p class="small">Blue is an illustration, not measured tissue. Depth-aware occlusion, actual 3D volumes and mesh deformation require registered source data.</p>
+</section>
+</section>
+<aside class="pane inspector" aria-label="Field and anatomy inspector">
+<section class="panel">
+<div class="eyebrow">03 · Anatomy Inspector</div><h2 id="partTitle">Heart</h2><p id="partMeaning"></p>
+<div class="stat"><span>Selected anchor</span><strong id="anchorName">—</strong></div>
+<div class="stat"><span>Identity evidence</span><strong class="status">Literature-supported</strong></div>
+<div class="stat"><span>Shape / placement</span><strong style="color:#ffd8a2">Illustrative</strong></div>
+<div class="field"><label for="anchorX">Anchor X <output id="anchorXLabel"></output></label><input id="anchorX" type="range" min="-0.5" max="1.5" step=".005"></div>
+<div class="field"><label for="anchorY">Anchor Y <output id="anchorYLabel"></output></label><input id="anchorY" type="range" min="-0.5" max="1.5" step=".005"></div>
+<div class="btnline"><button id="resetAnchor">Reset anchor</button></div>
+<p class="stack-note">Anchor sliders edit only this inspector instance. The Species Blueprint remains immutable. Moving an organ is a geometry experiment, not a biological change.</p>
+<div class="linkline" style="margin-top:12px"><a id="partSource" target="_blank" rel="noopener">Scientific reference ↗</a><a href="https://github.com/DorManDel/ASCean/blob/feature/anatomy-foundation-v1/docs/ANATOMY_FOUNDATION_M0.md" target="_blank" rel="noopener">M0 Contract ↗</a></div>
+</section>
+<section class="panel">
+<div class="eyebrow">04 · Three-view Field Dictionary</div><h2>Same linked field</h2>
+<div class="viewbar"><button data-view="human" aria-pressed="true">Human</button><button data-view="schema" aria-pressed="false">Schema</button><button data-view="memory" aria-pressed="false">Memory</button></div>
+<div id="fieldDetail" style="margin-top:9px"></div>
+<p class="small">Field keys here are demo aliases, not permanent production FieldIDs. Memory view shows conceptual storage, not physical memory addresses.</p>
+</section>
+<section class="panel">
+<div class="eyebrow">05 · Persistence</div><h2>Personal deltas only</h2>
+<div class="btnline"><button id="exportInstance">Export JSON</button><button id="importInstance">Import JSON</button><input hidden type="file" accept="application/json,.json" id="inputInstance"></div>
+<p class="small">Full precision, schema-versioned instance; no duplicate anatomy blueprint or independent World. Legacy v0.3 migration is a separate reviewed milestone.</p>
+<div id="diagnostics" role="status" aria-live="polite"></div>
+</section>
+</aside>
+</main>
+<script type="module" src="./anatomy.mjs"></script>
+</body>
+</html>
