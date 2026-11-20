@@ -79,4 +79,5 @@ test("scientific invalidity: cannot add a true stomach to adult Zebrafish",()=>{
 test("an anatomy instance cannot hold a missing selected part",()=>{
   const a=createAnatomyInstance("entity-42");
   assert.throws(()=>validateInstance({...a,selectedPartId:"not-a-part"}),/ANATOMY_INSTANCE_PART_UNKNOWN/);
+  assert.throws(()=>parseInstance(JSON.stringify({...a,selectedPartId:null})),/ANATOMY_INSTANCE_PART_UNKNOWN/);
 });
