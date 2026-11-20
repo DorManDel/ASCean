@@ -23,7 +23,8 @@ try{
         const response=await page.goto(url,{waitUntil:"networkidle",timeout:30000});
         assert.equal(response?.status(),200,"Public preview must return HTTP 200");
         assert.match(await page.title(),/Living Anatomy Foundation/);
-        await page.locator("#partTitle").getByText("Heart",{exact:true}).waitFor({timeout:15000});
+        await page.locator("#layerList .layer-row").first().waitFor({timeout:15000});
+        assert.equal(await page.locator("#partTitle").innerText(),"Heart");
         success=true;break;
       }catch(error){lastError=error;if(attempt!==3)await pause(4000);}
     }
