@@ -14,6 +14,9 @@ try{
   browser=await chromium.launch({headless:true});
   for(const width of [1280,390]){
     const page=await browser.newPage({viewport:{width,height:820}});
+    // rawgit.hack documents a first-visit HTML notice; automated browser tests
+    // use its documented consent cookie. Human visitors may need to confirm once.
+    await page.context().addCookies([{name:"__Http-phish",value:"1",url:"https://raw.githack.com/",httpOnly:true,secure:true,sameSite:"Lax"}]);
     const errors=[];
     page.on("pageerror",error=>errors.push(error.message));
     page.on("console",msg=>{if(msg.type()==="error")errors.push(msg.text());});
