@@ -71,7 +71,8 @@ try{
     assert.equal(await page.locator("#stageSize").innerText(),initialSize,"Undo must restore original morphology");
     await page.locator("#redo").click();
     assert.equal(await page.locator("#stageSize").innerText(),slenderSize,"Redo must preserve original actions");
-    await page.locator("#quickSelect").selectOption("part:bowel");
+    if(width<=760) await page.locator("#quickSelect").selectOption("part:bowel");
+    else await page.locator('#layersList [data-choose="part:bowel"]').first().click();
     assert.equal(await page.locator("#selectedName").innerText(),"Intestine");
     await page.locator("#toggleVis").click();
     assert.equal(await page.locator('#stageContent [data-part="bowel"]').count(),0);
