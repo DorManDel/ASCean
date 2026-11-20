@@ -18,3 +18,7 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Desktop and mobile smoke
         run: node site/browser-smoke.mjs
+      - name: Test public anatomy preview (isolated branch, no Pages deploy)
+        env:
+          PREVIEW_SHA: ${{ github.event.pull_request.head.sha }}
+        run: node site/remote-preview-smoke.mjs
