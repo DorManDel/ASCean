@@ -57,6 +57,32 @@ try{
     const foundationOverflow=await page.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth);
     assert.ok(foundationOverflow<=3,"Foundations horizontal overflow "+foundationOverflow+"px at "+width+"px");
     assert.deepEqual(failures,[],"Browser errors in Foundations at "+width+"px");
+    // The original supplied Unified Anatomy Workspace v0.3 is our baseline.
+    // Protect its actual controls: layers, organs, presets, undo/redo and visibility.
+    await page.goto(url+"/anatomy/",{waitUntil:"networkidle"});
+    assert.match(await page.title(),/Unified Anatomy Workspace v0\.3/);
+    assert.ok(await page.locator("#layersList .layer").count()>=5,"Original editor layers must render");
+    assert.ok(await page.locator('#stageContent [data-part="heart"]').count()>0,"Original rig heart shape must render");
+    const initialSize=await page.locator("#stageSize").innerText();
+    await page.locator("#preset").selectOption("slender");
+    const slenderSize=await page.locator("#stageSize").innerText();
+    assert.notEqual(initialSize,slenderSize,"Species morphology presets must resize the existing rig");
+    await page.locator("#undo").click();
+    assert.equal(await page.locator("#stageSize").innerText(),initialSize,"Undo must restore original morphology");
+    await page.locator("#redo").click();
+    assert.equal(await page.locator("#stageSize").innerText(),slenderSize,"Redo must preserve original actions");
+    if(width<=760) await page.locator("#quickSelect").selectOption("part:bowel");
+    else await page.locator('#layersList [data-choose="part:bowel"]').first().click();
+    assert.equal(await page.locator("#selectedName").innerText(),"Intestine");
+    await page.locator("#toggleVis").click();
+    assert.equal(await page.locator('#stageContent [data-part="bowel"]').count(),0);
+    await page.locator("#toggleVis").click();
+    assert.ok(await page.locator('#stageContent [data-part="bowel"]').count()>0);
+    await page.locator("#zoomIn").click();
+    assert.match(await page.locator("#zoomOutLabel").innerText(),/%/);
+    const anatomyOverflow=await page.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth);
+    assert.ok(anatomyOverflow<=3,"Original Anatomy horizontal overflow "+anatomyOverflow+"px at "+width+"px");
+    assert.deepEqual(failures,[],"Browser errors in original Anatomy at "+width+"px");
     await page.goto(url+"/ocean/",{waitUntil:"networkidle"});
     await page.locator("#play").click();assert.match(await page.locator("#play").innerText(),/Resume/);
     await page.locator("#step").click();
