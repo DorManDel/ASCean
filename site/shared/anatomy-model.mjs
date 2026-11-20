@@ -28,6 +28,7 @@ const landmarks = {
   heartSite: {x:0.777,y:0.655},
   spineMid: {x:0.51,y:0.41},
   gutMid: {x:0.515,y:0.665},
+  intestinalBulbRegion: {x:0.66,y:0.64},
   swimBladderMid: {x:0.475,y:0.43},
   kidneyRegion: {x:0.49,y:0.29},
   brainRegion: {x:0.895,y:0.30},
@@ -71,7 +72,7 @@ export const ADULT_ZEBRAFISH_ANATOMY = deepFreeze({
     part("skull","Skull / cranium","skeleton","brainRegion","ellipse",0.13,0.21,{color:"#b0d0ee",description:"Schematic skull envelope; precise cranial bones not resolved."}),
     part("gills","Gills","organs","gill","ellipse",0.125,0.31,{color:"#f099a5",fieldKey:"demo:gill-region",description:"Respiratory structures; displayed lateral footprint is illustrative."}),
     part("heart","Heart","organs","heartSite","ellipse",0.064,0.135,{color:"#f4728c",fieldKey:"demo:heart-site",description:"Anterior ventral heart region; actual chambers / flow not simulated."}),
-    part("intestinalBulb","Intestinal bulb","organs","gutMid","ellipse",0.16,0.14,{color:"#e9b46d",fieldKey:"demo:intestinal-bulb",description:"Zebrafish does not have a true stomach; anterior intestinal bulb is represented."}),
+    part("intestinalBulb","Intestinal bulb","organs","intestinalBulbRegion","ellipse",0.16,0.14,{color:"#e9b46d",fieldKey:"demo:intestinal-bulb",description:"Zebrafish does not have a true stomach; anterior intestinal bulb is represented."}),
     part("intestine","Intestine","organs","gutMid","curve",0.28,0.22,{color:"#ffcd8b",fieldKey:"demo:intestine",description:"Folded intestinal tract, schematically drawn; no gut motion model."}),
     part("swimBladder","Swim bladder","organs","swimBladderMid","ellipse",0.26,0.11,{color:"#8ad1f1",fieldKey:"demo:swim-bladder",description:"Buoyancy organ, depicted schematically; no pressure/volume solver."}),
     part("kidney","Kidney region","organs","kidneyRegion","ellipse",0.28,0.065,{color:"#ac94d6",fieldKey:"demo:kidney",description:"Adult kidney situated dorsally; tissue not segmented."}),
@@ -144,7 +145,7 @@ export function validateInstance(instance,bp=ADULT_ZEBRAFISH_ANATOMY){
     if("visible" in cfg&&typeof cfg.visible!=="boolean")throw Error("ANATOMY_INSTANCE_VISIBILITY_INVALID");
     if("opacity" in cfg&&(!Number.isFinite(cfg.opacity)||cfg.opacity<0||cfg.opacity>1))throw Error("ANATOMY_INSTANCE_OPACITY_INVALID");
   }
-  if(instance.selectedPartId!==null&&!bp.parts.some(p=>p.id===instance.selectedPartId))throw Error("ANATOMY_INSTANCE_PART_UNKNOWN");
+  if(!bp.parts.some(p=>p.id===instance.selectedPartId))throw Error("ANATOMY_INSTANCE_PART_UNKNOWN");
   return true;
 }
 export function resolveLandmark(id,instance,bp=ADULT_ZEBRAFISH_ANATOMY){
