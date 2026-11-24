@@ -1,0 +1,41 @@
+/* Proposed reusable ASCean DeepGlass CSS tokens. Not imported into frozen v0.8.
+   First set mirrors baseline palette. Values below for geometry and materials
+   are opt-in recipes requiring visual comparison, not biological constants. */
+:root, [data-theme="deepglass"] {
+  --dg-bg: #061322;
+  --dg-pane: #0b2031;
+  --dg-pane-elevated: #112b3b;
+  --dg-border: #6eafcc38;
+  --dg-text: #e3f6ff;
+  --dg-muted: #86b1c5;
+  --dg-cyan: #9de2f4;
+  --dg-hot: #fa8199;
+  --dg-gold: #ffc47e;
+  --dg-green: #87d9bc;
+  --dg-purple: #b7a2fb;
+  --dg-radius-sm: 10px;
+  --dg-radius-panel: 17px;
+  --dg-gap-panel: 10px;
+  --dg-touch-target: 44px;
+  --dg-blur-glass: 16px;
+  --dg-surface-glass: linear-gradient(155deg,#24445660,#0a2233df 70%,#172b4388);
+  --dg-shadow-glass: inset 0 1px #c0edff11,0 12px 36px #0002;
+  --dg-motion-quick: 130ms;
+  --dg-motion-normal: 210ms;
+}
+.dg-glass-panel {
+  background: var(--dg-surface-glass);
+  border: 1px solid var(--dg-border);
+  border-radius: var(--dg-radius-panel);
+  box-shadow: var(--dg-shadow-glass);
+  -webkit-backdrop-filter: blur(var(--dg-blur-glass));
+  backdrop-filter: blur(var(--dg-blur-glass));
+}
+@supports not (backdrop-filter: blur(1px)) {
+  .dg-glass-panel { background: var(--dg-pane-elevated); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dg-animated { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
+/* PrismGlass is a separate recipe; preserve the source velocity-reactive
+   slider implementation until exact visual/interaction parity is verified. */
