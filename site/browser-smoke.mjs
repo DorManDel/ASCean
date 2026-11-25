@@ -83,6 +83,23 @@ try{
     const anatomyOverflow=await page.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth);
     assert.ok(anatomyOverflow<=3,"Original Anatomy horizontal overflow "+anatomyOverflow+"px at "+width+"px");
     assert.deepEqual(failures,[],"Browser errors in original Anatomy at "+width+"px");
+    // Real third-party SVG icon review; no changes to editor or biological state.
+    await page.goto(url+"/icon-review/",{waitUntil:"networkidle"});
+    assert.match(await page.title(),/Existing SVG Icon Review/);
+    assert.equal(await page.locator(".tile").count(),47,"37 system + 10 anatomy original source icons");
+    const missingMasks=await page.evaluate(async()=>{
+      const nodes=[...document.querySelectorAll(".tile .svgicon")];
+      const paths=[...new Set(nodes.map(el=>el.style.getPropertyValue("--src").match(/url\\(['\"]?(.*?)['\"]?\\)/)?.[1]).filter(Boolean))];
+      const missing=[];
+      for(const path of paths){const r=await fetch(path);if(!r.ok||!(await r.text()).includes("<svg"))missing.push(path);}
+      return missing;
+    });
+    assert.deepEqual(missingMasks,[],"All gallery icons must be actual accessible SVG source files");
+    await page.locator('.tile[data-id="mouse-pointer-2"] [data-value="keep"]').click();
+    assert.match(await page.locator("#progress").innerText(),/1 reviewed/);
+    const imgOverflow=await page.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth);
+    assert.ok(imgOverflow<=3,"Icon gallery overflow at "+width+"px: "+imgOverflow);
+    assert.deepEqual(failures,[],"Browser errors in icon review at "+width+"px");
     await page.goto(url+"/ocean/",{waitUntil:"networkidle"});
     await page.locator("#play").click();assert.match(await page.locator("#play").innerText(),/Resume/);
     await page.locator("#step").click();
