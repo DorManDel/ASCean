@@ -88,8 +88,8 @@ try{
     assert.match(await page.title(),/Existing SVG Icon Review/);
     assert.equal(await page.locator(".tile").count(),47,"37 system + 10 anatomy original source icons");
     const missingMasks=await page.evaluate(async()=>{
-      const nodes=[...document.querySelectorAll(".tile .svgicon")];
-      const paths=[...new Set(nodes.map(el=>el.style.getPropertyValue("--src").match(/url\\(['\"]?(.*?)['\"]?\\)/)?.[1]).filter(Boolean))];
+      const manifest=await (await fetch("./icons.json")).json();
+      const paths=[...manifest.system,...manifest.anatomy].map(x=>x.path);
       const missing=[];
       for(const path of paths){const r=await fetch(path);if(!r.ok||!(await r.text()).includes("<svg"))missing.push(path);}
       return missing;
