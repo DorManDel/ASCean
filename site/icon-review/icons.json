@@ -1,0 +1,395 @@
+{
+  "schema": "ascean-existing-svg-review/v1",
+  "status": "CANDIDATE_NOT_APPROVED",
+  "review_branch": "design/deepglass-existing-svg-review",
+  "baseline": "DeepGlass v0.8 unchanged",
+  "sourceDate": "2026-11-26",
+  "system": [
+    {
+      "id": "ui.mouse-pointer-2",
+      "family": "Lucide",
+      "path": "vendor/lucide/mouse-pointer-2.svg",
+      "origin": "https://github.com/lucide-icons/lucide/blob/main/icons/mouse-pointer-2.svg",
+      "license": "ISC / MIT for relevant Feather-derived artwork",
+      "status": "review"
+    },
+    {
+      "id": "ui.hand",
+      "family": "Lucide",
+      "path": "vendor/lucide/hand.svg",
+      "origin": "https://github.com/lucide-icons/lucide/blob/main/icons/hand.svg",
+      "license": "ISC / MIT for relevant Feather-derived artwork",
+      "status": "review"
+    },
+    {
+      "id": "ui.crosshair",
+      "family": "Lucide",
+      "path": "vendor/lucide/crosshair.svg",
+      "origin": "https://github.com/lucide-icons/lucide/blob/main/icons/crosshair.svg",
+      "license": "ISC / MIT for relevant Feather-derived artwork",
+      "status": "review"
+    },
+    {
+      "id": "ui.ruler",
+      "family": "Lucide",
+      "path": "vendor/lucide/ruler.svg",
+      "origin": "https://github.com/lucide-icons/lucide/blob/main/icons/ruler.svg",
+      "license": "ISC / MIT for relevant Feather-derived artwork",
+      "status": "review"
+    },
+    {
+      "id": "ui.route",
+      "family": "Lucide",
+      "path": "vendor/lucide/route.svg",
+      "origin": "https://github.com/lucide-icons/lucide/blob/main/icons/route.svg",
+      "license": "ISC / MIT for relevant Feather-derived artwork",
+      "status": "review"
+    },
+    {
+      "id": "ui.pentagon",
+      "family": "Lucide",
+      "path": "vendor/lucide/pentagon.svg",
+      "origin": "https://github.com/lucide-icons/lucide/blob/main/icons/pentagon.svg",
+      "license": "ISC / MIT for relevant Feather-derived artwork",
+      "status": "review"
+    },
+    {
+      "id": "ui.zoom-in",
+      "family": "Lucide",
+      "path": "vendor/lucide/zoom-in.svg",
+      "origin": "https://github.com/lucide-icons/lucide/blob/main/icons/zoom-in.svg",
+      "license": "ISC / MIT for relevant Feather-derived artwork",
+      "status": "review"
+    },
+    {
+      "id": "ui.zoom-out",
+      "family": "Lucide",
+      "path": "vendor/lucide/zoom-out.svg",
+      "origin": "https://github.com/lucide-icons/lucide/blob/main/icons/zoom-out.svg",
+      "license": "ISC / MIT for relevant Feather-derived artwork",
+      "status": "review"
+    },
+    {
+      "id": "ui.maximize",
+      "family": "Lucide",
+      "path": "vendor/lucide/maximize.svg",
+      "origin": "https://github.com/lucide-icons/lucide/blob/main/icons/maximize.svg",
+      "license": "ISC / MIT for relevant Feather-derived artwork",
+      "status": "review"
+    },
+    {
+      "id": "ui.expand",
+      "family": "Lucide",
+      "path": "vendor/lucide/expand.svg",
+      "origin": "https://github.com/lucide-icons/lucide/blob/main/icons/expand.svg",
+      "license": "ISC / MIT for relevant Feather-derived artwork",
+      "status": "review"
+    },
+    {
+      "id": "ui.rotate-ccw",
+      "family": "Lucide",
+      "path": "vendor/lucide/rotate-ccw.svg",
+      "origin": "https://github.com/lucide-icons/lucide/blob/main/icons/rotate-ccw.svg",
+      "license": "ISC / MIT for relevant Feather-derived artwork",
+      "status": "review"
+    },
+    {
+      "id": "ui.rotate-cw",
+      "family": "Lucide",
+      "path": "vendor/lucide/rotate-cw.svg",
+      "origin": "https://github.com/lucide-icons/lucide/blob/main/icons/rotate-cw.svg",
+      "license": "ISC / MIT for relevant Feather-derived artwork",
+      "status": "review"
+    },
+    {
+      "id": "ui.settings",
+      "family": "Lucide",
+      "path": "vendor/lucide/settings.svg",
+      "origin": "https://github.com/lucide-icons/lucide/blob/main/icons/settings.svg",
+      "license": "ISC / MIT for relevant Feather-derived artwork",
+      "status": "review"
+    },
+    {
+      "id": "ui.save",
+      "family": "Lucide",
+      "path": "vendor/lucide/save.svg",
+      "origin": "https://github.com/lucide-icons/lucide/blob/main/icons/save.svg",
+      "license": "ISC / MIT for relevant Feather-derived artwork",
+      "status": "review"
+    },
+    {
+      "id": "ui.folder-open",
+      "family": "Lucide",
+      "path": "vendor/lucide/folder-open.svg",
+      "origin": "https://github.com/lucide-icons/lucide/blob/main/icons/folder-open.svg",
+      "license": "ISC / MIT for relevant Feather-derived artwork",
+      "status": "review"
+    },
+    {
+      "id": "ui.file-up",
+      "family": "Lucide",
+      "path": "vendor/lucide/file-up.svg",
+      "origin": "https://github.com/lucide-icons/lucide/blob/main/icons/file-up.svg",
+      "license": "ISC / MIT for relevant Feather-derived artwork",
+      "status": "review"
+    },
+    {
+      "id": "ui.download",
+      "family": "Lucide",
+      "path": "vendor/lucide/download.svg",
+      "origin": "https://github.com/lucide-icons/lucide/blob/main/icons/download.svg",
+      "license": "ISC / MIT for relevant Feather-derived artwork",
+      "status": "review"
+    },
+    {
+      "id": "ui.eye",
+      "family": "Lucide",
+      "path": "vendor/lucide/eye.svg",
+      "origin": "https://github.com/lucide-icons/lucide/blob/main/icons/eye.svg",
+      "license": "ISC / MIT for relevant Feather-derived artwork",
+      "status": "review"
+    },
+    {
+      "id": "ui.eye-off",
+      "family": "Lucide",
+      "path": "vendor/lucide/eye-off.svg",
+      "origin": "https://github.com/lucide-icons/lucide/blob/main/icons/eye-off.svg",
+      "license": "ISC / MIT for relevant Feather-derived artwork",
+      "status": "review"
+    },
+    {
+      "id": "ui.lock",
+      "family": "Lucide",
+      "path": "vendor/lucide/lock.svg",
+      "origin": "https://github.com/lucide-icons/lucide/blob/main/icons/lock.svg",
+      "license": "ISC / MIT for relevant Feather-derived artwork",
+      "status": "review"
+    },
+    {
+      "id": "ui.lock-open",
+      "family": "Lucide",
+      "path": "vendor/lucide/lock-open.svg",
+      "origin": "https://github.com/lucide-icons/lucide/blob/main/icons/lock-open.svg",
+      "license": "ISC / MIT for relevant Feather-derived artwork",
+      "status": "review"
+    },
+    {
+      "id": "ui.move",
+      "family": "Lucide",
+      "path": "vendor/lucide/move.svg",
+      "origin": "https://github.com/lucide-icons/lucide/blob/main/icons/move.svg",
+      "license": "ISC / MIT for relevant Feather-derived artwork",
+      "status": "review"
+    },
+    {
+      "id": "ui.grid-3x3",
+      "family": "Lucide",
+      "path": "vendor/lucide/grid-3x3.svg",
+      "origin": "https://github.com/lucide-icons/lucide/blob/main/icons/grid-3x3.svg",
+      "license": "ISC / MIT for relevant Feather-derived artwork",
+      "status": "review"
+    },
+    {
+      "id": "ui.pause",
+      "family": "Lucide",
+      "path": "vendor/lucide/pause.svg",
+      "origin": "https://github.com/lucide-icons/lucide/blob/main/icons/pause.svg",
+      "license": "ISC / MIT for relevant Feather-derived artwork",
+      "status": "review"
+    },
+    {
+      "id": "ui.play",
+      "family": "Lucide",
+      "path": "vendor/lucide/play.svg",
+      "origin": "https://github.com/lucide-icons/lucide/blob/main/icons/play.svg",
+      "license": "ISC / MIT for relevant Feather-derived artwork",
+      "status": "review"
+    },
+    {
+      "id": "ui.sliders-horizontal",
+      "family": "Lucide",
+      "path": "vendor/lucide/sliders-horizontal.svg",
+      "origin": "https://github.com/lucide-icons/lucide/blob/main/icons/sliders-horizontal.svg",
+      "license": "ISC / MIT for relevant Feather-derived artwork",
+      "status": "review"
+    },
+    {
+      "id": "ui.scan",
+      "family": "Lucide",
+      "path": "vendor/lucide/scan.svg",
+      "origin": "https://github.com/lucide-icons/lucide/blob/main/icons/scan.svg",
+      "license": "ISC / MIT for relevant Feather-derived artwork",
+      "status": "review"
+    },
+    {
+      "id": "ui.thermometer",
+      "family": "Lucide",
+      "path": "vendor/lucide/thermometer.svg",
+      "origin": "https://github.com/lucide-icons/lucide/blob/main/icons/thermometer.svg",
+      "license": "ISC / MIT for relevant Feather-derived artwork",
+      "status": "review"
+    },
+    {
+      "id": "ui.layers",
+      "family": "Lucide",
+      "path": "vendor/lucide/layers.svg",
+      "origin": "https://github.com/lucide-icons/lucide/blob/main/icons/layers.svg",
+      "license": "ISC / MIT for relevant Feather-derived artwork",
+      "status": "review"
+    },
+    {
+      "id": "ui.activity",
+      "family": "Lucide",
+      "path": "vendor/lucide/activity.svg",
+      "origin": "https://github.com/lucide-icons/lucide/blob/main/icons/activity.svg",
+      "license": "ISC / MIT for relevant Feather-derived artwork",
+      "status": "review"
+    },
+    {
+      "id": "ui.book-open",
+      "family": "Lucide",
+      "path": "vendor/lucide/book-open.svg",
+      "origin": "https://github.com/lucide-icons/lucide/blob/main/icons/book-open.svg",
+      "license": "ISC / MIT for relevant Feather-derived artwork",
+      "status": "review"
+    },
+    {
+      "id": "ui.dice-5",
+      "family": "Lucide",
+      "path": "vendor/lucide/dice-5.svg",
+      "origin": "https://github.com/lucide-icons/lucide/blob/main/icons/dice-5.svg",
+      "license": "ISC / MIT for relevant Feather-derived artwork",
+      "status": "review"
+    },
+    {
+      "id": "ui.panel-left",
+      "family": "Lucide",
+      "path": "vendor/lucide/panel-left.svg",
+      "origin": "https://github.com/lucide-icons/lucide/blob/main/icons/panel-left.svg",
+      "license": "ISC / MIT for relevant Feather-derived artwork",
+      "status": "review"
+    },
+    {
+      "id": "ui.panel-right",
+      "family": "Lucide",
+      "path": "vendor/lucide/panel-right.svg",
+      "origin": "https://github.com/lucide-icons/lucide/blob/main/icons/panel-right.svg",
+      "license": "ISC / MIT for relevant Feather-derived artwork",
+      "status": "review"
+    },
+    {
+      "id": "ui.focus",
+      "family": "Lucide",
+      "path": "vendor/lucide/focus.svg",
+      "origin": "https://github.com/lucide-icons/lucide/blob/main/icons/focus.svg",
+      "license": "ISC / MIT for relevant Feather-derived artwork",
+      "status": "review"
+    },
+    {
+      "id": "ui.scan-eye",
+      "family": "Lucide",
+      "path": "vendor/lucide/scan-eye.svg",
+      "origin": "https://github.com/lucide-icons/lucide/blob/main/icons/scan-eye.svg",
+      "license": "ISC / MIT for relevant Feather-derived artwork",
+      "status": "review"
+    },
+    {
+      "id": "ui.clock-3",
+      "family": "Lucide",
+      "path": "vendor/lucide/clock-3.svg",
+      "origin": "https://github.com/lucide-icons/lucide/blob/main/icons/clock-3.svg",
+      "license": "ISC / MIT for relevant Feather-derived artwork",
+      "status": "review"
+    }
+  ],
+  "anatomy": [
+    {
+      "id": "anatomy.candidate.tabler.fish",
+      "family": "Tabler",
+      "path": "vendor/tabler/fish.svg",
+      "origin": "https://github.com/tabler/tabler-icons/blob/main/icons/outline/fish.svg",
+      "license": "MIT",
+      "status": "reference-only-not-fish-validated"
+    },
+    {
+      "id": "anatomy.candidate.tabler.fish-bone",
+      "family": "Tabler",
+      "path": "vendor/tabler/fish-bone.svg",
+      "origin": "https://github.com/tabler/tabler-icons/blob/main/icons/outline/fish-bone.svg",
+      "license": "MIT",
+      "status": "reference-only-not-fish-validated"
+    },
+    {
+      "id": "anatomy.candidate.tabler.eye",
+      "family": "Tabler",
+      "path": "vendor/tabler/eye.svg",
+      "origin": "https://github.com/tabler/tabler-icons/blob/main/icons/outline/eye.svg",
+      "license": "MIT",
+      "status": "reference-only-not-fish-validated"
+    },
+    {
+      "id": "anatomy.candidate.tabler.bone",
+      "family": "Tabler",
+      "path": "vendor/tabler/bone.svg",
+      "origin": "https://github.com/tabler/tabler-icons/blob/main/icons/outline/bone.svg",
+      "license": "MIT",
+      "status": "reference-only-not-fish-validated"
+    },
+    {
+      "id": "anatomy.candidate.tabler.heart",
+      "family": "Tabler",
+      "path": "vendor/tabler/heart.svg",
+      "origin": "https://github.com/tabler/tabler-icons/blob/main/icons/outline/heart.svg",
+      "license": "MIT",
+      "status": "reference-only-not-fish-validated"
+    },
+    {
+      "id": "anatomy.candidate.health.eye",
+      "family": "Health Icons",
+      "path": "vendor/health/eye.svg",
+      "origin": "https://github.com/resolvetosavelives/healthicons/blob/main/public/icons/svg/outline/body/eye.svg",
+      "license": "CC0",
+      "status": "reference-only-not-fish-validated"
+    },
+    {
+      "id": "anatomy.candidate.health.intestine",
+      "family": "Health Icons",
+      "path": "vendor/health/intestine.svg",
+      "origin": "https://github.com/resolvetosavelives/healthicons/blob/main/public/icons/svg/outline/body/intestine.svg",
+      "license": "CC0",
+      "status": "reference-only-not-fish-validated"
+    },
+    {
+      "id": "anatomy.candidate.health.spine",
+      "family": "Health Icons",
+      "path": "vendor/health/spine.svg",
+      "origin": "https://github.com/resolvetosavelives/healthicons/blob/main/public/icons/svg/outline/body/spine.svg",
+      "license": "CC0",
+      "status": "reference-only-not-fish-validated"
+    },
+    {
+      "id": "anatomy.candidate.health.gallbladder",
+      "family": "Health Icons",
+      "path": "vendor/health/gallbladder.svg",
+      "origin": "https://github.com/resolvetosavelives/healthicons/blob/main/public/icons/svg/outline/body/gallbladder.svg",
+      "license": "CC0",
+      "status": "reference-only-not-fish-validated"
+    },
+    {
+      "id": "anatomy.candidate.health.mouth",
+      "family": "Health Icons",
+      "path": "vendor/health/mouth.svg",
+      "origin": "https://github.com/resolvetosavelives/healthicons/blob/main/public/icons/svg/outline/body/mouth.svg",
+      "license": "CC0",
+      "status": "reference-only-not-fish-validated"
+    }
+  ],
+  "pending_anatomy_groups": [
+    "body-and-tail",
+    "fins",
+    "head-and-senses",
+    "internal-organs",
+    "circulation-and-gill-arches"
+  ],
+  "no_replacement_of_approved_baseline": true
+}
