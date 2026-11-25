@@ -54,3 +54,12 @@ The [Ocean Sandbox](site/ocean/) and [Mechanics Lab](site/lab/) are static refer
 Website after GitHub Pages is enabled and deployed: https://dormandel.github.io/ASCean/ . Owner must select **Settings → Pages → Source → GitHub Actions**, then verify the deployment. Until verified, this is the expected URL, not a live-site claim.
 
 [Component and bootstrap contracts](docs/ENGINE_COMPONENT_CONTRACTS.md) · [Technology choices](docs/TECH_STACK.md) · [Experiment approval process](docs/EXPERIMENT_PROTOCOL.md) · [Codex M0 foundation prompt](prompts/CODEX_ENGINE_FOUNDATION_M0.md)
+
+## Living Engine Atlas — approved UI baseline (review branch)
+
+- [Mechanics Atlas V2 review](site/lab/atlas-v2/index.html) — Fish Blueprint, Memory Explorer, Quantization and Bitfield Playground. Standalone educational calculations and source-inspected references, not connected to the production engine.
+- [Frozen V2.3 UI baseline](site/lab/atlas-v2/baseline-v2.3.html) — owner-approved visual and interaction baseline, preserved separately.
+- [Anatomy & Render Lab v2 template](site/lab/atlas-v2/anatomy-template.html) — experimental placeholders only; its local state is independent of the engine.
+- [Atlas approval and next gates](docs/MECHANICS_ATLAS_V2.md).
+
+The existing shared-World reference lab remains at [site/lab/](site/lab/) until review and mobile verification are complete.
