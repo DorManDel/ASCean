@@ -18,6 +18,10 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Desktop and mobile smoke
         run: node site/browser-smoke.mjs
+      - name: Public existing SVG icon gallery smoke
+        env:
+          PREVIEW_SHA: ${{ github.event.pull_request.head.sha }}
+        run: node site/icon-review/remote-preview-smoke.mjs
       - name: Public original Anatomy editor smoke (no Pages deployment)
         env:
           PREVIEW_SHA: ${{ github.event.pull_request.head.sha }}
